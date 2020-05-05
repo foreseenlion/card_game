@@ -43,8 +43,13 @@ public class BoardManager : MonoBehaviour
     private void Update()
     {
         UpdateSelection();
-        
-       
+
+        if (selectedX >= 0 && selectedY >= 0) //coś zaznaczono
+        {
+            Debug.DrawLine(
+                Vector3.forward * selectedY + Vector3.right * selectedX,
+                Vector3.forward * (selectedY + 1) + Vector3.right * (selectedX + 1));
+        }
 
         if (Input.GetMouseButtonDown(0)) //wduszenie lewego przycisku myszy
         {
@@ -115,6 +120,8 @@ public class BoardManager : MonoBehaviour
 
     private void AtackChessMan(ChessMan target)
     {
+
+        target.GetComponent<Animator>().Play("take_damage");
         int damage = target.Hp - SelectedChessman.Dmg;
 
         if (damage <= 0)
@@ -177,7 +184,7 @@ public class BoardManager : MonoBehaviour
         }
 
     }
-
+   
     
 
 

@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 
 public abstract class ChessMan : MonoBehaviour
 {
@@ -11,7 +13,7 @@ public abstract class ChessMan : MonoBehaviour
     public bool[,] PossibleMove { get => possibleMoves; set => possibleMoves = value; }
     public bool[,] PossibleAtacks { get => possibleAtacks; set => possibleAtacks = value; }
     public int Move_limit { get => move_limit; set => move_limit = value; }
-    public int Hp { get => hp; set => hp = value; }
+    public int Hp { get => hp; set =>hp = value;}
     public int Dmg { get => dmg; set => dmg = value; }
     #endregion
 
@@ -34,7 +36,6 @@ public abstract class ChessMan : MonoBehaviour
     [SerializeField]
     int dmg = 1;
 
-    
     
 
     public void SetPosition(int x,int y)
