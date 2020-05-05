@@ -65,12 +65,12 @@ PrefabInstance:
     - target: {fileID: 1309646437249945027, guid: d62b28d0ed89d54498060be66762b303,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 1309646437249945027, guid: d62b28d0ed89d54498060be66762b303,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1309646437249945036, guid: d62b28d0ed89d54498060be66762b303,
         type: 3}
@@ -90,7 +90,7 @@ PrefabInstance:
     - target: {fileID: 1309646437249945037, guid: d62b28d0ed89d54498060be66762b303,
         type: 3}
       propertyPath: m_Name
-      value: Bishop_card
+      value: Bishop_card Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d62b28d0ed89d54498060be66762b303, type: 3}

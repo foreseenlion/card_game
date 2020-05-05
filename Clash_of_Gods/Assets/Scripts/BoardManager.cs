@@ -43,7 +43,7 @@ public class BoardManager : MonoBehaviour
     private void Update()
     {
         UpdateSelection();
-        DrawChessboard();
+        
        
 
         if (Input.GetMouseButtonDown(0)) //wduszenie lewego przycisku myszy
@@ -176,29 +176,6 @@ public class BoardManager : MonoBehaviour
             selectedX = -1;
         }
 
-    }
-    private void DrawChessboard() //pomocnicza funkcja rysująca pole
-    {
-        Vector3 width_line = Vector3.right * 8;
-        Vector3 height_line = Vector3.forward * 8;
-
-        for (int i = 0; i <= 8; i++)
-        {
-            Vector3 start = Vector3.forward * i;
-            Debug.DrawLine(start, start + width_line);
-            for (int j = 0; j <= 8; j++)
-            {
-                start = Vector3.right * i;
-                Debug.DrawLine(start, start + height_line);
-            }
-        }
-
-        if (selectedX >= 0 && selectedY >= 0) //coś zaznaczono
-        {
-            Debug.DrawLine(
-                Vector3.forward * selectedY + Vector3.right * selectedX,
-                Vector3.forward * (selectedY + 1) + Vector3.right * (selectedX + 1));
-        }
     }
 
     

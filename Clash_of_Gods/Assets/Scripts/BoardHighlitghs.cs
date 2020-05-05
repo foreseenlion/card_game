@@ -8,6 +8,7 @@ public class BoardHighlitghs : MonoBehaviour //podświetlanie możliwych ruchów
     GameObject HightlightPrefab;
     [SerializeField]
     GameObject AtackHightlightPrefab;
+
     private List<GameObject> Hightlights;
     public static BoardHighlitghs Instance { get; set; }
         
@@ -37,15 +38,15 @@ public class BoardHighlitghs : MonoBehaviour //podświetlanie możliwych ruchów
             {
                 if(moves[i,j]) //jeśeli ten ruch jest dozwolony ( = true) 
                 {
-                    GameObject gameObject = getHightlight(AtackHightlightPrefab); //tworzy obiekt podświetlenia
+                    GameObject gameObject = getHightlight(HightlightPrefab); //tworzy obiekt podświetlenia
                     gameObject.SetActive(true); //aktywuje go
-                    gameObject.transform.position = new Vector3(i+0.5f, 0, j+0.5f); //ustwia na odpowiedniej pozycji na planszy
+                    gameObject.transform.position = new Vector3(i+0.5f,0.001f, j+0.5f); //ustwia na odpowiedniej pozycji na planszy
                 }
                 if (atack[i, j]) //jeśeli ten ruch jest dozwolony ( = true) 
                 {
-                    GameObject gameObject = getHightlight(HightlightPrefab); //tworzy obiekt podświetlenia
+                    GameObject gameObject = getHightlight(AtackHightlightPrefab); //tworzy obiekt podświetlenia
                     gameObject.SetActive(true); //aktywuje go
-                    gameObject.transform.position = new Vector3(i + 0.5f, 0, j + 0.5f); //ustwia na odpowiedniej pozycji na planszy
+                    gameObject.transform.position = new Vector3(i + 0.5f,0.001f, j + 0.5f); //ustwia na odpowiedniej pozycji na planszy
                 }
             }
         }
@@ -62,7 +63,7 @@ public class BoardHighlitghs : MonoBehaviour //podświetlanie możliwych ruchów
                 {
                     GameObject gameObject = getHightlight(HightlightPrefab); //tworzy obiekt podświetlenia
                     gameObject.SetActive(true); //aktywuje go
-                    gameObject.transform.position = new Vector3(i + 0.5f, 0, j + 0.5f); //ustwia na odpowiedniej pozycji na planszy
+                    gameObject.transform.position = new Vector3(i + 0.5f, 0.001f, j + 0.5f); //ustwia na odpowiedniej pozycji na planszy
                 }
             
             }
