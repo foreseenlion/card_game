@@ -1,2 +1,5 @@
-* discuss name of the game
-* discuss business aspects (ads and etc.)
+* name of the game
+* gods names
+* gods special abilities 
+* commit messages
+* business aspects (ads and etc.)
