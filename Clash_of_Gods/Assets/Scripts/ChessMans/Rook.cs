@@ -15,8 +15,7 @@ public class Rook : ChessMan
 
     public void RookMovement()
     {
-        for (int i = 0; i < hits.Length; i++)
-            hits[i] = true;
+        
 
         int newX = 0;
         int newY = 0;

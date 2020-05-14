@@ -51,11 +51,7 @@ public abstract class ChessMan : MonoBehaviour
 
     protected void CheckMove(int _newX, int _newY, int hit)
     {
-      
 
-       
-
-        
         ChessMan c;
         c = BoardManager.Instance.ChessMens[_newX, _newY];
 
@@ -97,6 +93,21 @@ public abstract class ChessMan : MonoBehaviour
         }
 
     }
+
+    protected void CheckAtack(int _newX, int _newY)
+    {
+        ChessMan c;
+        c = BoardManager.Instance.ChessMens[_newX, _newY];
+
+        
+        if (c != null && this.isWhite != c.isWhite) //jeśli na lini jest przeciwnik zbij go
+        {
+            possibleAtacks[_newX, _newY] = true;
+        
+        }
+    }
+
+
 
 
 

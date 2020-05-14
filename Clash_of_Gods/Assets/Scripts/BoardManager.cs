@@ -40,6 +40,7 @@ public class BoardManager : MonoBehaviour
         BlackDeck.UpdateSpawn(ChessMens);
        
     }
+
     private void Update()
     {
         UpdateSelection();
@@ -98,14 +99,20 @@ public class BoardManager : MonoBehaviour
         }
         if (SelectedChessman.PossibleAtacks[x,y]) //można atakować
         {
-            
-            int[] newPositions = CalculateNewPosition(x, y, SelectedChessman.CurrentX, SelectedChessman.CurrentY);
-            ChessMens[SelectedChessman.CurrentX, SelectedChessman.CurrentY] = null; //wybrany pion 'znika' z aktualnej pozycji
-            SelectedChessman.transform.position = GetTileCenter(newPositions[0], newPositions[1]);
-            SelectedChessman.SetPosition(newPositions[0], newPositions[1]);
-            ChessMens[newPositions[0], newPositions[1]] = SelectedChessman;
+            if (SelectedChessman.GetComponent<Distance>() == null) //jeśli pion nie atakuje z dystasnu musi przemieścić się w kierunku przeciwnika
+            {
+                int[] newPositions = CalculateNewPosition(x, y, SelectedChessman.CurrentX, SelectedChessman.CurrentY); //funkcja sprawia że pion zostaję na pozycji "przed" celem 
+
+                ChessMens[SelectedChessman.CurrentX, SelectedChessman.CurrentY] = null; //wybrany pion 'znika' z aktualnej pozycji
+                SelectedChessman.transform.position = GetTileCenter(newPositions[0], newPositions[1]);
+                SelectedChessman.SetPosition(newPositions[0], newPositions[1]);
+
+                ChessMens[newPositions[0], newPositions[1]] = SelectedChessman;
+
+            }
 
             AtackChessMan(target);
+
             UpdateMove();
 
             if (SelectedChessman.firstmove) //wykonanie pierwszego ruchu potrzebne przy pionach
@@ -228,12 +235,11 @@ public class BoardManager : MonoBehaviour
         if (newY - CurrentY < 0) //poruszam się w dół
         {
             results[1] = newY + 1;
-            Debug.Log("DÓŁ");
+            
         }
         if (newY - CurrentY > 0) //poruszam się w górę
         {
             results[1] = newY - 1;
-            Debug.Log("GÓRA");
 
         }
         if (newY - CurrentY == 0) //nie poruszam się w osi y

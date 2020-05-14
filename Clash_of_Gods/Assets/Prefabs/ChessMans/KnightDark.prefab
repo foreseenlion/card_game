@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 4071798522976028}
   - component: {fileID: 33143280845688428}
   - component: {fileID: 23939737083662754}
-  - component: {fileID: 774589883859171063}
+  - component: {fileID: 4673127871873509142}
+  - component: {fileID: -8709923233517509981}
   m_Layer: 0
   m_Name: KnightDark
   m_TagString: Untagged
@@ -55,6 +56,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -79,7 +81,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &774589883859171063
+--- !u!114 &4673127871873509142
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -88,7 +90,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 1179637952412708}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8487d0a5b6eda9a4aa666e7b18c044e5, type: 3}
+  m_Script: {fileID: 11500000, guid: b70416da8dcd36441a3423e720af9417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isWhite: 0
+  firstmove: 1
+  move_limit: 8
+  hp: 3
+  dmg: 1
+--- !u!95 &-8709923233517509981
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179637952412708}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4cbc217c5f358394fa128448865808aa, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
