@@ -764,6 +764,7 @@ GameObject:
   - component: {fileID: 1143103821}
   - component: {fileID: 1143103822}
   - component: {fileID: 1143103820}
+  - component: {fileID: 1143103823}
   m_Layer: 5
   m_Name: GreekGod
   m_TagString: Untagged
@@ -920,6 +921,18 @@ MonoBehaviour:
   animatorFunctionsChooseGod: {fileID: 1143103820}
   thisIndexHorizontal: 0
   thisIndexVertical: 0
+--- !u!114 &1143103823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143103815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e71010944cfbdf4ca4c045c387f9662, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1204584733
 GameObject:
   m_ObjectHideFlags: 0
