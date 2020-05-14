@@ -373,7 +373,7 @@ PrefabInstance:
         type: 3}
       propertyPath: prefab
       value: 
-      objectReference: {fileID: 1810274083847610, guid: 309659d4eb727d74d91c4875a85edc00,
+      objectReference: {fileID: 1179637952412708, guid: a007978aa14da3945b0f6655f65cc278,
         type: 3}
     - target: {fileID: 1309646437249945027, guid: d62b28d0ed89d54498060be66762b303,
         type: 3}
@@ -669,6 +669,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Distance_card
       objectReference: {fileID: 0}
+    - target: {fileID: 2318029046870350716, guid: 0256027e924cd22468ff0aed75bcb9e0,
+        type: 3}
+      propertyPath: prefab
+      value: 
+      objectReference: {fileID: 1992623236052302, guid: 85ad2c556fdbd5747ac7f5f67f10e59b,
+        type: 3}
     - target: {fileID: 2318029046870350717, guid: 0256027e924cd22468ff0aed75bcb9e0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1150,7 +1156,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1905525936}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.62, y: 0, z: -0.5}
+  m_LocalPosition: {x: 8.467, y: 0, z: -0.5}
   m_LocalScale: {x: 0.75207794, y: 1, z: 0.115255915}
   m_Children:
   - {fileID: 480487566}

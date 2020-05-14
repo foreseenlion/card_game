@@ -95,9 +95,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isWhite: 0
   firstmove: 1
-  move_limit: 8
+  move_limit: 1
   hp: 3
   dmg: 1
+  range: 3
 --- !u!95 &-8709923233517509981
 Animator:
   serializedVersion: 3

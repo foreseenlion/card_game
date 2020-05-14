@@ -8,8 +8,13 @@ public class BoardHighlitghs : MonoBehaviour //podświetlanie możliwych ruchów
     GameObject HightlightPrefab; //prefab standardowego podświetlenia
     [SerializeField]
     GameObject AtackHightlightPrefab; //prefab podświetlenia ataku (work in progress)
+    [SerializeField]
+    GameObject SelectHightlightPrefab; //prefab podświetlenia ataku (work in progress)
+
+    
 
     private List<GameObject> Hightlights; //lista podświetlonych obiektów 
+    private GameObject SelectionHightlight;
 
     public static BoardHighlitghs Instance { get; set; } // można się odnosić do konkretnego BoardHighlights bez FindObjectOfType, coś w rodzaju singletonu
         
@@ -19,19 +24,11 @@ public class BoardHighlitghs : MonoBehaviour //podświetlanie możliwych ruchów
         Hightlights = new List<GameObject>();
     }
 
-    private GameObject getHightlight(GameObject prefab)  //tworzenie podświetlenia
-    {
-        GameObject gameObject = Hightlights.Find(g => !g.activeSelf); //znajduje nieaktywny obiekt prześwietlenia
-        if (gameObject == null)       //jeżeli nie istnieje tworzy go i dodaje do listy inaczej podświetlenia nakładają się na siebie
-        {
-            gameObject = Instantiate(prefab);
-            Hightlights.Add(gameObject);
-        }
-        return gameObject; //jeżeli istnieje zwraca obiekt stworzony na podstawie prefabu
-    }
+  
 
     public void HighlightAllowedMoves(bool [,] moves,bool[,] atack) //metoda podświetlająca możliwe ruchy
     {
+        HideAll();
         
         for(int i = 0; i < 8;i++)       //sprawdza całą planszę
         {
@@ -39,14 +36,14 @@ public class BoardHighlitghs : MonoBehaviour //podświetlanie możliwych ruchów
             {
                 if(moves[i,j]) //jeśeli ten ruch jest dozwolony ( = true) 
                 {
-                    GameObject gameObject = getHightlight(HightlightPrefab); //tworzy obiekt podświetlenia
-                    gameObject.SetActive(true); //aktywuje go
+                    GameObject gameObject = Instantiate(HightlightPrefab); //tworzy obiekt podświetlenia
+                    Hightlights.Add(gameObject);
                     gameObject.transform.position = new Vector3(i+0.5f,0.001f, j+0.5f); //ustwia na odpowiedniej pozycji na planszy
                 }
                 if (atack[i, j]) //jeśeli ten ruch jest dozwolony ( = true) 
                 {
-                    GameObject gameObject = getHightlight(AtackHightlightPrefab); //tworzy obiekt podświetlenia
-                    gameObject.SetActive(true); //aktywuje go
+                    GameObject gameObject = Instantiate(AtackHightlightPrefab); //tworzy obiekt podświetlenia
+                    Hightlights.Add(gameObject); //aktywuje go
                     gameObject.transform.position = new Vector3(i + 0.5f,0.001f, j + 0.5f); //ustwia na odpowiedniej pozycji na planszy
                 }
             }
@@ -55,6 +52,7 @@ public class BoardHighlitghs : MonoBehaviour //podświetlanie możliwych ruchów
 
     public void HighlightAllowedMoves(bool[,] moves) //metoda podświetlająca możliwe ruchy
     {
+        HideAll();
 
         for (int i = 0; i < 8; i++)       //sprawdza całą planszę
         {
@@ -62,8 +60,8 @@ public class BoardHighlitghs : MonoBehaviour //podświetlanie możliwych ruchów
             {
                 if (moves[i, j]) //jeśeli ten ruch jest dozwolony ( = true) 
                 {
-                    GameObject gameObject = getHightlight(HightlightPrefab); //tworzy obiekt podświetlenia
-                    gameObject.SetActive(true); //aktywuje go
+                    GameObject gameObject = Instantiate(HightlightPrefab); //tworzy obiekt podświetlenia
+                    Hightlights.Add(gameObject); //aktywuje go
                     gameObject.transform.position = new Vector3(i + 0.5f, 0.001f, j + 0.5f); //ustwia na odpowiedniej pozycji na planszy
                 }
             
@@ -71,14 +69,35 @@ public class BoardHighlitghs : MonoBehaviour //podświetlanie możliwych ruchów
         }
     }
 
+    public void HighlightAllowedMove(int x,int y)
+    {
+         //znajduje nieaktywny obiekt prześwietlenia
+        if (SelectionHightlight != null)       //jeżeli nie istnieje tworzy go i dodaje do listy inaczej podświetlenia nakładają się na siebie
+        {
+            Destroy(SelectionHightlight);
+            SelectionHightlight = Instantiate(SelectHightlightPrefab);
+        }
+        else
+        {
+            SelectionHightlight = Instantiate(SelectHightlightPrefab);
+        }
+        SelectionHightlight.SetActive(true); //aktywuje go
+        SelectionHightlight.transform.position = new Vector3(x + 0.5f, 0.001f, y + 0.5f); //ustwia na odpowiedniej pozycji na planszy
+    }
 
     public void HideAll() // dezaktywuje wszystkie podświetlenia
     {
         foreach(GameObject gameObject in Hightlights)
         {
-            gameObject.SetActive(false);
+            if(gameObject != null)
+            Destroy(gameObject);
         }
 
+    }
+    public void DestroySelection()
+    {
+        if(SelectionHightlight!= null)
+            Destroy(SelectionHightlight);
     }
     
 }

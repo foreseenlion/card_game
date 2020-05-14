@@ -91,11 +91,14 @@ public class BoardManager : MonoBehaviour
             25.0f, //długość promienia
             LayerMask.GetMask("Board"))) //warunek określający nad jakim polem gracz ma umieszczoną myszkę
         {
+            
             selectedX = (int)hit.point.x;
             selectedY = (int)hit.point.z;
+            BoardHighlitghs.Instance.HighlightAllowedMove(selectedX, selectedY);
         }
         else
-        {
+        { 
+            BoardHighlitghs.Instance.DestroySelection();
             selectedX = -1;
             selectedX = -1;
         }
