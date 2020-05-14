@@ -6,7 +6,8 @@ public class CardManager : MonoBehaviour
 {
     [SerializeField]
     bool isWhite;
-
+    
+    public Camera camera;
     public List<Card> deck;
 
     ChessMan[,] ChessMens;
@@ -23,7 +24,7 @@ public class CardManager : MonoBehaviour
             GameObject temp = Instantiate(prefab, GetTileCenter(x, y), Quaternion.Euler(0, 180, 0)) as GameObject; //tworzy obiekt na podstawie prefabu o określonej pozycji
             ChessMens[x, y] = temp.GetComponent<ChessMan>(); //zapisanie figury do tablicy figur
             ChessMens[x, y].SetPosition(x, y); //ustawienie pozycji figury
-            temp.transform.SetParent(transform);
+            temp.transform.parent = BoardManager.Instance.transform; 
         }
 
     }

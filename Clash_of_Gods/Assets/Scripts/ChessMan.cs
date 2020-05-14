@@ -27,6 +27,8 @@ public abstract class ChessMan : MonoBehaviour
 
     protected bool[,] possibleAtacks;
 
+    protected int color; //zależnie od koloru inna jest orientacja (to co dla białego jest prawo dla czarnego lewo)
+
     [SerializeField]
     int move_limit=8; //ile może wykonać ruchów
 
@@ -36,7 +38,10 @@ public abstract class ChessMan : MonoBehaviour
     [SerializeField]
     int dmg = 1;
 
-    
+    private void Awake()
+    {
+        color = isWhite ? 1 : -1;
+    }
 
     public void SetPosition(int x,int y) 
     {
@@ -108,6 +113,21 @@ public abstract class ChessMan : MonoBehaviour
         }
     }
 
+    protected void CheckIsEnd()
+    {
+        if (transform.position.z > 7 && color == 1)
+        {
+            color = -1;
+            Debug.Log("zmaina");
+        }
+        if (transform.position.z < 1 && color == -1)
+        {
+            color = 1;
+            Debug.Log("zmaina");
+        }
+
+
+    }
 
 
 

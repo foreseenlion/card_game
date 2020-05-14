@@ -1021,6 +1021,8 @@ MonoBehaviour:
     type: 3}
   AtackHightlightPrefab: {fileID: 5856281700592722764, guid: 1a9319b34f1327a45bb74c22a60d7269,
     type: 3}
+  SelectHightlightPrefab: {fileID: 462555056902882165, guid: 123585c55634a9d4ea5784b337f45e68,
+    type: 3}
 --- !u!1 &1617518936 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1309646437249945037, guid: d62b28d0ed89d54498060be66762b303,
@@ -1236,7 +1238,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4363527306552524, guid: 5b856ec4f8f8cb84f861f8f8a026c288, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4363527306552524, guid: 5b856ec4f8f8cb84f861f8f8a026c288, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

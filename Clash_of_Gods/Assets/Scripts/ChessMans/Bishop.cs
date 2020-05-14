@@ -21,7 +21,7 @@ public class Bishop : ChessMan
 
         bool condition_left_up, condition_right_up, condition_left_down, contidion_right_down; //warucki które określają czy dany punkt nie jest poza planszą
 
-        int color = isWhite ? 1 : -1; //zależnie od koloru inna jest orientacja (to co dla białego jest prawo dla czarnego lewo)
+        
         int newX, newY;
 
         for (int i = 1; i <= Move_limit; i++)

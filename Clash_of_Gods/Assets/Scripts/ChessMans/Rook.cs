@@ -22,7 +22,6 @@ public class Rook : ChessMan
 
         bool condition_left, condition_right, condition_up, condition_down;
 
-        int color = isWhite ? 1 : -1;
 
         for (int i = 0; i < hits.Length; i++)
             hits[i] = true;

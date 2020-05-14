@@ -23,7 +23,6 @@ public class Distance : Rook
 
         bool condition_left, condition_right, condition_up, condition_down;
 
-        int color = isWhite ? 1 : -1;
 
         newX = CurrentX - (color * range);
         newY = CurrentY;

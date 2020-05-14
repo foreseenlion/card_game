@@ -8,7 +8,8 @@ public class King :ChessMan
 
     public override void UpdateMove()
     {
-  
+        
+
     bool condition_left = isWhite ? CurrentX != 0 : CurrentX != 7;//warunki ograniczające pole  nbica
     bool condition_right = isWhite ? CurrentX != 7 : CurrentY != 0;
     bool condition_up = isWhite ? CurrentY != 7 : CurrentY != 0;
@@ -16,11 +17,12 @@ public class King :ChessMan
 
     int newX, newY;
 
-    int color = isWhite ? 1 : -1;
 
         possibleMoves = new bool[8, 8];
 
         possibleAtacks = new bool[8, 8];
+
+        CheckIsEnd();
 
      if (condition_left) //ruch w lewo
     {

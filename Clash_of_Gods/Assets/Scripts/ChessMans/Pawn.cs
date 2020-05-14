@@ -5,7 +5,8 @@ using UnityEngine;
 public class Pawn : ChessMan
 {
     
-
+   
+   
     public override void UpdateMove()
     {
         ChessMan c1, c2;
@@ -13,11 +14,13 @@ public class Pawn : ChessMan
         possibleMoves = new bool[8, 8];
         possibleAtacks = new bool[8, 8];
 
-        bool condition_left = isWhite ? (CurrentX != 0 && CurrentY != 7) : (CurrentX != 0 && CurrentY != 0);//warunki ograniczające pole  nbica
-        bool condition_right = isWhite ? (CurrentX != 7 && CurrentY != 7) : (CurrentX != 7 && CurrentY != 0);
+        bool condition_left = isWhite ? (CurrentX != 0 && CurrentY != 7) : (CurrentX != 0 && CurrentY != 0); //warunki ograniczające pole  nbica
+        bool condition_right = isWhite ? (CurrentX != 7 && CurrentY != 7) : (CurrentX != 7 && CurrentY != 0); 
         
 
-        int color = isWhite ? 1 : -1; //ustalanie mnożnika przy ustalaniu pozycji
+          //ustalanie mnożnika przy ustalaniu pozycji
+
+        CheckIsEnd();
 
         //BICIA
         #region
@@ -62,12 +65,14 @@ public class Pawn : ChessMan
 
 
 
-        #endregion
+        
 
         
        
-
+       
             
     }
+    #endregion
+  
 
 }
