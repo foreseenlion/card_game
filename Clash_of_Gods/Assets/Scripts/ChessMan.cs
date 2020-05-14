@@ -28,7 +28,7 @@ public abstract class ChessMan : MonoBehaviour
     protected bool[,] possibleAtacks;
 
     [SerializeField]
-    int move_limit=8;
+    int move_limit=8; //ile może wykonać ruchów
 
     [SerializeField]
     int hp = 3;
@@ -38,25 +38,26 @@ public abstract class ChessMan : MonoBehaviour
 
     
 
-    public void SetPosition(int x,int y)
+    public void SetPosition(int x,int y) 
     {
         CurrentX = x;
         CurrentY = y;
     }
-    public virtual void UpdateMove() //virtual oznacza że klasa może zosta nadpisana
+    public virtual void UpdateMove() //virtual oznacza że klasa może zosta nadpisana, każdy rodzaj piona ma swój schemat ruchów
     {
         possibleMoves = new bool[8,8];
         possibleAtacks = new bool[8, 8];
     }
 
-    protected void CheckMove(int _newX, int _newY, int hit)
+    //sprawdza czy ruch może zostać wykonany, hit jest potrzebne gdy pion wykonuje więcej niż jeden ruch w turze
+    protected void CheckMove(int _newX, int _newY, int hit)  
     {
 
         ChessMan c;
-        c = BoardManager.Instance.ChessMens[_newX, _newY];
+        c = BoardManager.Instance.ChessMens[_newX, _newY];  //tworzymy wirtualengo piona
 
 
-        if (c == null)
+        if (c == null) //wirtualny pion nie istnieje więc możemy się tam poruszyć 
         {
             
             possibleMoves[_newX, _newY] = true;
@@ -66,17 +67,17 @@ public abstract class ChessMan : MonoBehaviour
             hits[hit] = false;
             
         }
-        if (c != null && this.isWhite != c.isWhite) //jeśli na lini jest przeciwnik zbij go
+        if (c != null && this.isWhite != c.isWhite) //jeśli na lini jest przeciwnik zaatakuj go
         {
             possibleAtacks[_newX, _newY] = true;
             possibleMoves[_newX, _newY] = false;
-            hits[hit] = false;
+            hits[hit] = false; //jeżeli podczas pętli trafimy na sojusznika lub wroga nie sprawdzamy dalej danego kierunku
             
         }
 
     }
 
-    protected void CheckMove(int _newX, int _newY)
+    protected void CheckMove(int _newX, int _newY) 
     {
         
 
@@ -100,7 +101,7 @@ public abstract class ChessMan : MonoBehaviour
         c = BoardManager.Instance.ChessMens[_newX, _newY];
 
         
-        if (c != null && this.isWhite != c.isWhite) //jeśli na lini jest przeciwnik zbij go
+        if (c != null && this.isWhite != c.isWhite) //jeśli na lini jest przeciwnik zaatakuj go
         {
             possibleAtacks[_newX, _newY] = true;
         

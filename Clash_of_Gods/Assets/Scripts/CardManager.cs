@@ -16,7 +16,7 @@ public class CardManager : MonoBehaviour
  
     
 
-    private void Spawn(GameObject prefab, int x, int y)
+    private void Spawn(GameObject prefab, int x, int y) //tworzenie figury na planszy
     {
         if (ChessMens[x, y] == null) //jezeli na wybranym polu nie ma figuty
         {
@@ -58,7 +58,7 @@ public class CardManager : MonoBehaviour
 
     }
 
-    IEnumerator WaitForSpawn(Card card)
+    IEnumerator WaitForSpawn(Card card)  //funkcja kóra "czeka" aż gracz wybierzę pole do spawnu
     {
         while (true)
         {

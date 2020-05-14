@@ -5,12 +5,13 @@ using UnityEngine;
 public class BoardHighlitghs : MonoBehaviour //podświetlanie możliwych ruchów
 {
     [SerializeField]
-    GameObject HightlightPrefab;
+    GameObject HightlightPrefab; //prefab standardowego podświetlenia
     [SerializeField]
-    GameObject AtackHightlightPrefab;
+    GameObject AtackHightlightPrefab; //prefab podświetlenia ataku (work in progress)
 
-    private List<GameObject> Hightlights;
-    public static BoardHighlitghs Instance { get; set; }
+    private List<GameObject> Hightlights; //lista podświetlonych obiektów 
+
+    public static BoardHighlitghs Instance { get; set; } // można się odnosić do konkretnego BoardHighlights bez FindObjectOfType, coś w rodzaju singletonu
         
     void Start()
     {
@@ -21,12 +22,12 @@ public class BoardHighlitghs : MonoBehaviour //podświetlanie możliwych ruchów
     private GameObject getHightlight(GameObject prefab)  //tworzenie podświetlenia
     {
         GameObject gameObject = Hightlights.Find(g => !g.activeSelf); //znajduje nieaktywny obiekt prześwietlenia
-        if (gameObject == null)       //jeżeli nie istnieje tworzy go i dodaje do listy
+        if (gameObject == null)       //jeżeli nie istnieje tworzy go i dodaje do listy inaczej podświetlenia nakładają się na siebie
         {
             gameObject = Instantiate(prefab);
             Hightlights.Add(gameObject);
         }
-        return gameObject; //jeżeli istnieje zwraca od razu
+        return gameObject; //jeżeli istnieje zwraca obiekt stworzony na podstawie prefabu
     }
 
     public void HighlightAllowedMoves(bool [,] moves,bool[,] atack) //metoda podświetlająca możliwe ruchy
@@ -71,7 +72,7 @@ public class BoardHighlitghs : MonoBehaviour //podświetlanie możliwych ruchów
     }
 
 
-    public void HideAll()
+    public void HideAll() // dezaktywuje wszystkie podświetlenia
     {
         foreach(GameObject gameObject in Hightlights)
         {
