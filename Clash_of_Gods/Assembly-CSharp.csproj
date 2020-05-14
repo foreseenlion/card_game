@@ -63,6 +63,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\AnimatorFunctions.cs" />
+    <Compile Include="Assets\Scripts\AnimatorFunctions_ChooseGod.cs" />
+    <Compile Include="Assets\Scripts\Choose_God_Button.cs" />
+    <Compile Include="Assets\Scripts\Choose_God_ButtonController.cs" />
     <Compile Include="Assets\Scripts\Load_Choose_God.cs" />
     <Compile Include="Assets\Scripts\MenuButton.cs" />
     <Compile Include="Assets\Scripts\MenuButtonController.cs" />

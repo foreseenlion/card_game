@@ -922,6 +922,11 @@ PrefabInstance:
       propertyPath: menuButtonController
       value: 
       objectReference: {fileID: 1539256755}
+    - target: {fileID: 4193780813120251273, guid: 6d3b1b2b67e571c4eb6279c3cd3b2084,
+        type: 3}
+      propertyPath: disableOnce
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8855389433843836248, guid: 6d3b1b2b67e571c4eb6279c3cd3b2084,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1092,6 +1097,11 @@ PrefabInstance:
       propertyPath: menuButtonController
       value: 
       objectReference: {fileID: 1539256755}
+    - target: {fileID: 4193780813120251273, guid: 6d3b1b2b67e571c4eb6279c3cd3b2084,
+        type: 3}
+      propertyPath: disableOnce
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8855389433843836248, guid: 6d3b1b2b67e571c4eb6279c3cd3b2084,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1789,6 +1799,11 @@ PrefabInstance:
       propertyPath: menuButtonController
       value: 
       objectReference: {fileID: 1539256755}
+    - target: {fileID: 4193780813120251273, guid: 6d3b1b2b67e571c4eb6279c3cd3b2084,
+        type: 3}
+      propertyPath: disableOnce
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8855389433843836248, guid: 6d3b1b2b67e571c4eb6279c3cd3b2084,
         type: 3}
       propertyPath: m_AnchoredPosition.x
