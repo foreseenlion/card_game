@@ -37,7 +37,7 @@ public class BoardManager : MonoBehaviour
         ChessMens = new ChessMan[8, 8];
 
         WhiteDeck.UpdateSpawn(ChessMens);
-        BlackDeck.UpdateSpawn(ChessMens);
+       // BlackDeck.UpdateSpawn(ChessMens);
        
     }
 
