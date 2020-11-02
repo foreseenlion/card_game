@@ -8,14 +8,11 @@ public class CardManager : MonoBehaviour
     bool isWhite;
     
     public Camera camera;
-
-    
     public List<Card> deck;
 
     ChessMan[,] ChessMens;
 
     bool[,] SpawnAllowed;
-<<<<<<< HEAD
     
     private int idFigury()
     {
@@ -23,15 +20,9 @@ public class CardManager : MonoBehaviour
     }
  
     
-=======
-   
-   
->>>>>>> dfd23863ac0fa4a39fa41db74c9c797011b11bc4
 
     private void Spawn(GameObject prefab, int x, int y) //tworzenie figury na planszy
-    { 
-       
-        
+    {
         if (ChessMens[x, y] == null) //jezeli na wybranym polu nie ma figuty
         {
             GameObject temp = Instantiate(prefab, GetTileCenter(x, y), Quaternion.Euler(0, 180, 0)) as GameObject; //tworzy obiekt na podstawie prefabu o określonej pozycji
