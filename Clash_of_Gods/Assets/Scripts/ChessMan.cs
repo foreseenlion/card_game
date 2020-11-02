@@ -8,6 +8,7 @@ public abstract class ChessMan : MonoBehaviour
 {
     //gettery i settery
     #region
+    public int idFigure { get; set; }
     public int CurrentX { get; set; }
     public int CurrentY { get; set; }
     public bool[,] PossibleMove { get => possibleMoves; set => possibleMoves = value; }

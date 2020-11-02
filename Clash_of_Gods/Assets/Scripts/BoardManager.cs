@@ -4,9 +4,10 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 using UnityEngine.SceneManagement;
-
+using SocketIO;
 public class BoardManager : MonoBehaviour
 {
+    private SendToServer sendToServer;
 
     public static BoardManager Instance { get; set; }
 
@@ -33,6 +34,8 @@ public class BoardManager : MonoBehaviour
 
     private void Start()
     {
+        sendToServer = new SendToServer();
+
         Instance = this;
         ChessMens = new ChessMan[8, 8];
 
@@ -40,6 +43,13 @@ public class BoardManager : MonoBehaviour
         BlackDeck.UpdateSpawn(ChessMens);
        
     }
+
+
+
+
+
+
+
 
     private void Update()
     {
@@ -54,6 +64,7 @@ public class BoardManager : MonoBehaviour
                     try
                     {
                         SelectChessman(selectedX, selectedY); //zmiana wybranego piona 
+                        sendToServer.sendMoveToServer(selectedX, selectedY); //zmiana wybranego piona 
                     }
                     catch (Exception e)
                     {
@@ -63,8 +74,9 @@ public class BoardManager : MonoBehaviour
                 else //jeśli wcześniej wybrano piona rusz nim na wybrane pole
                 {
                     try
-                    {
-                        MoveChessman(selectedX, selectedY); //rusz wybrany pion na daną pozycję 
+                    {                    
+                        sendToServer.sendPlayerMove(selectedX, selectedY, SelectedChessman);
+                        MoveChessman(selectedX, selectedY); //rusz wybrany pion na daną pozycję                    
                     }
                     catch(Exception e)
                     {
@@ -73,6 +85,13 @@ public class BoardManager : MonoBehaviour
                 }
 
             }
+        }
+
+
+        // prototyp zmiany tury (zmienil bym to na reakcje na jakis button )
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            sendToServer.sendEndTureToServer();
         }
 
     }

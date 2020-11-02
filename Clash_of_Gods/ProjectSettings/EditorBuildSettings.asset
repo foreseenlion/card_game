@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/End_Game.unity
     guid: b42cf12c8f2012c4789037d71cd26a1d
   - enabled: 1
