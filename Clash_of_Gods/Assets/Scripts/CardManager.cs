@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using UnityEngine;
 
 public class CardManager : MonoBehaviour
 {
     [SerializeField]
     bool isWhite;
-    
-    public Camera camera;
+   
     public List<Card> deck;
 
     ChessMan[,] ChessMens;
@@ -53,8 +53,7 @@ public class CardManager : MonoBehaviour
             {
                 if (isWhite == BoardManager.Instance.isWhiteTurn)
                 {
-                    BoardHighlitghs.Instance.HideAll();
-                    BoardHighlitghs.Instance.HighlightAllowedMoves(isSpawnAllowed()); //podaje możliwe pola do spawnu
+               
                     StartCoroutine(WaitForSpawn(card));
                 }
 
@@ -66,6 +65,14 @@ public class CardManager : MonoBehaviour
 
     IEnumerator WaitForSpawn(Card card)  //funkcja kóra "czeka" aż gracz wybierzę pole do spawnu
     {
+        StopCoroutine("WaitForSpawn"); // zatrzymaj pozostałe instancje
+        BoardHighlitghs.Instance.HideAll();
+
+        yield return new WaitForEndOfFrame();
+
+        SpawnAllowed = isSpawnAllowed();
+        BoardHighlitghs.Instance.HighlightAllowedMoves(SpawnAllowed); //podaje możliwe pola do spawnu
+
         while (true)
         {
             if (Input.GetMouseButtonDown(0)) //jeśli naciśnięto myszkę
@@ -77,7 +84,7 @@ public class CardManager : MonoBehaviour
                     int selectedX = BoardManager.Instance.selectedX; //odczyruje pozycje
                     int selectedY = BoardManager.Instance.selectedY;
 
-                    SpawnAllowed = isSpawnAllowed(); //pobiera możliwe pola
+                   //pobiera możliwe pola
 
                     if (selectedX >= 0 && selectedY >=0 && SpawnAllowed[selectedX,selectedY] == true) //czy można spawnować
                     {
@@ -86,10 +93,19 @@ public class CardManager : MonoBehaviour
                         BoardHighlitghs.Instance.HideAll();
                         card.prefab = null;
                         Destroy(card.gameObject); 
-                        BoardManager.Instance.UpdateMove(); //wykonano ruch
+                        BoardManager.Instance.UpdateMove();
+                        yield break;//wykonano ruch
 
                     }
+                    else // odkliknięcie
+                    { 
+                        BoardHighlitghs.Instance.HideAll();
+                        yield break;
+                    }
+                    
                 }
+     
+
             }
             yield return null; //jeśli nie naciśnięto czekaj
         }
