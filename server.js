@@ -50,6 +50,11 @@ function move(data, socket) {
 	socket.to(socket.id).emit("foreignMessage", { id: socket.id, y: data.PoleY ,x: data.PoleX,});
 }
 
+function odbicieLustrzane(pozycjaGracza){
+return 7-  pozycjaGracza
+}
+
+
 
 function playerMove(data, socket) {
 	var gameTmp = games[playersGames[socket.id]]
@@ -58,18 +63,18 @@ function playerMove(data, socket) {
 	socket.emit("moveTo", {
 		id: socket.id,
 		idPionka: data.idPionka,
-		poleStartoweX: data.poleStartoweX,
-		poleStartoweY: data.poleStartoweY,
-		poleDoceloweX: data.poleDoceloweX,
-		poleDoceloweY: data.poleDoceloweY,
+		poleStartoweX: odbicieLustrzane(data.poleStartoweX),
+		poleStartoweY: odbicieLustrzane(data.poleStartoweY),
+		poleDoceloweX: odbicieLustrzane(data.poleDoceloweX),
+		poleDoceloweY: odbicieLustrzane(data.poleDoceloweY),
 	});
 	socket.to(socket.id).emit("moveTo", {
 		id: socket.id,
 		idPionka: data.idPionka,
-		poleStartoweX: data.poleStartoweX,
-		poleStartoweY: data.poleStartoweY,
-		poleDoceloweX: data.poleDoceloweX,
-		poleDoceloweY: data.poleDoceloweY,
+		poleStartoweX: odbicieLustrzane(data.poleStartoweX),
+		poleStartoweY: odbicieLustrzane(data.poleStartoweY),
+		poleDoceloweX: odbicieLustrzane(data.poleDoceloweX),
+		poleDoceloweY: odbicieLustrzane(data.poleDoceloweY),
 	});
 }
 
