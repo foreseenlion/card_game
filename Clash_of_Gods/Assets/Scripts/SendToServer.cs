@@ -93,7 +93,7 @@ public class SendToServer : MonoBehaviour
 
     public void sendStartGameInfo(string wybranaReligia)
     {
-       
+
         startGame.AddField("religionId", wybranaReligia);
         socket.Emit("createDeck", startGame);
         startGame.Clear();

@@ -51,7 +51,7 @@ public class CardManager : MonoBehaviour
         {
             card.onClicked += () =>
             {
-                if (isWhite == BoardManager.Instance.isWhiteTurn)
+                if (isWhite == BoardManager.Instance.isWhiteTurn )
                 {
                     StartCoroutine(WaitForSpawn(card));
                 }

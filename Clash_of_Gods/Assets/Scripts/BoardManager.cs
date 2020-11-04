@@ -15,6 +15,7 @@ public class BoardManager : MonoBehaviour
     public ChessMan[,] ChessMens { get; set; } //tablica wszystkich pionów
     public ChessMan SelectedChessman; //wybrany pion
 
+    public String religionId;
    
 
     public int selectedX = -1; //wybrane pole
@@ -22,6 +23,8 @@ public class BoardManager : MonoBehaviour
 
 
     public bool isWhiteTurn = true; //czyja kolej?
+
+    public bool yourWhite;
 
     int number_of_move = 0; //który ruch gracz wykonał (co dwa ruchy zmienia się aktywny graCZ)
 
@@ -41,7 +44,8 @@ public class BoardManager : MonoBehaviour
 
         WhiteDeck.UpdateSpawn(ChessMens);
         BlackDeck.UpdateSpawn(ChessMens);
-       
+
+        religionId = "s";
     }
 
 
@@ -77,7 +81,7 @@ public class BoardManager : MonoBehaviour
                     try
                     {                    
                         sendToServer.sendPlayerMove(selectedX, selectedY, SelectedChessman);
-                        MoveChessman(selectedX, selectedY); //rusz wybrany pion na daną pozycję                    
+                        MoveAndAttackChessman(selectedX, selectedY); //rusz wybrany pion na daną pozycję                    
                     }
                     catch(Exception e)
                     {
@@ -98,8 +102,8 @@ public class BoardManager : MonoBehaviour
         // prototyp zmiany tury (zmienil bym to na reakcje na jakis button )
         if (Input.GetKeyDown(KeyCode.S))
         {
-            // literka to pierwszy znak religi
-            sendToServer.sendStartGameInfo("S");
+           
+           
         }
 
     }
@@ -136,37 +140,57 @@ public class BoardManager : MonoBehaviour
     {
         if (ChessMens[x, y] == null) //sprawdzenie czy na wybranej pozycji jest pion
             return;
-        if (ChessMens[x, y].IsWhite != isWhiteTurn) //sprawdzenie czy pion ma kolor danego gracza
+        if (ChessMens[x, y].IsWhite != isWhiteTurn || yourWhite!= ChessMens[x, y].IsWhite) //sprawdzenie czy pion ma kolor danego gracza
             return;
 
+        selectSpecificChessman(x, y);
+    } 
+    private void selectSpecificChessman(int x, int y)
+    {
         BoardHighlitghs.Instance.HideAll();
         SelectedChessman = ChessMens[x, y]; //zmiana wybranego piona
         ChessMens[x, y].UpdateMove(); //sprawdzenie jakie ruchy,ataki są dozwolone
 
         BoardHighlitghs.Instance.HighlightAllowedMoves(SelectedChessman.PossibleMove, SelectedChessman.PossibleAtacks); //podświetlenie planczy
-    } 
+    }
 
-    private void MoveChessman(int x, int y)
+
+    public void DSmoveChessMan(int zPolaX, int zPolaY, int naPoleX, int naPoleY)
     {
+        selectSpecificChessman(zPolaX, zPolaY);
+        MoveAndAttackChessman(naPoleX, naPoleY);
+    }
 
+
+    private void MoveAndAttackChessman(int x, int y)
+    {
         ChessMan target = ChessMens[x, y];
+        moveChessMan(x, y);
+        makeAttackChessMan(x, y, target);
 
+        BoardHighlitghs.Instance.HideAll();
+        SelectedChessman = null; //klinięcie w inne niż możliwe miejsce anuluje wybór
+    }
+
+    private void moveChessMan(int x, int y)
+    {
         if (SelectedChessman.PossibleMove[x, y]) // można wykonać taki ruch?
         {
-
             ChessMens[SelectedChessman.CurrentX, SelectedChessman.CurrentY] = null; //wybrany pion 'znika' z aktualnej pozycji
-            SelectedChessman.transform.position = GetTileCenter(x, y); 
+            SelectedChessman.transform.position = GetTileCenter(x, y);
             SelectedChessman.SetPosition(x, y);
             ChessMens[x, y] = SelectedChessman;
             UpdateMove();
-           
 
             if (SelectedChessman.firstmove) //wykonanie pierwszego ruchu potrzebne przy pionach
                 SelectedChessman.firstmove = false;
 
-
         }
-        if (SelectedChessman.PossibleAtacks[x,y]) //można atakować
+    }
+
+    private void makeAttackChessMan(int x, int y, ChessMan target)
+    {
+        if (SelectedChessman.PossibleAtacks[x, y]) //można atakować
         {
             if (SelectedChessman.GetComponent<Distance>() == null) //jeśli pion nie atakuje z dystasnu musi przemieścić się w kierunku przeciwnika
             {
@@ -180,7 +204,7 @@ public class BoardManager : MonoBehaviour
 
             }
 
-            AtackChessMan(target); 
+            AtackChessMan(target);
 
             UpdateMove();
 
@@ -188,11 +212,9 @@ public class BoardManager : MonoBehaviour
                 SelectedChessman.firstmove = false;
 
         }
-        BoardHighlitghs.Instance.HideAll();
-        SelectedChessman = null; //klinięcie w inne niż możliwe miejsce anuluje wybór
-
-
     }
+
+
 
     private void AtackChessMan(ChessMan target)
     {
@@ -232,14 +254,13 @@ public class BoardManager : MonoBehaviour
             if (number_of_move < 2) 
             number_of_move++;
 
-            if (number_of_move == 2)
+            if (number_of_move >= 2)
             {
             sendToServer.sendEndTureToServer();
             Debug.Log("end");
             isWhiteTurn = !isWhiteTurn;
             number_of_move = 0;
             }
-
     }
 
      private int[] CalculateNewPosition(int newX,int newY,int CurrentX,int CurrentY) //funkcja potrzebna przy ataku która ustawia pion jedno pole "przed" celem w zależności od strony ataku

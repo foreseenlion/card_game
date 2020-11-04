@@ -5,8 +5,8 @@ using SocketIO;
 public class Network : MonoBehaviour
 {
 	SocketIOComponent socket;
-	BoardManager boardManager; 
-
+	BoardManager boardManager;
+	bool yourfirst;
 
 	void Start()
 	{
@@ -25,6 +25,11 @@ public class Network : MonoBehaviour
 	void onConnectionEstabilished(SocketIOEvent evt)
 	{
 		Debug.Log("Player is connected: " + evt.data.GetField("id"));
+
+
+		SendToServer sendToServer = new SendToServer();
+		// symulowanie startu
+		sendToServer.sendStartGameInfo(boardManager.religionId);
 	}
 
 	void onForeignMessage(SocketIOEvent evt)
@@ -44,14 +49,17 @@ public class Network : MonoBehaviour
 
     void onTureEnd(SocketIOEvent evt)
     {
-
-		Debug.Log("ture start");
-		//żeby przetestować użyj przycisku "A"
-		if (evt.data.GetField("ture").str == "0")
+        if (boardManager.yourWhite == true)
+        {
 			boardManager.changeTure(true);
-		else
+        }
+        else
+        {
 			boardManager.changeTure(false);
-		// blokowanie interfejsu i pionków gracza przeciwanika 
+		}
+		Debug.Log("ture start");
+		
+		
 	}
 
 	void onPlayerMove(SocketIOEvent evt)
@@ -61,14 +69,28 @@ public class Network : MonoBehaviour
 		Debug.Log("z pola y" + evt.data.GetField("poleStartoweY"));
 		Debug.Log("na pole x" + evt.data.GetField("poleDoceloweX"));
 		Debug.Log("na pole y" + evt.data.GetField("poleDoceloweY"));
-		
-		
-
+		int zPolaX = int.Parse(evt.data.GetField("poleStartoweX").ToString());
+		int zPolaY = int.Parse(evt.data.GetField("poleStartoweY").ToString());
+		int naPoleX = int.Parse(evt.data.GetField("poleDoceloweX").ToString());
+		int naPoleY = int.Parse(evt.data.GetField("poleDoceloweY").ToString());
+		boardManager.DSmoveChessMan(zPolaX,zPolaY,naPoleX,naPoleY);
 	}
 
 	void onGameStart(SocketIOEvent evt)
 	{ // żeby przetestować użyj przycisku "S"
 		Debug.Log(evt.data.GetField("deck"));
+
+		string deck = evt.data.GetField("deck").ToString();
+
+		Debug.Log(deck[1]);
+		if (deck[1] == '0')
+		{
+			boardManager.yourWhite = true;
+		}
+		else
+		{
+			boardManager.yourWhite = false;
+		}
 	}
 
 
