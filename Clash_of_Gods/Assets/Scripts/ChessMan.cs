@@ -16,12 +16,27 @@ public abstract class ChessMan : MonoBehaviour
     public int Move_limit { get => move_limit; set => move_limit = value; }
     public int Hp { get => hp; set =>hp = value;}
     public int Dmg { get => dmg; set => dmg = value; }
+    public bool IsWhite { 
+
+        get
+        {
+            return isWhite;
+        }
+
+        set
+        {
+            isWhite = value;
+            ChangeColor();
+        }
+    
+    }
+
     #endregion
 
     protected bool[] hits = new bool[4];
 
     [NonSerialized]
-    public bool isWhite;
+    protected bool isWhite;
 
     [NonSerialized]
     public bool firstmove = true;
@@ -42,7 +57,7 @@ public abstract class ChessMan : MonoBehaviour
     int dmg = 1;
 
 
-    private void Start()
+    private void ChangeColor()
     {
         color = isWhite ? 1 : -1;
     }

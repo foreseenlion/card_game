@@ -28,7 +28,7 @@ public class Pawn : ChessMan
             if (condition_left)
             {
                 c1 = BoardManager.Instance.ChessMens[CurrentX - color, CurrentY + color];
-                if (c1 != null && this.isWhite != c1.isWhite)
+                if (c1 != null && this.isWhite != c1.IsWhite)
                     possibleAtacks[CurrentX - color, CurrentY + color] = true;
 
             }
@@ -37,7 +37,7 @@ public class Pawn : ChessMan
              if (condition_right)
             {
                 c1 = BoardManager.Instance.ChessMens[CurrentX + color, CurrentY + color];
-                if (c1 != null && this.isWhite != c1.isWhite)
+                if (c1 != null && this.isWhite != c1.IsWhite)
                     possibleAtacks[CurrentX + color, CurrentY + color] = true;
             }
         

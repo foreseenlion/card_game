@@ -52,8 +52,6 @@ public class BoardManager : MonoBehaviour
     }
 
 
-
-
     private void Update()
     {
         UpdateSelection(); //co klatkę gra sprawdza na jakie pole kliknął gracz
@@ -138,7 +136,7 @@ public class BoardManager : MonoBehaviour
     {
         if (ChessMens[x, y] == null) //sprawdzenie czy na wybranej pozycji jest pion
             return;
-        if (ChessMens[x, y].isWhite != isWhiteTurn) //sprawdzenie czy pion ma kolor danego gracza
+        if (ChessMens[x, y].IsWhite != isWhiteTurn) //sprawdzenie czy pion ma kolor danego gracza
             return;
 
         BoardHighlitghs.Instance.HideAll();
@@ -146,9 +144,6 @@ public class BoardManager : MonoBehaviour
         ChessMens[x, y].UpdateMove(); //sprawdzenie jakie ruchy,ataki są dozwolone
 
         BoardHighlitghs.Instance.HighlightAllowedMoves(SelectedChessman.PossibleMove, SelectedChessman.PossibleAtacks); //podświetlenie planczy
-
-
-
     } 
 
     private void MoveChessman(int x, int y)
@@ -201,8 +196,7 @@ public class BoardManager : MonoBehaviour
 
     private void AtackChessMan(ChessMan target)
     {
-
-        target.GetComponent<Animator>().Play("take_damage");
+        //target.GetComponent<Animator>().Play("take_damage");
 
         int damage = target.Hp - SelectedChessman.Dmg; //zmniejszenie HP
 
@@ -210,7 +204,6 @@ public class BoardManager : MonoBehaviour
             KillChessMan(target); 
         else
             target.Hp = damage;
-        
     }
 
     private void KillChessMan(ChessMan target)
@@ -234,10 +227,8 @@ public class BoardManager : MonoBehaviour
         return origin;
     }
 
-    
-
     public void UpdateMove() //funkcja przełącza aktywnego gracza
-        {
+    {
             if (number_of_move < 2) 
             number_of_move++;
 
@@ -249,10 +240,8 @@ public class BoardManager : MonoBehaviour
             number_of_move = 0;
             }
 
-        
-        }
+    }
 
-  
      private int[] CalculateNewPosition(int newX,int newY,int CurrentX,int CurrentY) //funkcja potrzebna przy ataku która ustawia pion jedno pole "przed" celem w zależności od strony ataku
     {
         int[] results = new int[2];

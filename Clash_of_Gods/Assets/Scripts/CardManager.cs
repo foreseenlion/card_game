@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using UnityEngine;
 
 public class CardManager : MonoBehaviour
@@ -26,7 +25,7 @@ public class CardManager : MonoBehaviour
         if (ChessMens[x, y] == null) //jezeli na wybranym polu nie ma figuty
         {
             GameObject temp = Instantiate(prefab, GetTileCenter(x, y), Quaternion.Euler(0, 180, 0)) as GameObject; //tworzy obiekt na podstawie prefabu o określonej pozycji
-            temp.GetComponent<ChessMan>().isWhite = isWhite;
+            temp.GetComponent<ChessMan>().IsWhite = isWhite;
             ChessMens[x, y] = temp.GetComponent<ChessMan>(); //zapisanie figury do tablicy figur
             ChessMens[x, y].SetPosition(x, y); //ustawienie pozycji figury
             ChessMens[x, y].idFigure = idFigury();
