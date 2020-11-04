@@ -9,7 +9,6 @@ public class Card : MonoBehaviour
     public GameObject prefab; //jaki pion tworzy karta
     Camera camera;
     public event Action onClicked; //akcja kliknięcia na kartę
-    
 
     void Awake()
     {
@@ -24,6 +23,7 @@ public class Card : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
+                
                 try
                 {
                     if(onClicked!=null)
