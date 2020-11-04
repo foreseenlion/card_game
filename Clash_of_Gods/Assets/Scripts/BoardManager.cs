@@ -226,13 +226,6 @@ public class BoardManager : MonoBehaviour
         Destroy(target.gameObject); //zniszczenie figury, automatycznie sniknie też z listy
     }
 
-  
-
-   
-   
-    
-
-
     private Vector3 GetTileCenter(int x, int y) //umieszczanie figury na środku danego pola
     {
         Vector3 origin = Vector3.zero;

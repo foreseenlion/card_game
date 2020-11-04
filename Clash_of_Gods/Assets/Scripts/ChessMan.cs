@@ -20,8 +20,10 @@ public abstract class ChessMan : MonoBehaviour
 
     protected bool[] hits = new bool[4];
 
+    [NonSerialized]
     public bool isWhite;
 
+    [NonSerialized]
     public bool firstmove = true;
 
     protected bool[,] possibleMoves;
@@ -39,7 +41,8 @@ public abstract class ChessMan : MonoBehaviour
     [SerializeField]
     int dmg = 1;
 
-    private void Awake()
+
+    private void Start()
     {
         color = isWhite ? 1 : -1;
     }
