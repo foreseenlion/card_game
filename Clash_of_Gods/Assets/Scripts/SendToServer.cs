@@ -12,15 +12,17 @@ public class SendToServer : MonoBehaviour
     JSONObject ture;
     JSONObject ruch;
     JSONObject atak;
+    JSONObject startGame;
 
 
-   public SendToServer()
+    public SendToServer()
     {
         socket = GameObject.Find("SocketIO").GetComponent<SocketIOComponent>();
         message = new JSONObject();
         ture = new JSONObject();
         ruch = new JSONObject();
         atak = new JSONObject();
+        startGame = new JSONObject();
     }
 
 
@@ -86,6 +88,18 @@ public class SendToServer : MonoBehaviour
         atak.AddField("ofiaraId", atakujacy.idFigure.ToString());
 
     }
+
+
+
+    public void sendStartGameInfo(string wybranaReligia)
+    {
+       
+        startGame.AddField("religionId", wybranaReligia);
+        socket.Emit("createDeck", startGame);
+        startGame.Clear();
+       
+    }
+
 
 
 }

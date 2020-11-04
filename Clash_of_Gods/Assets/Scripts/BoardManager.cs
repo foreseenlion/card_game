@@ -46,7 +46,10 @@ public class BoardManager : MonoBehaviour
 
 
 
-
+    public void changeTure(bool isWhite)
+    {
+        this.isWhiteTurn = isWhite;
+    }
 
 
 
@@ -92,6 +95,13 @@ public class BoardManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A))
         {
             sendToServer.sendEndTureToServer();
+        }
+
+        // prototyp zmiany tury (zmienil bym to na reakcje na jakis button )
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            // literka to pierwszy znak religi
+            sendToServer.sendStartGameInfo("S");
         }
 
     }
@@ -240,6 +250,8 @@ public class BoardManager : MonoBehaviour
 
             if (number_of_move == 2)
             {
+            sendToServer.sendEndTureToServer();
+            Debug.Log("end");
             isWhiteTurn = !isWhiteTurn;
             number_of_move = 0;
             }

@@ -5,16 +5,20 @@ using SocketIO;
 public class Network : MonoBehaviour
 {
 	SocketIOComponent socket;
+	BoardManager boardManager; 
+
 
 	void Start()
 	{
 		socket = GetComponent<SocketIOComponent>();
+		boardManager = GameObject.FindObjectOfType<BoardManager>();
 
 		// This line will set up the listener function
 		socket.On("connectionEstabilished", onConnectionEstabilished);
 		socket.On("foreignMessage", onForeignMessage);
 		socket.On("tureEnd", onTureEnd);
 		socket.On("moveTo", onPlayerMove);
+		socket.On("drawDeck", onGameStart);
 	}
 
 	// This is the listener function definition
@@ -25,18 +29,30 @@ public class Network : MonoBehaviour
 
 	void onForeignMessage(SocketIOEvent evt)
 	{
-		Debug.Log("pozycja x" + evt.data.GetField("x"));
-		Debug.Log("pozycja y" + evt.data.GetField("y"));
+	//	Debug.Log("pozycja x" + evt.data.GetField("x"));
+	//	Debug.Log("pozycja y" + evt.data.GetField("y"));
+
+		JSONObject tmp = evt.data;
+		
+		int x=int.Parse(evt.data.GetField("x").ToString());
+		int y=int.Parse(evt.data.GetField("y").ToString());
+		//Debug.Log(x);
+		//Debug.Log(y);
+		
 	}
 
 
     void onTureEnd(SocketIOEvent evt)
     {
 
+		Debug.Log("ture start");
+		//żeby przetestować użyj przycisku "A"
 		if (evt.data.GetField("ture").str == "0")
-        Debug.Log(evt.data.GetField("ture"));
+			boardManager.changeTure(true);
+		else
+			boardManager.changeTure(false);
 		// blokowanie interfejsu i pionków gracza przeciwanika 
-    }
+	}
 
 	void onPlayerMove(SocketIOEvent evt)
 	{	
@@ -45,9 +61,15 @@ public class Network : MonoBehaviour
 		Debug.Log("z pola y" + evt.data.GetField("poleStartoweY"));
 		Debug.Log("na pole x" + evt.data.GetField("poleDoceloweX"));
 		Debug.Log("na pole y" + evt.data.GetField("poleDoceloweY"));
+		
+		
+
 	}
 
-
+	void onGameStart(SocketIOEvent evt)
+	{ // żeby przetestować użyj przycisku "S"
+		Debug.Log(evt.data.GetField("deck"));
+	}
 
 
 
