@@ -10,7 +10,7 @@ public class BoardManager : MonoBehaviour
     private SendToServer sendToServer;
 
     public static BoardManager Instance { get; set; }
-
+    private string deckId = "";
 
     public ChessMan[,] ChessMens { get; set; } //tablica wszystkich pionów
     public ChessMan SelectedChessman; //wybrany pion
@@ -42,8 +42,13 @@ public class BoardManager : MonoBehaviour
         Instance = this;
         ChessMens = new ChessMan[8, 8];
 
-        WhiteDeck.UpdateSpawn(ChessMens);
-        BlackDeck.UpdateSpawn(ChessMens);
+        sendToServer.sendStartGameInfo("G");
+
+        WhiteDeck.InstantiateDeck("G222");
+        BlackDeck.InstantiateDeck("E123");
+
+        WhiteDeck.ChessMens = ChessMens;
+        BlackDeck.ChessMens = ChessMens;
 
         religionId = "s";
     }

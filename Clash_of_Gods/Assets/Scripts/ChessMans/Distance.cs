@@ -30,9 +30,7 @@ public class Distance : Rook
 
         if (condition_left) //atak w lewo
         {
-
             CheckAtack(newX, newY);
-
         }
 
         newX = CurrentX + (color * range);
@@ -42,6 +40,7 @@ public class Distance : Rook
         if (condition_right)  //atak w prawo
         {
             CheckAtack(newX, newY);
+          
         }
 
         newX = CurrentX;
@@ -51,6 +50,7 @@ public class Distance : Rook
         if (condition_up) //atak w górę
         {
             CheckAtack(newX, newY);
+            
         }
 
         newX = CurrentX;
@@ -60,6 +60,11 @@ public class Distance : Rook
         if (condition_down) //atak w dół
         {
             CheckAtack(newX, newY);
+            
         }
+
+      
+                
+        
     }
 }

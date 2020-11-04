@@ -128,8 +128,8 @@ public abstract class ChessMan : MonoBehaviour
         if (c != null && this.isWhite != c.isWhite) //jeśli na lini jest przeciwnik zaatakuj go
         {
             possibleAtacks[_newX, _newY] = true;
-        
         }
+
     }
 
     protected void CheckIsEnd()
