@@ -25,6 +25,7 @@ public class Network : MonoBehaviour
 	void onConnectionEstabilished(SocketIOEvent evt)
 	{
 		Debug.Log("Player is connected: " + evt.data.GetField("id"));
+		boardManager.sendToServer.sendStartGameInfo(boardManager.religionId);
 	}
 
 	void onForeignMessage(SocketIOEvent evt)
@@ -67,8 +68,25 @@ public class Network : MonoBehaviour
 	}
 
 	void onGameStart(SocketIOEvent evt)
-	{ // żeby przetestować użyj przycisku "S"
+	{ 
+		// żeby przetestować użyj przycisku "S"
+
 		Debug.Log(evt.data.GetField("deck"));
+		string deck = evt.data.GetField("deck").ToString();
+		Debug.Log(deck[1]);
+
+		FindObjectOfType<BoardManager>().DeckId = deck;
+
+		if (deck[1] == '0')
+		{
+			Debug.Log("fd");
+			boardManager.yourWhite = true;
+		}
+		else
+		{
+			boardManager.yourWhite = false;
+		}
+
 	}
 
 
