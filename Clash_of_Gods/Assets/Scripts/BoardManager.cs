@@ -1,22 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Collections.Generic;
 using System;
 using UnityEngine.SceneManagement;
 using SocketIO;
 public class BoardManager : MonoBehaviour
 {
-    private SendToServer sendToServer;
-
-    public static BoardManager Instance { get; set; }
+    public SendToServer sendToServer;
     private string deckId = "";
 
+    public static BoardManager Instance { get; set; }
+
+
     public ChessMan[,] ChessMens { get; set; } //tablica wszystkich pionów
+    public string DeckId { get => deckId; set => deckId = value; }
+
     public ChessMan SelectedChessman; //wybrany pion
 
+
     public String religionId;
-   
 
     public int selectedX = -1; //wybrane pole
     public int selectedY = -1;
@@ -34,6 +36,7 @@ public class BoardManager : MonoBehaviour
     [SerializeField]
     CardManager BlackDeck;
 
+    bool created = false;
 
     private void Start()
     {
@@ -42,7 +45,7 @@ public class BoardManager : MonoBehaviour
         Instance = this;
         ChessMens = new ChessMan[8, 8];
 
-        sendToServer.sendStartGameInfo("G");
+
 
         WhiteDeck.InstantiateDeck("G222");
         BlackDeck.InstantiateDeck("E123");
@@ -60,7 +63,15 @@ public class BoardManager : MonoBehaviour
         this.isWhiteTurn = isWhite;
     }
 
+    private string SetDeckNumber()
+    {
+        string deck_number = "";
+        for (int i = 2; i < deckId.Length - 1; i++)
+            deck_number += deckId[i];
 
+        Debug.Log(deck_number);
+        return deck_number;
+    }
     private void Update()
     {
         UpdateSelection(); //co klatkę gra sprawdza na jakie pole kliknął gracz
@@ -107,8 +118,13 @@ public class BoardManager : MonoBehaviour
         // prototyp zmiany tury (zmienil bym to na reakcje na jakis button )
         if (Input.GetKeyDown(KeyCode.S))
         {
-           
-           
+            // literka to pierwszy znak religi
+            if (!created)
+            {
+                sendToServer.sendStartGameInfo("G");
+
+                created = true;
+            }
         }
 
     }
