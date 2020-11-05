@@ -28,8 +28,10 @@ public class Network : MonoBehaviour
 
 
 
+
 		SendToServer sendToServer = new SendToServer();
 		// symulowanie startu
+
 		sendToServer.sendStartGameInfo(boardManager.religionId);
 
 	}
@@ -71,28 +73,27 @@ public class Network : MonoBehaviour
 		Debug.Log("z pola y" + evt.data.GetField("poleStartoweY"));
 		Debug.Log("na pole x" + evt.data.GetField("poleDoceloweX"));
 		Debug.Log("na pole y" + evt.data.GetField("poleDoceloweY"));
+
 		int zPolaX = int.Parse(evt.data.GetField("poleStartoweX").ToString());
 		int zPolaY = int.Parse(evt.data.GetField("poleStartoweY").ToString());
 		int naPoleX = int.Parse(evt.data.GetField("poleDoceloweX").ToString());
 		int naPoleY = int.Parse(evt.data.GetField("poleDoceloweY").ToString());
 		boardManager.DSmoveChessMan(zPolaX,zPolaY,naPoleX,naPoleY);
+
 	}
 
 	void onGameStart(SocketIOEvent evt)
 	{ 
+
 		// żeby przetestować użyj przycisku "S"
 
 		Debug.Log(evt.data.GetField("deck"));
 
 		string deck = evt.data.GetField("deck").ToString();
-		Debug.Log(deck[1]);
-
-		FindObjectOfType<BoardManager>().DeckId = deck;
-
+		boardManager.DeckId = deck;
+		
 		if (deck[1] == '0')
 		{
-			Debug.Log("fd");
-
 			boardManager.yourWhite = true;
 		}
 		else
