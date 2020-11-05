@@ -6,36 +6,51 @@ using UnityEngine.SceneManagement;
 using SocketIO;
 public class BoardManager : MonoBehaviour
 {
-    public SendToServer sendToServer;
-    private string deckId = "";
-
-    public static BoardManager Instance { get; set; }
-
-
-    public ChessMan[,] ChessMens { get; set; } //tablica wszystkich pionów
-    public string DeckId { get => deckId; set => deckId = value; }
-
-    public ChessMan SelectedChessman; //wybrany pion
-
-    
-
-    public int selectedX = -1; //wybrane pole
-    public int selectedY = -1;
-
-
-    public bool isWhiteTurn = true; //czyja kolej?
-
-    int number_of_move = 0; //który ruch gracz wykonał (co dwa ruchy zmienia się aktywny graCZ)
-
+    // fields and events
+    #region
     [SerializeField]      //TALIE
     CardManager WhiteDeck;
 
     [SerializeField]
     CardManager BlackDeck;
 
-    bool created = false;
+    public SendToServer sendToServer;
+    private string deckId = "";
+
+    public static BoardManager Instance { get; set; }
+
+    public ChessMan[,] ChessMens { get; set; } //tablica wszystkich pionów
+   
+
+    public ChessMan SelectedChessman; //wybrany pion
+
+    public int selectedX = -1; //wybrane pole
+    public int selectedY = -1;
+
+    public bool isWhiteTurn = true; //czyja kolej?
+
+    int number_of_move = 0; //który ruch gracz wykonał (co dwa ruchy zmienia się aktywny graCZ)
+
     public bool yourWhite;
     public string religionId;
+
+    public string DeckId {
+        get
+        {
+            return deckId;
+        }
+
+        set
+        {
+            deckId = value;
+            onDeckIdGenerated.Invoke();
+
+        }
+    }
+  
+
+    private event Action onDeckIdGenerated;
+    #endregion
 
     private void Start()
     {
@@ -43,17 +58,24 @@ public class BoardManager : MonoBehaviour
 
         Instance = this;
         ChessMens = new ChessMan[8, 8];
+        
+        onDeckIdGenerated += () =>
+        {
+            GetDecks();
+        };
 
-        sendToServer.sendStartGameInfo("G");
-
-        WhiteDeck.InstantiateDeck("G222");
         BlackDeck.InstantiateDeck("E123");
-
-        WhiteDeck.ChessMens = ChessMens;
         BlackDeck.ChessMens = ChessMens;
 
     }
 
+    public void GetDecks()
+    {
+        Debug.Log("Odebrano" + deckId);
+
+        WhiteDeck.InstantiateDeck(SetDeckNumber());
+        WhiteDeck.ChessMens = ChessMens;
+    }
 
     public void changeTure(bool isWhite)
     {
@@ -63,11 +85,12 @@ public class BoardManager : MonoBehaviour
     private string SetDeckNumber()
     {
         string deck_number = "";
-        for (int i = 2; i < deckId.Length - 1; i++)
+
+        for (int i = 2; i < deckId.Length-1; i++)
             deck_number += deckId[i];
 
-        Debug.Log(deck_number);
         return deck_number;
+
     }
     private void Update()
     {
@@ -113,16 +136,16 @@ public class BoardManager : MonoBehaviour
         }
 
         // prototyp zmiany tury (zmienil bym to na reakcje na jakis button )
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            // literka to pierwszy znak religi
-            if (!created)
-            {
-                sendToServer.sendStartGameInfo("G");
+        //if (Input.GetKeyDown(KeyCode.S))
+        //{
+        //    // literka to pierwszy znak religi
+        //    if (!created)
+        //    {
+        //        sendToServer.sendStartGameInfo("G");
 
-                created = true;
-            }
-        }
+        //        created = true;
+        //    }
+        //}
 
     }
 

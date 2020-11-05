@@ -128,7 +128,7 @@ public class CardManager : MonoBehaviour
         for (int i = 1; i < cards.Length; i++)
         {
             int index = (int)System.Char.GetNumericValue(cards[i]);
-            Debug.Log(index);
+            
             deck.Add(tempDeck[index]);   
         }
 
@@ -137,7 +137,7 @@ public class CardManager : MonoBehaviour
     public void InstantiateDeck(string cards)
     {
         CreateDeck(cards);
-
+        
         float startX = -5f;
 
         for (int i = 0; i < deck.Count; i++)
