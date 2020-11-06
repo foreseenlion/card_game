@@ -55,10 +55,12 @@ public class Network : MonoBehaviour
     {
         if (boardManager.yourWhite == true)
         {
+			boardManager.number_of_move = 0;
 			boardManager.changeTure(true);
         }
         else
         {
+			boardManager.number_of_move = 0;
 			boardManager.changeTure(false);
 		}
 		Debug.Log("ture start");
@@ -68,11 +70,11 @@ public class Network : MonoBehaviour
 
 	void onPlayerMove(SocketIOEvent evt)
 	{	
-		Debug.Log("id fidury: "+evt.data.GetField("idPionka"));
-		Debug.Log("z pola x"+evt.data.GetField("poleStartoweX"));
-		Debug.Log("z pola y" + evt.data.GetField("poleStartoweY"));
-		Debug.Log("na pole x" + evt.data.GetField("poleDoceloweX"));
-		Debug.Log("na pole y" + evt.data.GetField("poleDoceloweY"));
+		//Debug.Log("id fidury: "+evt.data.GetField("idPionka"));
+		//Debug.Log("z pola x"+evt.data.GetField("poleStartoweX"));
+		//Debug.Log("z pola y" + evt.data.GetField("poleStartoweY"));
+		//Debug.Log("na pole x" + evt.data.GetField("poleDoceloweX"));
+		//Debug.Log("na pole y" + evt.data.GetField("poleDoceloweY"));
 
 		int zPolaX = int.Parse(evt.data.GetField("poleStartoweX").ToString());
 		int zPolaY = int.Parse(evt.data.GetField("poleStartoweY").ToString());
@@ -87,7 +89,7 @@ public class Network : MonoBehaviour
 
 		// żeby przetestować użyj przycisku "S"
 
-		Debug.Log(evt.data.GetField("deck"));
+		//Debug.Log(evt.data.GetField("deck"));
 
 		string deck = evt.data.GetField("deck").ToString();
 		boardManager.DeckId = deck;

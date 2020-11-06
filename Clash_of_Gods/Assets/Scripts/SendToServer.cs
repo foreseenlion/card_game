@@ -54,6 +54,7 @@ public class SendToServer : MonoBehaviour
 
     public void sendEndTureToServer()
     {
+        Debug.Log("Wyslanie do przeciwnika tokena tury");
         ture.Clear();
         ture.AddField("ture", "1");
         socket.Emit("end", ture);

@@ -95,10 +95,10 @@ public class CardManager : MonoBehaviour
 
     private bool[,] isSpawnAllowed()
     {
-        int less_than = isWhite ? 1 : 7;
+        int less_than = 1;
         bool[,] allowedMoves = new bool[8, 8];   //można spawnować tylko na dwóch pierwszych wierszach
         for (int i = 0; i <= 7; i++)
-            for (int j = isWhite ? 0 : 6; j <= less_than; j++)
+            for (int j =  0 ; j <= less_than; j++)
                 if (chessMens[i, j] == null)
                     allowedMoves[i, j] = true;
 
@@ -108,8 +108,8 @@ public class CardManager : MonoBehaviour
     private void CreateDeck(string cards)
     {
         GameObject[] tempDeck = new GameObject[10];
-
-        switch(cards[1])
+        
+        switch (cards[0])
         {
             case 'G':
                 tempDeck = Resources.LoadAll<GameObject>("Prefabs/Cards/Greek");
@@ -125,10 +125,10 @@ public class CardManager : MonoBehaviour
         }
 
      
-        for (int i = 2; i < cards.Length; i++)
+        for (int i = 1; i < cards.Length; i++)
         {
             int index = (int)System.Char.GetNumericValue(cards[i]);
-            
+        
             deck.Add(tempDeck[index]);  
         }
 
@@ -147,7 +147,7 @@ public class CardManager : MonoBehaviour
 
             temp.GetComponent<Card>().onClicked += () =>
             {
-                if (isWhite == BoardManager.Instance.isWhiteTurn)
+                if (isWhite == BoardManager.Instance.isWhiteTurn )
                 {
                     StartCoroutine(WaitForSpawn(temp.GetComponent<Card>()));
                 }

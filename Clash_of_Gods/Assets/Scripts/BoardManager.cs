@@ -33,7 +33,7 @@ public class BoardManager : MonoBehaviour
 
     public bool yourWhite;
 
-    int number_of_move = 0; //który ruch gracz wykonał (co dwa ruchy zmienia się aktywny graCZ)
+    public int number_of_move = 0; //który ruch gracz wykonał (co dwa ruchy zmienia się aktywny graCZ)
 
 
     public string DeckId {
@@ -56,9 +56,10 @@ public class BoardManager : MonoBehaviour
 
     private void Start()
     {
+        religionId = "G";
         sendToServer = new SendToServer();
 
-        religionId = "G";
+    
 
         Instance = this;
         ChessMens = new ChessMan[8, 8];
@@ -66,20 +67,23 @@ public class BoardManager : MonoBehaviour
         onDeckIdGenerated += () =>
         {
             GetDecks();
-        };
-
-        BlackDeck.InstantiateDeck("E123");
-        BlackDeck.ChessMens = ChessMens;
-
-        
+        };     
     }
 
     public void GetDecks()
     {
-        Debug.Log("Odebrano" + deckId);
-
-        WhiteDeck.InstantiateDeck(SetDeckNumber());
-        WhiteDeck.ChessMens = ChessMens;
+        Debug.Log(deckId[1]);
+        if (deckId[1] == '0')
+        {
+            WhiteDeck.InstantiateDeck(SetDeckNumber());
+            WhiteDeck.ChessMens = ChessMens;
+        }
+        else
+        {
+            BlackDeck.InstantiateDeck(SetDeckNumber());
+            BlackDeck.ChessMens = ChessMens;
+        }
+       
     }
 
 
@@ -91,10 +95,9 @@ public class BoardManager : MonoBehaviour
     private string SetDeckNumber()
     {
         string deck_number = "";
-
         for (int i = 2; i < deckId.Length-1; i++)
             deck_number += deckId[i];
-
+        Debug.Log(deck_number);
         return deck_number;
 
     }
@@ -138,7 +141,7 @@ public class BoardManager : MonoBehaviour
         // prototyp zmiany tury (zmienil bym to na reakcje na jakis button )
         if (Input.GetKeyDown(KeyCode.A))
         {
-            sendToServer.sendEndTureToServer();
+           // sendToServer.sendEndTureToServer();
         }
 
         // prototyp zmiany tury (zmienil bym to na reakcje na jakis button )
@@ -300,11 +303,10 @@ public class BoardManager : MonoBehaviour
     {
             if (number_of_move < 2) 
             number_of_move++;
-
-            if (number_of_move >= 2)
+            Debug.Log("Wywolanie update move");
+        if (number_of_move >= 2)
             {
             sendToServer.sendEndTureToServer();
-            Debug.Log("end");
             isWhiteTurn = !isWhiteTurn;
             number_of_move = 0;
             }
