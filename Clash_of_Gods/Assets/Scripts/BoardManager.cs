@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
-using System;
 using UnityEngine.SceneManagement;
-using SocketIO;
+
 public class BoardManager : MonoBehaviour
 {
     // fields and events
@@ -15,26 +13,22 @@ public class BoardManager : MonoBehaviour
     CardManager BlackDeck;
 
     public SendToServer sendToServer;
-    private string deckId = "";
-
-    public static BoardManager Instance { get; set; }
-
-    public ChessMan[,] ChessMens { get; set; } //tablica wszystkich pionów
-   
-
     public ChessMan SelectedChessman; //wybrany pion
-
-    public String religionId;
 
     public int selectedX = -1; //wybrane pole
     public int selectedY = -1;
+    public int number_of_move = 0; //który ruch gracz wykonał (co dwa ruchy zmienia się aktywny graCZ)
 
     public bool isWhiteTurn = true; //czyja kolej?
 
     public bool yourWhite;
 
-    public int number_of_move = 0; //który ruch gracz wykonał (co dwa ruchy zmienia się aktywny graCZ)
+    public string religionId;
+    private string deckId = "";
 
+
+    public static BoardManager Instance { get; set; }
+    public ChessMan[,] ChessMens { get; set; } //tablica wszystkich pionów
 
     public string DeckId {
         get
@@ -50,7 +44,6 @@ public class BoardManager : MonoBehaviour
         }
     }
   
-
     private event Action onDeckIdGenerated;
     #endregion
 
@@ -59,18 +52,16 @@ public class BoardManager : MonoBehaviour
         religionId = "G";
         sendToServer = new SendToServer();
 
-    
-
         Instance = this;
         ChessMens = new ChessMan[8, 8];
         
         onDeckIdGenerated += () =>
         {
             GetDecks();
-        };     
+        };
     }
 
-    public void GetDecks()
+    private void GetDecks()
     {
         Debug.Log(deckId[1]);
         if (deckId[1] == '0')
@@ -86,7 +77,6 @@ public class BoardManager : MonoBehaviour
        
     }
 
-
     public void changeTure(bool isWhite)
     {
         this.isWhiteTurn = isWhite;
@@ -99,63 +89,45 @@ public class BoardManager : MonoBehaviour
             deck_number += deckId[i];
         Debug.Log(deck_number);
         return deck_number;
-
     }
+
     private void Update()
     {
-        UpdateSelection(); //co klatkę gra sprawdza na jakie pole kliknął gracz
+        //UpdateSelection(); //co klatkę gra sprawdza na jakie pole kliknął gracz
 
-        if (Input.GetMouseButtonDown(0)) //wduszenie lewego przycisku myszy
-        {
-            if (selectedX >= 0 || selectedY >= 0) //sprawdzenie czy kliknięto na planszy
-            {
-                if (SelectedChessman == null) //jeśli nic nie wybrano wybierz danego piona 
-                {
-                    try
-                    {
-                        SelectChessman(selectedX, selectedY); //zmiana wybranego piona 
-                        sendToServer.sendMoveToServer(selectedX, selectedY); //zmiana wybranego piona 
-                    }
-                    catch (Exception e)
-                    {
-
-                    }
-                }
-                else //jeśli wcześniej wybrano piona rusz nim na wybrane pole
-                {
-                    try
-                    {                    
-                        sendToServer.sendPlayerMove(selectedX, selectedY, SelectedChessman);
-                        MoveAndAttackChessman(selectedX, selectedY); //rusz wybrany pion na daną pozycję                    
-                    }
-                    catch(Exception e)
-                    {
-
-                    }
-                }
-
-            }
-        }
-
-
-        // prototyp zmiany tury (zmienil bym to na reakcje na jakis button )
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-           // sendToServer.sendEndTureToServer();
-        }
-
-        // prototyp zmiany tury (zmienil bym to na reakcje na jakis button )
-        //if (Input.GetKeyDown(KeyCode.S))
+        //if (Input.GetMouseButtonDown(0)) //wduszenie lewego przycisku myszy
         //{
-        //    // literka to pierwszy znak religi
-        //    if (!created)
+        //    if (selectedX >= 0 || selectedY >= 0) //sprawdzenie czy kliknięto na planszy
         //    {
-        //        sendToServer.sendStartGameInfo("G");
+        //        if (SelectedChessman == null) //jeśli nic nie wybrano wybierz danego piona 
+        //        {
+        //            try
+        //            {
+        //                SelectChessman(selectedX, selectedY); //zmiana wybranego piona 
+        //                sendToServer.sendMoveToServer(selectedX, selectedY); //zmiana wybranego piona 
+        //            }
+        //            catch (Exception e)
+        //            {
 
-        //        created = true;
+        //            }
+        //        }
+        //        else //jeśli wcześniej wybrano piona rusz nim na wybrane pole
+        //        {
+        //            try
+        //            {                    
+        //                sendToServer.sendPlayerMove(selectedX, selectedY, SelectedChessman);
+        //                MoveAndAttackChessman(selectedX, selectedY); //rusz wybrany pion na daną pozycję                    
+        //            }
+        //            catch(Exception e)
+        //            {
+
+        //            }
+        //        }
+
         //    }
         //}
-
+        UpdateSelection(); // co klatkę gra sprawdza na jakie pole najechał gracz
+        MakeMove(); // w zależności gdzie i czy kliknięto gracz wykona ruch, zaatakuje lub zmieni aktywnego piona
     }
 
     private void UpdateSelection()
@@ -177,6 +149,7 @@ public class BoardManager : MonoBehaviour
             selectedY = (int)hit.point.z;
             BoardHighlitghs.Instance.HighlightAllowedMove(selectedX, selectedY);
         }
+
         else
         { 
             BoardHighlitghs.Instance.DestroySelection();
@@ -184,7 +157,42 @@ public class BoardManager : MonoBehaviour
             selectedX = -1;
         }
 
-    } //gra sprawdza na jakie pole kliknął gracz
+    } 
+
+    private void MakeMove()
+    {
+        if (Input.GetMouseButtonDown(0)) //wduszenie lewego przycisku myszy
+        {
+            if (selectedX >= 0 || selectedY >= 0) //sprawdzenie czy kliknięto na planszy
+            {
+                if (SelectedChessman == null) //jeśli nic nie wybrano wybierz danego piona 
+                {
+                    try
+                    {
+                        SelectChessman(selectedX, selectedY); //zmiana wybranego piona 
+                        sendToServer.sendMoveToServer(selectedX, selectedY); //zmiana wybranego piona 
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
+                }
+                else //jeśli wcześniej wybrano piona rusz nim na wybrane pole
+                {
+                    try
+                    {
+                        sendToServer.sendPlayerMove(selectedX, selectedY, SelectedChessman);
+                        MoveAndAttackChessman(selectedX, selectedY); //rusz wybrany pion na daną pozycję                    
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
+                }
+
+            }
+        }
+    }
 
     private void SelectChessman(int x, int y)
     {
@@ -215,14 +223,16 @@ public class BoardManager : MonoBehaviour
     private void MoveAndAttackChessman(int x, int y)
     {
         ChessMan target = ChessMens[x, y];
-        moveChessMan(x, y);
+        moveChessman(x, y);
         makeAttackChessMan(x, y, target);
 
         BoardHighlitghs.Instance.HideAll();
         SelectedChessman = null; //klinięcie w inne niż możliwe miejsce anuluje wybór
     }
 
-    private void moveChessMan(int x, int y)
+  
+
+    private void moveChessman(int x, int y)
     {
         if (SelectedChessman.PossibleMove[x, y]) // można wykonać taki ruch?
         {
@@ -232,15 +242,15 @@ public class BoardManager : MonoBehaviour
             ChessMens[x, y] = SelectedChessman;
             UpdateMove();
 
-            if (SelectedChessman.firstmove) //wykonanie pierwszego ruchu potrzebne przy pionach
-                SelectedChessman.firstmove = false;
+           if (SelectedChessman.firstmove) //wykonanie pierwszego ruchu potrzebne przy pionach
+               SelectedChessman.firstmove = false;
 
         }
     }
 
     private void makeAttackChessMan(int x, int y, ChessMan target)
     {
-        if (SelectedChessman.PossibleAtacks[x, y]) //można atakować
+        if (SelectedChessman.PossibleAtacks[x,y]) //można atakować
         {
             if (SelectedChessman.GetComponent<Distance>() == null) //jeśli pion nie atakuje z dystasnu musi przemieścić się w kierunku przeciwnika
             {
@@ -260,10 +270,11 @@ public class BoardManager : MonoBehaviour
 
             if (SelectedChessman.firstmove) //wykonanie pierwszego ruchu potrzebne przy pionach
                 SelectedChessman.firstmove = false;
-
         }
-    }
 
+        BoardHighlitghs.Instance.HideAll();
+        SelectedChessman = null; //klinięcie w inne niż możliwe miejsce anuluje wybór
+    }
 
 
     private void AtackChessMan(ChessMan target)
@@ -287,7 +298,6 @@ public class BoardManager : MonoBehaviour
             SceneManager.LoadScene("End_Game");
 
         }
-        //usunięcie z listy aktywnych figur
         Destroy(target.gameObject); //zniszczenie figury, automatycznie sniknie też z listy
     }
 
@@ -309,37 +319,36 @@ public class BoardManager : MonoBehaviour
             sendToServer.sendEndTureToServer();
             isWhiteTurn = !isWhiteTurn;
             number_of_move = 0;
-            }
+
+        }
     }
 
-     private int[] CalculateNewPosition(int newX,int newY,int CurrentX,int CurrentY) //funkcja potrzebna przy ataku która ustawia pion jedno pole "przed" celem w zależności od strony ataku
+    private int[] CalculateNewPosition(int newX,int newY,int CurrentX,int CurrentY) //funkcja potrzebna przy ataku która ustawia pion jedno pole "przed" celem w zależności od strony ataku
     {
         int[] results = new int[2];
 
-
         if (newX - CurrentX < 0) //poruszam się w lewo
             results[0] = newX + 1;
+
         if (newX - CurrentX > 0) //poruszam się w prawo
             results[0] = newX - 1;
+
         if (newX - CurrentX == 0) //nie poruszam się w osi x
             results[0] = CurrentX;
 
         if (newY - CurrentY < 0) //poruszam się w dół
-        {
             results[1] = newY + 1;
             
-        }
         if (newY - CurrentY > 0) //poruszam się w górę
-        {
             results[1] = newY - 1;
 
-        }
         if (newY - CurrentY == 0) //nie poruszam się w osi y
             results[1] = CurrentY;
 
         return results;
-
     }
+
+  
 
 
 }
