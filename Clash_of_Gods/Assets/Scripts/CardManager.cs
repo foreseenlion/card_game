@@ -8,8 +8,12 @@ public class CardManager : MonoBehaviour
     [SerializeField]
     bool isWhite;
 
-    List<GameObject> deck = new List<GameObject>();
+    int idSelectedCard;
 
+    List<GameObject> deck = new List<GameObject>();
+    List<GameObject> EnemyDeck = new List<GameObject>();
+  
+    Dictionary<char, int> indexPrefabCard =new Dictionary<char, int>();
     ChessMan[,] chessMens;
 
     bool[,] SpawnAllowed;
@@ -70,12 +74,11 @@ public class CardManager : MonoBehaviour
 
                     if (selectedX >= 0 && selectedY >= 0 && SpawnAllowed[selectedX, selectedY] == true) //czy można spawnować
                     {
+                        SendToServer sendToServer = new SendToServer();
+                        EnterSpawn(card,selectedX,selectedY);
+                        
+                        sendToServer.sendSpawnToServer(selectedX, selectedY, idSelectedCard);
 
-                        Spawn(card.prefab, selectedX, selectedY);
-                        BoardHighlitghs.Instance.HideAll();
-                        card.prefab = null;
-                        Destroy(card.gameObject);
-                        BoardManager.Instance.UpdateMove();
                         yield break;//wykonano ruch
 
                     }
@@ -84,16 +87,38 @@ public class CardManager : MonoBehaviour
                         BoardHighlitghs.Instance.HideAll();
                         yield break;
                     }
-
                 }
-
 
             }
             yield return null; //jeśli nie naciśnięto czekaj
         }
-
-
     }
+
+    void EnterSpawn(Card card, int selectedX, int selectedY )
+    {
+        StopCoroutine("WaitForSpawn"); // zatrzymaj pozostałe instancje
+        BoardHighlitghs.Instance.HideAll();
+
+        Spawn(card.prefab, selectedX, selectedY);
+        BoardHighlitghs.Instance.HideAll();
+        card.prefab = null;
+        Destroy(card.gameObject);
+        BoardManager.Instance.UpdateMove();
+    }
+    public void DSSpawnEnemy(char idCard, int selectedX, int selectedY)
+    {
+        Card card = new Card();
+     
+        card.prefab = deck[int.Parse(idCard.ToString())];
+        EnterSpawn(card, selectedX, selectedY);
+    }
+
+
+ public void DSCreateDeckEnemy(string cards)
+    {
+        deck = CreateDeck(cards);
+    }
+
 
     private bool[,] isSpawnAllowed()
     {
@@ -106,11 +131,10 @@ public class CardManager : MonoBehaviour
 
         return allowedMoves;
     }
-
-    private void CreateDeck(string cards)
+    private List<GameObject> CreateDeck(string cards)
     {
         GameObject[] tempDeck = new GameObject[10];
-        
+        List<GameObject> result = new List<GameObject>();
         switch (cards[0])
         {
             case 'G':
@@ -130,15 +154,16 @@ public class CardManager : MonoBehaviour
         for (int i = 1; i < cards.Length; i++)
         {
             int index = (int)System.Char.GetNumericValue(cards[i]);
-        
-            deck.Add(tempDeck[index]);  
+            // słownik do idetyfikacji kart przeciwnikow  1: string(liczba karty) 2: index na ktorym jest ta karta w liscie prefabow
+            indexPrefabCard.Add(cards[i], i);
+            result.Add(tempDeck[index]);  
         }
-
+        return result;
     }
 
     public void InstantiateDeck(string cards)
     {
-        CreateDeck(cards);
+       deck= CreateDeck(cards);
         
         float startX = -5f;
 
@@ -147,10 +172,14 @@ public class CardManager : MonoBehaviour
             var temp = Instantiate(deck[i], transform);
             temp.transform.localPosition = new Vector3(startX + i, 0.2f, -1f);
 
+            temp.GetComponent<Card>().id = i;
+           
             temp.GetComponent<Card>().onClicked += () =>
             {
                 if (isWhite == BoardManager.Instance.isWhiteTurn )
                 {
+                    idSelectedCard = temp.GetComponent<Card>().id;
+                    
                     StartCoroutine(WaitForSpawn(temp.GetComponent<Card>()));
                 }
 

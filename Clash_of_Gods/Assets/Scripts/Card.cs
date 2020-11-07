@@ -10,6 +10,7 @@ public class Card : MonoBehaviour
     Camera camera;
     public event Action onClicked; //akcja kliknięcia na kartę
 
+    public int id;
     void Awake()
     {
         camera = FindObjectOfType<Camera>();

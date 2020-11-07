@@ -23,7 +23,12 @@ public class Network : MonoBehaviour
 		socket.On("drawDeck", onGameStart);
 		socket.On("onEnemyDeck", onEnemyDeckBlack);
 		socket.On("enemyDeckWhite", onEnemyDeckWhite);
+		socket.On("spawnEnemy", onSpwanEnemy);
 	}
+
+
+
+
 
 	// This is the listener function definition
 	void onConnectionEstabilished(SocketIOEvent evt)
@@ -33,6 +38,20 @@ public class Network : MonoBehaviour
 		sendToServer.sendStartGameInfo(boardManager.religionId);
 		Debug.Log(boardManager.DeckId);
 	}
+
+
+
+	void onSpwanEnemy(SocketIOEvent evt)
+	{
+		string poleX = evt.data.GetField("PoleX").ToString();
+		string poleY = evt.data.GetField("PoleY").ToString();
+		string id = evt.data.GetField("id").ToString();
+		//DSSpawnEnemy
+		Debug.Log("Spawn na pozycji x" + poleX + " y" + poleY + " id karty: " + id);
+		boardManager.SpawnEnemy(id[1], int.Parse(poleX), int.Parse(poleY));
+		Debug.Log("Spawn na pozycji x" + poleX + " y" + poleY + " id karty: " + id);
+	}
+
 
 	void onForeignMessage(SocketIOEvent evt)
 	{
@@ -69,13 +88,14 @@ public class Network : MonoBehaviour
 		string enemydeckId= evt.data.GetField("enemyDeck").ToString();
 		boardManager.enemyDeckId = enemydeckId;
 		sendToServer.sendMyDeckToEnemy(boardManager.DeckId);
-		
+		boardManager.SetEnemyDecks();
 	}
 
 	void onEnemyDeckWhite(SocketIOEvent evt)
 	{
 		string enemydeckId = evt.data.GetField("deckWhite").ToString();
 		boardManager.enemyDeckId = enemydeckId;
+		boardManager.SetEnemyDecks();
 	}
 
 	void onPlayerMove(SocketIOEvent evt)

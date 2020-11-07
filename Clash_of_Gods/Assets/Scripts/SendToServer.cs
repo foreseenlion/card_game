@@ -14,6 +14,7 @@ public class SendToServer : MonoBehaviour
     JSONObject atak;
     JSONObject startGame;
     JSONObject myDeckToEnemy;
+    JSONObject spawn;
 
     public SendToServer()
     {
@@ -24,6 +25,8 @@ public class SendToServer : MonoBehaviour
         atak = new JSONObject();
         startGame = new JSONObject();
         myDeckToEnemy = new JSONObject();
+        spawn = new JSONObject();
+
 
     }
 
@@ -41,6 +44,17 @@ public class SendToServer : MonoBehaviour
     }
 
     // ACHTUNG!!!!  wszystko dodawane do JSONA musi byc w Stringach bo server nie zaraguje na Emit
+
+    public void sendSpawnToServer(int x, int y, int cardId)
+    {
+        spawn.Clear();
+        spawn.AddField("PoleX", x.ToString());
+        spawn.AddField("PoleY", y.ToString());
+        spawn.AddField("cardId", cardId.ToString());
+        socket.Emit("spawn", spawn);
+        spawn.Clear();
+    }
+
 
 
     // funkcja do wywalenia

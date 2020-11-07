@@ -12,6 +12,12 @@ public class BoardManager : MonoBehaviour
     [SerializeField]
     CardManager BlackDeck;
 
+    [SerializeField]      //TALIE
+    CardManager WhiteDeckHide;
+
+    [SerializeField]
+    CardManager BlackDeckHide;
+
     public SendToServer sendToServer;
     public ChessMan SelectedChessman; //wybrany pion
 
@@ -66,27 +72,55 @@ public class BoardManager : MonoBehaviour
     {
         if (deckId[1] == '0')
         {
-            WhiteDeck.InstantiateDeck(SetDeckNumber());
+            WhiteDeck.InstantiateDeck(SetDeckNumber(deckId));
             WhiteDeck.ChessMens = ChessMens;
         }
         else
         {
-            BlackDeck.InstantiateDeck(SetDeckNumber());
+            BlackDeck.InstantiateDeck(SetDeckNumber(deckId));
             BlackDeck.ChessMens = ChessMens;
         }
        
     }
+
+    public void SetEnemyDecks()
+    {
+        if (deckId[1] == '1')
+        {
+            WhiteDeckHide.InstantiateDeck(SetDeckNumber(enemyDeckId));
+            WhiteDeckHide.ChessMens = ChessMens;
+
+        }
+        else
+        {
+            BlackDeckHide.InstantiateDeck(SetDeckNumber(enemyDeckId));
+            BlackDeckHide.ChessMens = ChessMens;
+        }
+    }
+   public void SpawnEnemy(char idCard, int selectedX, int selectedY)
+    {
+        if (deckId[1] == '1')
+        {
+            WhiteDeckHide.DSSpawnEnemy( idCard,  selectedX,  selectedY);
+          //  WhiteDeckHide
+        }
+        else
+        {
+            BlackDeckHide.DSSpawnEnemy(idCard, selectedX, selectedY);
+        }
+    }
+
 
     public void changeTure(bool isWhite)
     {
         this.isWhiteTurn = isWhite;
     }
 
-    private string SetDeckNumber()
+    private string SetDeckNumber(string deckID)
     {
         string deck_number = "";
-        for (int i = 2; i < deckId.Length-1; i++)
-            deck_number += deckId[i];
+        for (int i = 2; i < deckID.Length-1; i++)
+            deck_number += deckID[i];
         return deck_number;
     }
 
