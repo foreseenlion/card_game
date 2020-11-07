@@ -13,7 +13,7 @@ public class SendToServer : MonoBehaviour
     JSONObject ruch;
     JSONObject atak;
     JSONObject startGame;
-
+    JSONObject myDeckToEnemy;
 
     public SendToServer()
     {
@@ -23,6 +23,8 @@ public class SendToServer : MonoBehaviour
         ruch = new JSONObject();
         atak = new JSONObject();
         startGame = new JSONObject();
+        myDeckToEnemy = new JSONObject();
+
     }
 
 
@@ -50,17 +52,30 @@ public class SendToServer : MonoBehaviour
         socket.Emit("move", message);
         message.Clear();
     }
-
-
     public void sendEndTureToServer()
     {
-        Debug.Log("Wyslanie do przeciwnika tokena tury");
         ture.Clear();
         ture.AddField("ture", "1");
         socket.Emit("end", ture);
         tureIsYours = false;
         ture.Clear();
-       
+    }
+
+    public void sendMyDeckToEnemy(string deckId)
+    {
+        myDeckToEnemy.Clear();
+        myDeckToEnemy.AddField("deck", SetDeckNumber(deckId));
+        socket.Emit("sendMydeckToEnemy", myDeckToEnemy);
+        myDeckToEnemy.Clear();
+    }
+
+
+    private string SetDeckNumber(string deckId)
+    {
+        string deck_number = "";
+        for (int i = 1; i < deckId.Length - 1; i++)
+            deck_number += deckId[i];
+        return deck_number;
     }
 
     public void sendPlayerMove(int poleDoceloweX, int poleDoceloweY, ChessMan SelectedChessman)

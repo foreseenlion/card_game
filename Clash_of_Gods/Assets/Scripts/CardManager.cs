@@ -32,8 +32,10 @@ public class CardManager : MonoBehaviour
             chessMens[x, y].idFigure = idFigury();
             temp.transform.parent = BoardManager.Instance.transform;
         }
-
     }
+
+
+
 
     private Vector3 GetTileCenter(int x, int y) //umieszczanie figury na środku danego pola
     {

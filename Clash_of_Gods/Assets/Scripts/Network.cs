@@ -7,33 +7,31 @@ public class Network : MonoBehaviour
 	SocketIOComponent socket;
 	BoardManager boardManager;
 	bool yourfirst;
+	SendToServer sendToServer;
+
 
 	void Start()
 	{
 		socket = GetComponent<SocketIOComponent>();
 		boardManager = GameObject.FindObjectOfType<BoardManager>();
-
+		sendToServer = new SendToServer();
 		// This line will set up the listener function
 		socket.On("connectionEstabilished", onConnectionEstabilished);
 		socket.On("foreignMessage", onForeignMessage);
 		socket.On("tureEnd", onTureEnd);
 		socket.On("moveTo", onPlayerMove);
 		socket.On("drawDeck", onGameStart);
+		socket.On("onEnemyDeck", onEnemyDeckBlack);
+		socket.On("enemyDeckWhite", onEnemyDeckWhite);
 	}
 
 	// This is the listener function definition
 	void onConnectionEstabilished(SocketIOEvent evt)
 	{
 		Debug.Log("Player is connected: " + evt.data.GetField("id"));
-
-
-
-
-		SendToServer sendToServer = new SendToServer();
 		// symulowanie startu
-
 		sendToServer.sendStartGameInfo(boardManager.religionId);
-
+		Debug.Log(boardManager.DeckId);
 	}
 
 	void onForeignMessage(SocketIOEvent evt)
@@ -63,9 +61,21 @@ public class Network : MonoBehaviour
 			boardManager.number_of_move = 0;
 			boardManager.changeTure(false);
 		}
-		Debug.Log("ture start");
+		Debug.Log("ture start");	
+	}
+
+	void onEnemyDeckBlack(SocketIOEvent evt)
+    {
+		string enemydeckId= evt.data.GetField("enemyDeck").ToString();
+		boardManager.enemyDeckId = enemydeckId;
+		sendToServer.sendMyDeckToEnemy(boardManager.DeckId);
 		
-		
+	}
+
+	void onEnemyDeckWhite(SocketIOEvent evt)
+	{
+		string enemydeckId = evt.data.GetField("deckWhite").ToString();
+		boardManager.enemyDeckId = enemydeckId;
 	}
 
 	void onPlayerMove(SocketIOEvent evt)
@@ -86,11 +96,6 @@ public class Network : MonoBehaviour
 
 	void onGameStart(SocketIOEvent evt)
 	{ 
-
-		// żeby przetestować użyj przycisku "S"
-
-		//Debug.Log(evt.data.GetField("deck"));
-
 		string deck = evt.data.GetField("deck").ToString();
 		boardManager.DeckId = deck;
 		

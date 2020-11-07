@@ -26,6 +26,7 @@ public class BoardManager : MonoBehaviour
     public string religionId;
     private string deckId = "";
 
+    public string enemyDeckId = "";
 
     public static BoardManager Instance { get; set; }
     public ChessMan[,] ChessMens { get; set; } //tablica wszystkich pionów
@@ -63,7 +64,6 @@ public class BoardManager : MonoBehaviour
 
     private void GetDecks()
     {
-        Debug.Log(deckId[1]);
         if (deckId[1] == '0')
         {
             WhiteDeck.InstantiateDeck(SetDeckNumber());
@@ -87,47 +87,20 @@ public class BoardManager : MonoBehaviour
         string deck_number = "";
         for (int i = 2; i < deckId.Length-1; i++)
             deck_number += deckId[i];
-        Debug.Log(deck_number);
         return deck_number;
     }
 
     private void Update()
     {
-        //UpdateSelection(); //co klatkę gra sprawdza na jakie pole kliknął gracz
-
-        //if (Input.GetMouseButtonDown(0)) //wduszenie lewego przycisku myszy
-        //{
-        //    if (selectedX >= 0 || selectedY >= 0) //sprawdzenie czy kliknięto na planszy
-        //    {
-        //        if (SelectedChessman == null) //jeśli nic nie wybrano wybierz danego piona 
-        //        {
-        //            try
-        //            {
-        //                SelectChessman(selectedX, selectedY); //zmiana wybranego piona 
-        //                sendToServer.sendMoveToServer(selectedX, selectedY); //zmiana wybranego piona 
-        //            }
-        //            catch (Exception e)
-        //            {
-
-        //            }
-        //        }
-        //        else //jeśli wcześniej wybrano piona rusz nim na wybrane pole
-        //        {
-        //            try
-        //            {                    
-        //                sendToServer.sendPlayerMove(selectedX, selectedY, SelectedChessman);
-        //                MoveAndAttackChessman(selectedX, selectedY); //rusz wybrany pion na daną pozycję                    
-        //            }
-        //            catch(Exception e)
-        //            {
-
-        //            }
-        //        }
-
-        //    }
-        //}
         UpdateSelection(); // co klatkę gra sprawdza na jakie pole najechał gracz
         MakeMove(); // w zależności gdzie i czy kliknięto gracz wykona ruch, zaatakuje lub zmieni aktywnego piona
+
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            Debug.Log(deckId);
+            Debug.Log(enemyDeckId);
+        }
+
     }
 
     private void UpdateSelection()
