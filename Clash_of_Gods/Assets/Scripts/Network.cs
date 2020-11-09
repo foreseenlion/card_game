@@ -24,9 +24,14 @@ public class Network : MonoBehaviour
 		socket.On("onEnemyDeck", onEnemyDeckBlack);
 		socket.On("enemyDeckWhite", onEnemyDeckWhite);
 		socket.On("spawnEnemy", onSpwanEnemy);
+		socket.On("onEnemyDisconnet", onEnemyDisconnet);
 	}
 
-
+	void onEnemyDisconnet(SocketIOEvent evt)
+	{
+		Debug.Log(evt.data.GetField("message"));
+		socket.Close();
+	}
 
 
 

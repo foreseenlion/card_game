@@ -25,11 +25,15 @@ public class CardManager : MonoBehaviour
         return Random.Range(0, 1000000000);
     }
 
-    private void Spawn(GameObject prefab, int x, int y) //tworzenie figury na planszy
+    private void Spawn(GameObject prefab, int x, int y, bool enemy) //tworzenie figury na planszy
     {
         if (chessMens[x, y] == null) //jezeli na wybranym polu nie ma figuty
         {
-            GameObject temp = Instantiate(prefab, GetTileCenter(x, y), Quaternion.Euler(0, 180, 0)) as GameObject; //tworzy obiekt na podstawie prefabu o określonej pozycji
+            GameObject temp;
+           if (enemy)
+                temp = Instantiate(prefab, GetTileCenter(x, y), Quaternion.Euler(0, 0, 0)) as GameObject; //tworzy obiekt na podstawie prefabu o określonej pozycji
+           else
+               temp = Instantiate(prefab, GetTileCenter(x, y), Quaternion.Euler(0, 180, 0)) as GameObject; //tworzy obiekt na podstawie prefabu o określonej pozycji
             temp.GetComponent<ChessMan>().IsWhite = isWhite;
             chessMens[x, y] = temp.GetComponent<ChessMan>(); //zapisanie figury do tablicy figur
             chessMens[x, y].SetPosition(x, y); //ustawienie pozycji figury
@@ -75,7 +79,7 @@ public class CardManager : MonoBehaviour
                     if (selectedX >= 0 && selectedY >= 0 && SpawnAllowed[selectedX, selectedY] == true) //czy można spawnować
                     {
                         SendToServer sendToServer = new SendToServer();
-                        EnterSpawn(card,selectedX,selectedY);
+                        EnterSpawn(card,selectedX,selectedY,false);
                         
                         sendToServer.sendSpawnToServer(selectedX, selectedY, idSelectedCard);
 
@@ -94,12 +98,12 @@ public class CardManager : MonoBehaviour
         }
     }
 
-    void EnterSpawn(Card card, int selectedX, int selectedY )
+    void EnterSpawn(Card card, int selectedX, int selectedY, bool enemy )
     {
         StopCoroutine("WaitForSpawn"); // zatrzymaj pozostałe instancje
         BoardHighlitghs.Instance.HideAll();
 
-        Spawn(card.prefab, selectedX, selectedY);
+        Spawn(card.prefab, selectedX, selectedY, enemy);
         BoardHighlitghs.Instance.HideAll();
         card.prefab = null;
         Destroy(card.gameObject);
@@ -109,8 +113,8 @@ public class CardManager : MonoBehaviour
     {
         Card card = new Card();
      
-        card.prefab = deck[int.Parse(idCard.ToString())];
-        EnterSpawn(card, selectedX, selectedY);
+        card.prefab = deck[int.Parse(idCard.ToString())].GetComponent<Card>().prefab;
+        EnterSpawn(card, selectedX, selectedY,true);
     }
 
 
@@ -165,12 +169,12 @@ public class CardManager : MonoBehaviour
     {
        deck= CreateDeck(cards);
         
-        float startX = -5f;
+        float startX = -1f;
 
         for (int i = 0; i < deck.Count; i++)
         {
             var temp = Instantiate(deck[i], transform);
-            temp.transform.localPosition = new Vector3(startX + i, 0.2f, -1f);
+           temp.transform.localPosition = new Vector3(startX + i, 0.2f, -1f);
 
             temp.GetComponent<Card>().id = i;
            

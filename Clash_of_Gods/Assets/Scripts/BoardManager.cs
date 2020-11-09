@@ -4,6 +4,9 @@ using UnityEngine.SceneManagement;
 
 public class BoardManager : MonoBehaviour
 {
+
+    bool IfICanCeonnection = true;
+
     // fields and events
     #region
     [SerializeField]      //TALIE
@@ -133,6 +136,20 @@ public class BoardManager : MonoBehaviour
         {
             Debug.Log(deckId);
             Debug.Log(enemyDeckId);
+        }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            if (IfICanCeonnection)
+            {
+                sendToServer.SocketIoConnection();
+                IfICanCeonnection = false;
+            } 
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+           
+                sendToServer.sendShowGamesInServer();
+           
         }
 
     }

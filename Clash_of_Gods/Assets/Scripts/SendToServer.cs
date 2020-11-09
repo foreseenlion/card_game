@@ -26,10 +26,14 @@ public class SendToServer : MonoBehaviour
         startGame = new JSONObject();
         myDeckToEnemy = new JSONObject();
         spawn = new JSONObject();
-
-
     }
 
+
+
+    public void SocketIoConnection()
+    {
+        socket.Connect();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -55,7 +59,12 @@ public class SendToServer : MonoBehaviour
         spawn.Clear();
     }
 
-
+    public void sendShowGamesInServer()
+    {
+       
+        socket.Emit("show");
+       
+    }
 
     // funkcja do wywalenia
     public void sendMoveToServer(int x, int y)
