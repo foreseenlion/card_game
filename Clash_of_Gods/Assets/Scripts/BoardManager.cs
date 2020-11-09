@@ -37,6 +37,8 @@ public class BoardManager : MonoBehaviour
 
     public string enemyDeckId = "";
 
+    public bool IsGameStart = false;
+
     public static BoardManager Instance { get; set; }
     public ChessMan[,] ChessMens { get; set; } //tablica wszystkich pionów
 
@@ -248,7 +250,8 @@ public class BoardManager : MonoBehaviour
     {
         ChessMan target = ChessMens[x, y];
         moveChessman(x, y);
-        makeAttackChessMan(x, y, target);
+        if (IsGameStart)
+            makeAttackChessMan(x, y, target);
 
         BoardHighlitghs.Instance.HideAll();
         SelectedChessman = null; //klinięcie w inne niż możliwe miejsce anuluje wybór
@@ -258,7 +261,8 @@ public class BoardManager : MonoBehaviour
 
     private void moveChessman(int x, int y)
     {
-        if (SelectedChessman.PossibleMove[x, y]) // można wykonać taki ruch?
+        if (IsGameStart)
+            if (SelectedChessman.PossibleMove[x, y]) // można wykonać taki ruch?
         {
             ChessMens[SelectedChessman.CurrentX, SelectedChessman.CurrentY] = null; //wybrany pion 'znika' z aktualnej pozycji
             SelectedChessman.transform.position = GetTileCenter(x, y);
@@ -335,6 +339,7 @@ public class BoardManager : MonoBehaviour
 
     public void UpdateMove() //funkcja przełącza aktywnego gracza
     {
+       
             if (number_of_move < 2) 
             number_of_move++;
             Debug.Log("Wywolanie update move");
