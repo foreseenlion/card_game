@@ -56,7 +56,6 @@ public abstract class ChessMan : MonoBehaviour
     [SerializeField]
     int dmg = 1;
 
-
     private void ChangeColor()
     {
         color = isWhite ? 1 : -1;

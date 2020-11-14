@@ -34,7 +34,7 @@ public class CardManager : MonoBehaviour
                 temp = Instantiate(prefab, GetTileCenter(x, y), Quaternion.Euler(0, 0, 0)) as GameObject; //tworzy obiekt na podstawie prefabu o określonej pozycji
            else
                temp = Instantiate(prefab, GetTileCenter(x, y), Quaternion.Euler(0, 180, 0)) as GameObject; //tworzy obiekt na podstawie prefabu o określonej pozycji
-            addLight(temp, x, y);
+        
             temp.GetComponent<ChessMan>().IsWhite = isWhite;
             chessMens[x, y] = temp.GetComponent<ChessMan>(); //zapisanie figury do tablicy figur
             chessMens[x, y].SetPosition(x, y); //ustawienie pozycji figury
@@ -44,17 +44,7 @@ public class CardManager : MonoBehaviour
     }
 
 
-    private void addLight(GameObject champ, int x, int y)
-    {
-        GameObject lightGameObject = new GameObject("The Light");
-        UnityEngine.Light lightComp = lightGameObject.AddComponent<UnityEngine.Light>();
-        
-        champ.AddComponent<UnityEngine.Light>();
-        lightComp.color = Color.blue;
-        lightComp.intensity = 100;
-        lightComp.range = 1;
-        lightGameObject.transform.position = new Vector3(0, 5, 0.6f);
-    }
+  
 
 
 
