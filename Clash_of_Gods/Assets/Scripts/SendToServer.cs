@@ -59,6 +59,14 @@ public class SendToServer : MonoBehaviour
         spawn.Clear();
     }
 
+    public void sendDebug(string message)
+    {
+        JSONObject jSONObject = new JSONObject();
+        jSONObject.AddField("message", message);
+        socket.Emit("debug", jSONObject);
+    }
+
+
     public void sendShowGamesInServer()
     {
        

@@ -83,7 +83,7 @@ public class CardManager : MonoBehaviour
                     {
                         SendToServer sendToServer = new SendToServer();
                         EnterSpawn(card,selectedX,selectedY,false);
-                        
+                        BoardManager.Instance.UpdateMove();
                         sendToServer.sendSpawnToServer(selectedX, selectedY, idSelectedCard);
 
                         yield break;//wykonano ruch
@@ -110,7 +110,7 @@ public class CardManager : MonoBehaviour
         BoardHighlitghs.Instance.HideAll();
         card.prefab = null;
         Destroy(card.gameObject);
-        BoardManager.Instance.UpdateMove();
+        
     }
     public void DSSpawnEnemy(char idCard, int selectedX, int selectedY)
     {

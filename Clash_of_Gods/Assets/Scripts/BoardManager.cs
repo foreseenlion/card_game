@@ -208,7 +208,7 @@ public class BoardManager : MonoBehaviour
                     try
                     {
                         sendToServer.sendPlayerMove(selectedX, selectedY, SelectedChessman);
-                        MoveAndAttackChessman(selectedX, selectedY); //rusz wybrany pion na daną pozycję                    
+                        MoveAndAttackChessman(selectedX, selectedY, true); //rusz wybrany pion na daną pozycję                    
                     }
                     catch (Exception e)
                     {
@@ -242,16 +242,16 @@ public class BoardManager : MonoBehaviour
     public void DSmoveChessMan(int zPolaX, int zPolaY, int naPoleX, int naPoleY)
     {
         selectSpecificChessman(zPolaX, zPolaY);
-        MoveAndAttackChessman(naPoleX, naPoleY);
+        MoveAndAttackChessman(naPoleX, naPoleY, false);
     }
 
 
-    private void MoveAndAttackChessman(int x, int y)
+    private void MoveAndAttackChessman(int x, int y, bool isPlayer)
     {
         ChessMan target = ChessMens[x, y];
-        moveChessman(x, y);
+        moveChessman(x, y, isPlayer);
         if (IsGameStart)
-            makeAttackChessMan(x, y, target);
+            makeAttackChessMan(x, y, target, isPlayer);
 
         BoardHighlitghs.Instance.HideAll();
         SelectedChessman = null; //klinięcie w inne niż możliwe miejsce anuluje wybór
@@ -259,7 +259,7 @@ public class BoardManager : MonoBehaviour
 
   
 
-    private void moveChessman(int x, int y)
+    private void moveChessman(int x, int y, bool isPlayer)
     {
         if (IsGameStart)
             if (SelectedChessman.PossibleMove[x, y]) // można wykonać taki ruch?
@@ -268,6 +268,7 @@ public class BoardManager : MonoBehaviour
             SelectedChessman.transform.position = GetTileCenter(x, y);
             SelectedChessman.SetPosition(x, y);
             ChessMens[x, y] = SelectedChessman;
+                if(isPlayer)
             UpdateMove();
 
            if (SelectedChessman.firstmove) //wykonanie pierwszego ruchu potrzebne przy pionach
@@ -276,7 +277,7 @@ public class BoardManager : MonoBehaviour
         }
     }
 
-    private void makeAttackChessMan(int x, int y, ChessMan target)
+    private void makeAttackChessMan(int x, int y, ChessMan target, bool isPlayer)
     {
         if (SelectedChessman.PossibleAtacks[x,y]) //można atakować
         {
@@ -293,8 +294,8 @@ public class BoardManager : MonoBehaviour
             }
 
             AtackChessMan(target);
-
-            UpdateMove();
+            if (isPlayer)
+                UpdateMove();
 
             if (SelectedChessman.firstmove) //wykonanie pierwszego ruchu potrzebne przy pionach
                 SelectedChessman.firstmove = false;
@@ -339,16 +340,14 @@ public class BoardManager : MonoBehaviour
 
     public void UpdateMove() //funkcja przełącza aktywnego gracza
     {
-       
+            
             if (number_of_move < 2) 
             number_of_move++;
-            Debug.Log("Wywolanie update move");
         if (number_of_move >= 2)
             {
             sendToServer.sendEndTureToServer();
             isWhiteTurn = !isWhiteTurn;
             number_of_move = 0;
-
         }
     }
 
