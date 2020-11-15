@@ -39,6 +39,8 @@ public class BoardManager : MonoBehaviour
 
     public bool IsGameStart = false;
 
+    private MeterialChanges materialChange;
+
     public static BoardManager Instance { get; set; }
     public ChessMan[,] ChessMens { get; set; } //tablica wszystkich pionów
 
@@ -61,6 +63,7 @@ public class BoardManager : MonoBehaviour
 
     private void Start()
     {
+        materialChange= GameObject.FindObjectOfType<MeterialChanges>();
         religionId = myReligion.religion;
         sendToServer = new SendToServer();
 
@@ -139,6 +142,8 @@ public class BoardManager : MonoBehaviour
 
     private void Update()
     {
+        materialChange.changeSmooth();
+
         UpdateSelection(); // co klatkę gra sprawdza na jakie pole najechał gracz
         MakeMove(); // w zależności gdzie i czy kliknięto gracz wykona ruch, zaatakuje lub zmieni aktywnego piona
 

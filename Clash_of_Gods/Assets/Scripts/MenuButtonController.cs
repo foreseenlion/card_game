@@ -15,6 +15,7 @@ public class MenuButtonController : MonoBehaviour {
 	}
 	
 	void Update () {
+		
 		if(Input.GetAxis ("Horizontal") != 0){
 			if(!keyDown){
 				if (Input.GetAxis ("Horizontal") < 0) {
