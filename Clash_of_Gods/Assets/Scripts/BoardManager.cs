@@ -61,7 +61,7 @@ public class BoardManager : MonoBehaviour
 
     private void Start()
     {
-        religionId = "G";
+        religionId = myReligion.religion;
         sendToServer = new SendToServer();
 
         Instance = this;
@@ -71,6 +71,14 @@ public class BoardManager : MonoBehaviour
         {
             GetDecks();
         };
+
+        if (IfICanCeonnection)
+        {
+            sendToServer.SocketIoConnection();
+            IfICanCeonnection = false;
+        }
+
+
     }
 
     private void GetDecks()
@@ -141,11 +149,7 @@ public class BoardManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.C))
         {
-            if (IfICanCeonnection)
-            {
-                sendToServer.SocketIoConnection();
-                IfICanCeonnection = false;
-            } 
+           
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
@@ -162,7 +166,7 @@ public class BoardManager : MonoBehaviour
             return;
 
         RaycastHit hit;
-
+       
         //warunek niżej, Raycast "wypuszcza" promień z kamery do miejsca gdzie kliknął gracz i zwraca do hit to na co promień natrafił (jeżeli nie trafił na nic zwraca false)
         if (Physics.Raycast(   
             Camera.main.ScreenPointToRay(Input.mousePosition),
@@ -194,7 +198,7 @@ public class BoardManager : MonoBehaviour
                 if (SelectedChessman == null) //jeśli nic nie wybrano wybierz danego piona 
                 {
                     try
-                    {
+                    {                  
                         SelectChessman(selectedX, selectedY); //zmiana wybranego piona 
                         sendToServer.sendMoveToServer(selectedX, selectedY); //zmiana wybranego piona 
                     }

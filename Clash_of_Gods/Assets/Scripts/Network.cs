@@ -94,11 +94,13 @@ public class Network : MonoBehaviour
 		boardManager.enemyDeckId = enemydeckId;
 		sendToServer.sendMyDeckToEnemy(boardManager.DeckId);
 		boardManager.SetEnemyDecks();
+		Debug.Log("aaaa");
 		boardManager.IsGameStart = true;
 	}
 
 	void onEnemyDeckWhite(SocketIOEvent evt)
 	{
+		Debug.Log("bbbb");
 		string enemydeckId = evt.data.GetField("deckWhite").ToString();
 		boardManager.enemyDeckId = enemydeckId;
 		boardManager.SetEnemyDecks();

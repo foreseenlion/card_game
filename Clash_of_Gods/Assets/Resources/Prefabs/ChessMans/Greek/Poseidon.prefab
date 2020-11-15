@@ -483,7 +483,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 674703928007488400}
-  - component: {fileID: 1188698176677990121}
   - component: {fileID: 685201345709804386}
   m_Layer: 0
   m_Name: Poseidon
@@ -516,22 +515,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1188698176677990121
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4541421166201700739}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b70416da8dcd36441a3423e720af9417, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  move_limit: 5
-  hp: 5
-  dmg: 2
-  range: 3
 --- !u!108 &685201345709804386
 Light:
   m_ObjectHideFlags: 0
