@@ -56,6 +56,9 @@ public abstract class ChessMan : MonoBehaviour
     [SerializeField]
     int dmg = 1;
 
+    [SerializeField]
+    bool fly= false ;
+
     private void ChangeColor()
     {
         color = isWhite ? 1 : -1;
@@ -82,7 +85,6 @@ public abstract class ChessMan : MonoBehaviour
 
         if (c == null) //wirtualny pion nie istnieje więc możemy się tam poruszyć 
         {
-            
             possibleMoves[_newX, _newY] = true;
         }
         if (c != null && this.isWhite == c.isWhite) //jeśli na lini jest sojusznik nie można ruszyć dalej
@@ -90,20 +92,19 @@ public abstract class ChessMan : MonoBehaviour
             hits[hit] = false;
             
         }
+        
         if (c != null && this.isWhite != c.isWhite) //jeśli na lini jest przeciwnik zaatakuj go
         {
             possibleAtacks[_newX, _newY] = true;
             possibleMoves[_newX, _newY] = false;
-            hits[hit] = false; //jeżeli podczas pętli trafimy na sojusznika lub wroga nie sprawdzamy dalej danego kierunku
-            
+            if (!fly)
+              hits[hit] = false; //jeżeli podczas pętli trafimy na sojusznika lub wroga nie sprawdzamy dalej danego kierunku 
         }
 
     }
 
     protected void CheckMove(int _newX, int _newY) 
     {
-        
-
         ChessMan c;
         c = BoardManager.Instance.ChessMens[_newX, _newY];
 

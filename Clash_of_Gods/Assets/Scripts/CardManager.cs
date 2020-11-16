@@ -163,6 +163,7 @@ public class CardManager : MonoBehaviour
             int index = (int)System.Char.GetNumericValue(cards[i]);
             // słownik do idetyfikacji kart przeciwnikow  1: string(liczba karty) 2: index na ktorym jest ta karta w liscie prefabow
             indexPrefabCard.Add(cards[i], i);
+
             result.Add(tempDeck[index]);  
         }
         return result;

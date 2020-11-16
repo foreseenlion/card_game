@@ -405,7 +405,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1046552509775457191}
-  - component: {fileID: 1212386150989370066}
+  - component: {fileID: -2510247839023467529}
   m_Layer: 0
   m_Name: Isis
   m_TagString: Untagged
@@ -437,7 +437,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1212386150989370066
+--- !u!114 &-2510247839023467529
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -446,14 +446,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4097501804846340532}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0b59bc1ccbf0c34397201c9ae3060b4, type: 3}
+  m_Script: {fileID: 11500000, guid: a456287c565ea974caf723b8feaef999, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isWhite: 0
-  firstmove: 1
-  move_limit: 5
-  hp: 5
-  dmg: 2
+  move_limit: 3
+  hp: 3
+  dmg: 1
+  fly: 1
 --- !u!1 &4726734336346452986
 GameObject:
   m_ObjectHideFlags: 0
