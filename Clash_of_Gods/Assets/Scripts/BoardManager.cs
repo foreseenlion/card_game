@@ -167,6 +167,7 @@ public class BoardManager : MonoBehaviour
 
     private void UpdateSelection()
     {
+        
         if (!Camera.main) //jeśli brakuje kamery nic się nie dzieje
             return;
 
@@ -203,7 +204,8 @@ public class BoardManager : MonoBehaviour
                 if (SelectedChessman == null) //jeśli nic nie wybrano wybierz danego piona 
                 {
                     try
-                    {                  
+                    {
+                        
                         SelectChessman(selectedX, selectedY); //zmiana wybranego piona 
                         sendToServer.sendMoveToServer(selectedX, selectedY); //zmiana wybranego piona 
                     }

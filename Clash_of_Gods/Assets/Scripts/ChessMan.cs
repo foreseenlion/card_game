@@ -14,7 +14,18 @@ public abstract class ChessMan : MonoBehaviour
     public bool[,] PossibleMove { get => possibleMoves; set => possibleMoves = value; }
     public bool[,] PossibleAtacks { get => possibleAtacks; set => possibleAtacks = value; }
     public int Move_limit { get => move_limit; set => move_limit = value; }
-    public int Hp { get => hp; set =>hp = value;}
+   
+    
+    public int Hp {
+        get {
+            return hp; 
+        }
+        set {
+            setHpBar(value);
+            hp = value;
+            
+        }
+    }
     public int Dmg { get => dmg; set => dmg = value; }
     public bool IsWhite { 
 
@@ -59,9 +70,24 @@ public abstract class ChessMan : MonoBehaviour
     [SerializeField]
     bool fly= false ;
 
+  
+
+    HealthBarHandler healthBarHandler;
+
     private void ChangeColor()
     {
         color = isWhite ? 1 : -1;
+    }
+    public void setHpBar(int value)
+    {
+        Debug.Log("wchodzi");
+        if (healthBarHandler== null)
+        healthBarHandler = GetComponentInChildren<Canvas>().GetComponentInChildren<HealthBarHandler>();
+        Debug.Log(healthBarHandler.name);
+        if (healthBarHandler.haveHpMax())
+            healthBarHandler.setHpMax(hp);
+        healthBarHandler.setHp(value);
+        Debug.Log("wychodzi");
     }
 
     public void SetPosition(int x,int y) 
