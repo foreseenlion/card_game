@@ -40,6 +40,7 @@ public class CardManager : MonoBehaviour
             chessMens[x, y].SetPosition(x, y); //ustawienie pozycji figury
             chessMens[x, y].idFigure = idFigury();
             temp.transform.parent = BoardManager.Instance.transform;
+            setSideSign(isWhite, chessMens[x, y]);
         }
     }
 
@@ -100,7 +101,19 @@ public class CardManager : MonoBehaviour
             yield return null; //jeśli nie naciśnięto czekaj
         }
     }
+    private void setSideSign(bool isYou, ChessMan chessMan)
+    {
+        SideSign sideSign;
+        try
+        {
+            sideSign = chessMan.GetComponentInChildren<SideSign>();
+            sideSign.setColor(isYou);
+        }
+        catch
+        {
 
+        }
+    }
     void EnterSpawn(Card card, int selectedX, int selectedY, bool enemy )
     {
         StopCoroutine("WaitForSpawn"); // zatrzymaj pozostałe instancje
@@ -157,7 +170,7 @@ public class CardManager : MonoBehaviour
                 break;
         }
 
-     
+        result.Add(tempDeck[9]);
         for (int i = 1; i < cards.Length; i++)
         {
             int index = (int)System.Char.GetNumericValue(cards[i]);
@@ -166,6 +179,7 @@ public class CardManager : MonoBehaviour
 
             result.Add(tempDeck[index]);  
         }
+        
         return result;
     }
 

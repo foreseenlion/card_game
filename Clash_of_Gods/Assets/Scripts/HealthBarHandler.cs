@@ -18,17 +18,23 @@ public class HealthBarHandler : MonoBehaviour
     {
         
         HealthBarImage.fillAmount = value;
-        if (HealthBarImage.fillAmount < 0.2f)
+        if (HealthBarImage.fillAmount < 0.4f)
         {
-            SetHealthBarColor(Color.red);
+            if (!MainGod)
+                SetHealthBarColor(Color.red);
+            else SetHealthBarColor(new Color(0.3f, 0, 0));
         }
-        else if (HealthBarImage.fillAmount < 0.4f)
+        else if (HealthBarImage.fillAmount < 0.8f)
         {
-            SetHealthBarColor(Color.yellow);
+            if (!MainGod)
+                SetHealthBarColor(Color.yellow);
+            else SetHealthBarColor(new Color(0, 0.5f, 0));
         }
         else
         {
+            if (!MainGod)
             SetHealthBarColor(new Color(0,0.7f,0));
+            else SetHealthBarColor(new Color(0, 0.5f, 0.9f));
         }
         
     }
@@ -76,7 +82,6 @@ public class HealthBarHandler : MonoBehaviour
     private void Start()
     {
         HealthBarImage = GetComponentInParent<Image>();
-        Debug.Log(HealthBarImage);
        SetHealthBarValue(1);
     }
 }

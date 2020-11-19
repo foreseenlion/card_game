@@ -70,7 +70,7 @@ public abstract class ChessMan : MonoBehaviour
     [SerializeField]
     bool fly= false ;
 
-  
+
 
     HealthBarHandler healthBarHandler;
 
@@ -80,14 +80,12 @@ public abstract class ChessMan : MonoBehaviour
     }
     public void setHpBar(int value)
     {
-        Debug.Log("wchodzi");
+        
         if (healthBarHandler== null)
         healthBarHandler = GetComponentInChildren<Canvas>().GetComponentInChildren<HealthBarHandler>();
-        Debug.Log(healthBarHandler.name);
         if (healthBarHandler.haveHpMax())
             healthBarHandler.setHpMax(hp);
         healthBarHandler.setHp(value);
-        Debug.Log("wychodzi");
     }
 
     public void SetPosition(int x,int y) 
