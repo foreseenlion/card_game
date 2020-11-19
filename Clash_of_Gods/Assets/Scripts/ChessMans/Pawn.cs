@@ -60,6 +60,7 @@ public class Pawn : ChessMan
             if (c1 == null && c2 == null)
             {
                 possibleMoves[CurrentX, CurrentY + (2 * color)] = true;
+                possibleMoves[CurrentX, CurrentY + (1 * color)] = true;
             }
         }
 

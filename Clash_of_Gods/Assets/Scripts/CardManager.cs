@@ -34,6 +34,7 @@ public class CardManager : MonoBehaviour
                 temp = Instantiate(prefab, GetTileCenter(x, y), Quaternion.Euler(0, 0, 0)) as GameObject; //tworzy obiekt na podstawie prefabu o określonej pozycji
            else
                temp = Instantiate(prefab, GetTileCenter(x, y), Quaternion.Euler(0, 180, 0)) as GameObject; //tworzy obiekt na podstawie prefabu o określonej pozycji
+        
             temp.GetComponent<ChessMan>().IsWhite = isWhite;
             chessMens[x, y] = temp.GetComponent<ChessMan>(); //zapisanie figury do tablicy figur
             chessMens[x, y].SetPosition(x, y); //ustawienie pozycji figury
@@ -42,6 +43,8 @@ public class CardManager : MonoBehaviour
         }
     }
 
+
+  
 
 
 
@@ -80,7 +83,7 @@ public class CardManager : MonoBehaviour
                     {
                         SendToServer sendToServer = new SendToServer();
                         EnterSpawn(card,selectedX,selectedY,false);
-                        
+                        BoardManager.Instance.UpdateMove();
                         sendToServer.sendSpawnToServer(selectedX, selectedY, idSelectedCard);
 
                         yield break;//wykonano ruch
@@ -107,7 +110,7 @@ public class CardManager : MonoBehaviour
         BoardHighlitghs.Instance.HideAll();
         card.prefab = null;
         Destroy(card.gameObject);
-        BoardManager.Instance.UpdateMove();
+        
     }
     public void DSSpawnEnemy(char idCard, int selectedX, int selectedY)
     {
@@ -160,6 +163,7 @@ public class CardManager : MonoBehaviour
             int index = (int)System.Char.GetNumericValue(cards[i]);
             // słownik do idetyfikacji kart przeciwnikow  1: string(liczba karty) 2: index na ktorym jest ta karta w liscie prefabow
             indexPrefabCard.Add(cards[i], i);
+
             result.Add(tempDeck[index]);  
         }
         return result;
@@ -180,7 +184,8 @@ public class CardManager : MonoBehaviour
            
             temp.GetComponent<Card>().onClicked += () =>
             {
-                if (isWhite == BoardManager.Instance.isWhiteTurn )
+                if (BoardManager.Instance.IsGameStart)
+                    if (isWhite == BoardManager.Instance.isWhiteTurn )
                 {
                     idSelectedCard = temp.GetComponent<Card>().id;
                     

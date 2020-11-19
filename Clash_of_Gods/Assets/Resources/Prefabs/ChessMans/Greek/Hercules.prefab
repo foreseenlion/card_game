@@ -445,8 +445,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b1b86caf14f72a4facbb1f45265f8b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isWhite: 0
-  firstmove: 1
   move_limit: 4
   hp: 4
   dmg: 2

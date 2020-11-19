@@ -483,7 +483,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 674703928007488400}
-  - component: {fileID: 1188698176677990121}
   m_Layer: 0
   m_Name: Poseidon
   m_TagString: Untagged
@@ -515,6 +514,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD:Clash_of_Gods/Assets/Resources/Prefabs/ChessMans/Greek/Poseidon.prefab
 --- !u!114 &1188698176677990121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -531,6 +531,8 @@ MonoBehaviour:
   hp: 5
   dmg: 2
   range: 3
+=======
+>>>>>>> b696e0975e5b303571cc79d888fe32556bda1940:Clash_of_Gods/Assets/Prefabs/ChessMans/Greek/Poseidon.prefab
 --- !u!1 &6525510134396600771
 GameObject:
   m_ObjectHideFlags: 0

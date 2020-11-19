@@ -94,22 +94,21 @@ public class Network : MonoBehaviour
 		boardManager.enemyDeckId = enemydeckId;
 		sendToServer.sendMyDeckToEnemy(boardManager.DeckId);
 		boardManager.SetEnemyDecks();
+		Debug.Log("aaaa");
+		boardManager.IsGameStart = true;
 	}
 
 	void onEnemyDeckWhite(SocketIOEvent evt)
 	{
+		Debug.Log("bbbb");
 		string enemydeckId = evt.data.GetField("deckWhite").ToString();
 		boardManager.enemyDeckId = enemydeckId;
 		boardManager.SetEnemyDecks();
+		boardManager.IsGameStart = true;
 	}
 
 	void onPlayerMove(SocketIOEvent evt)
 	{	
-		//Debug.Log("id fidury: "+evt.data.GetField("idPionka"));
-		//Debug.Log("z pola x"+evt.data.GetField("poleStartoweX"));
-		//Debug.Log("z pola y" + evt.data.GetField("poleStartoweY"));
-		//Debug.Log("na pole x" + evt.data.GetField("poleDoceloweX"));
-		//Debug.Log("na pole y" + evt.data.GetField("poleDoceloweY"));
 
 		int zPolaX = int.Parse(evt.data.GetField("poleStartoweX").ToString());
 		int zPolaY = int.Parse(evt.data.GetField("poleStartoweY").ToString());

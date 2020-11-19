@@ -372,8 +372,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37d0f65c30df64049949b1664ff12317, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isWhite: 0
-  firstmove: 1
   move_limit: 2
   hp: 6
   dmg: 1

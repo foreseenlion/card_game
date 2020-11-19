@@ -37,6 +37,10 @@ public class BoardManager : MonoBehaviour
 
     public string enemyDeckId = "";
 
+    public bool IsGameStart = false;
+
+    private MeterialChanges materialChange;
+
     public static BoardManager Instance { get; set; }
     public ChessMan[,] ChessMens { get; set; } //tablica wszystkich pionów
 
@@ -59,7 +63,8 @@ public class BoardManager : MonoBehaviour
 
     private void Start()
     {
-        religionId = "G";
+        materialChange= GameObject.FindObjectOfType<MeterialChanges>();
+        religionId = myReligion.religion;
         sendToServer = new SendToServer();
 
         Instance = this;
@@ -69,6 +74,14 @@ public class BoardManager : MonoBehaviour
         {
             GetDecks();
         };
+
+        if (IfICanCeonnection)
+        {
+            sendToServer.SocketIoConnection();
+            IfICanCeonnection = false;
+        }
+
+
     }
 
     private void GetDecks()
@@ -129,6 +142,8 @@ public class BoardManager : MonoBehaviour
 
     private void Update()
     {
+        materialChange.changeSmooth();
+
         UpdateSelection(); // co klatkę gra sprawdza na jakie pole najechał gracz
         MakeMove(); // w zależności gdzie i czy kliknięto gracz wykona ruch, zaatakuje lub zmieni aktywnego piona
 
@@ -139,11 +154,7 @@ public class BoardManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.C))
         {
-            if (IfICanCeonnection)
-            {
-                sendToServer.SocketIoConnection();
-                IfICanCeonnection = false;
-            } 
+           
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
@@ -160,7 +171,7 @@ public class BoardManager : MonoBehaviour
             return;
 
         RaycastHit hit;
-
+       
         //warunek niżej, Raycast "wypuszcza" promień z kamery do miejsca gdzie kliknął gracz i zwraca do hit to na co promień natrafił (jeżeli nie trafił na nic zwraca false)
         if (Physics.Raycast(   
             Camera.main.ScreenPointToRay(Input.mousePosition),
@@ -192,7 +203,7 @@ public class BoardManager : MonoBehaviour
                 if (SelectedChessman == null) //jeśli nic nie wybrano wybierz danego piona 
                 {
                     try
-                    {
+                    {                  
                         SelectChessman(selectedX, selectedY); //zmiana wybranego piona 
                         sendToServer.sendMoveToServer(selectedX, selectedY); //zmiana wybranego piona 
                     }
@@ -206,7 +217,7 @@ public class BoardManager : MonoBehaviour
                     try
                     {
                         sendToServer.sendPlayerMove(selectedX, selectedY, SelectedChessman);
-                        MoveAndAttackChessman(selectedX, selectedY); //rusz wybrany pion na daną pozycję                    
+                        MoveAndAttackChessman(selectedX, selectedY, true); //rusz wybrany pion na daną pozycję                    
                     }
                     catch (Exception e)
                     {
@@ -240,15 +251,16 @@ public class BoardManager : MonoBehaviour
     public void DSmoveChessMan(int zPolaX, int zPolaY, int naPoleX, int naPoleY)
     {
         selectSpecificChessman(zPolaX, zPolaY);
-        MoveAndAttackChessman(naPoleX, naPoleY);
+        MoveAndAttackChessman(naPoleX, naPoleY, false);
     }
 
 
-    private void MoveAndAttackChessman(int x, int y)
+    private void MoveAndAttackChessman(int x, int y, bool isPlayer)
     {
         ChessMan target = ChessMens[x, y];
-        moveChessman(x, y);
-        makeAttackChessMan(x, y, target);
+        moveChessman(x, y, isPlayer);
+        if (IsGameStart)
+            makeAttackChessMan(x, y, target, isPlayer);
 
         BoardHighlitghs.Instance.HideAll();
         SelectedChessman = null; //klinięcie w inne niż możliwe miejsce anuluje wybór
@@ -256,14 +268,16 @@ public class BoardManager : MonoBehaviour
 
   
 
-    private void moveChessman(int x, int y)
+    private void moveChessman(int x, int y, bool isPlayer)
     {
-        if (SelectedChessman.PossibleMove[x, y]) // można wykonać taki ruch?
+        if (IsGameStart)
+            if (SelectedChessman.PossibleMove[x, y]) // można wykonać taki ruch?
         {
             ChessMens[SelectedChessman.CurrentX, SelectedChessman.CurrentY] = null; //wybrany pion 'znika' z aktualnej pozycji
             SelectedChessman.transform.position = GetTileCenter(x, y);
             SelectedChessman.SetPosition(x, y);
             ChessMens[x, y] = SelectedChessman;
+                if(isPlayer)
             UpdateMove();
 
            if (SelectedChessman.firstmove) //wykonanie pierwszego ruchu potrzebne przy pionach
@@ -272,7 +286,7 @@ public class BoardManager : MonoBehaviour
         }
     }
 
-    private void makeAttackChessMan(int x, int y, ChessMan target)
+    private void makeAttackChessMan(int x, int y, ChessMan target, bool isPlayer)
     {
         if (SelectedChessman.PossibleAtacks[x,y]) //można atakować
         {
@@ -289,8 +303,8 @@ public class BoardManager : MonoBehaviour
             }
 
             AtackChessMan(target);
-
-            UpdateMove();
+            if (isPlayer)
+                UpdateMove();
 
             if (SelectedChessman.firstmove) //wykonanie pierwszego ruchu potrzebne przy pionach
                 SelectedChessman.firstmove = false;
@@ -335,15 +349,14 @@ public class BoardManager : MonoBehaviour
 
     public void UpdateMove() //funkcja przełącza aktywnego gracza
     {
+            
             if (number_of_move < 2) 
             number_of_move++;
-            Debug.Log("Wywolanie update move");
         if (number_of_move >= 2)
             {
             sendToServer.sendEndTureToServer();
             isWhiteTurn = !isWhiteTurn;
             number_of_move = 0;
-
         }
     }
 
