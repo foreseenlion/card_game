@@ -29,6 +29,7 @@ public class CardManager : MonoBehaviour
     {
         if (chessMens[x, y] == null) //jezeli na wybranym polu nie ma figuty
         {
+            
             GameObject temp;
            if (enemy)
                 temp = Instantiate(prefab, GetTileCenter(x, y), Quaternion.Euler(0, 0, 0)) as GameObject; //tworzy obiekt na podstawie prefabu o określonej pozycji
@@ -41,6 +42,7 @@ public class CardManager : MonoBehaviour
             chessMens[x, y].idFigure = idFigury();
             temp.transform.parent = BoardManager.Instance.transform;
             setSideSign(isWhite, chessMens[x, y]);
+            chessMens[x, y].IsYou = !enemy;
         }
     }
 

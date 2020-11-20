@@ -14,8 +14,26 @@ public abstract class ChessMan : MonoBehaviour
     public bool[,] PossibleMove { get => possibleMoves; set => possibleMoves = value; }
     public bool[,] PossibleAtacks { get => possibleAtacks; set => possibleAtacks = value; }
     public int Move_limit { get => move_limit; set => move_limit = value; }
-   
     
+    public bool IsYou
+    {
+        get
+        {
+            return isYou;
+        }
+        set
+        {
+            if (healthBarHandler == null)
+            {
+                healthBarHandler = GetComponentInChildren<HealthBarHandler>();
+                healthBarHandler.getChampName(name);
+            }
+            healthBarHandler.setRotation(value);
+            isYou = value;
+           
+        }
+    }
+
     public int Hp {
         get {
             return hp; 
@@ -70,7 +88,7 @@ public abstract class ChessMan : MonoBehaviour
     [SerializeField]
     bool fly= false ;
 
-
+    public bool isYou;
 
     HealthBarHandler healthBarHandler;
 
@@ -81,8 +99,11 @@ public abstract class ChessMan : MonoBehaviour
     public void setHpBar(int value)
     {
         
-        if (healthBarHandler== null)
-        healthBarHandler = GetComponentInChildren<Canvas>().GetComponentInChildren<HealthBarHandler>();
+        if (healthBarHandler== null) {
+            healthBarHandler = GetComponentInChildren<HealthBarHandler>();
+            healthBarHandler.getChampName(name);
+        }
+        
         if (healthBarHandler.haveHpMax())
             healthBarHandler.setHpMax(hp);
         healthBarHandler.setHp(value);
@@ -113,7 +134,8 @@ public abstract class ChessMan : MonoBehaviour
         }
         if (c != null && this.isWhite == c.isWhite) //jeśli na lini jest sojusznik nie można ruszyć dalej
         {
-            hits[hit] = false;
+            if (!fly)
+                hits[hit] = false;
             
         }
         
