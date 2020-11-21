@@ -40,6 +40,9 @@ public class BoardManager : MonoBehaviour
     public bool IsGameStart = false;
 
     private MeterialChanges materialChange;
+   public  GameObject textMessage;
+   public  GameObject textMessageYourMove;
+
 
     public static BoardManager Instance { get; set; }
     public ChessMan[,] ChessMens { get; set; } //tablica wszystkich pionów
@@ -126,6 +129,39 @@ public class BoardManager : MonoBehaviour
         }
     }
 
+    public void spawnMainGods()
+    {
+        if (yourWhite)
+        {
+            setGods(WhiteDeck, BlackDeckHide);
+        }
+        else
+        {
+            setGods(BlackDeck, WhiteDeckHide);
+        }
+
+
+        ShowSign(textMessage);
+
+    }
+    void ShowSign(GameObject _sign)
+    {
+        var sign = Instantiate(_sign,
+        new Vector3(4.1f, 1f, 3f),
+         Quaternion.Euler(40, 0, 0));
+         Destroy(sign, 3000);  
+    }
+
+
+    private void setGods(CardManager you, CardManager enemy)
+    {
+        you.spawnMainGods(3, 0, false);
+        enemy.spawnMainGods(4, 7, true);
+    }
+    public void showTextMessageYourTure()
+    {
+        ShowSign(textMessageYourMove);
+    }
 
     public void changeTure(bool isWhite)
     {
@@ -331,10 +367,11 @@ public class BoardManager : MonoBehaviour
 
     private void KillChessMan(ChessMan target)
     {
-        if (target.GetType() == typeof(King)) //jeśli to król zakończ grę
+        if (target.MainGod) //jeśli to król zakończ grę
         {
             GameManager.instance.Winner = isWhiteTurn ? "White" : "Black";
             GameManager.instance.Condition = "kiling the God";
+            myReligion.youWin = isWhiteTurn;
             SceneManager.LoadScene("End_Game");
 
         }

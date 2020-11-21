@@ -88,6 +88,9 @@ public abstract class ChessMan : MonoBehaviour
     [SerializeField]
     bool fly= false ;
 
+    [SerializeField]
+   public bool MainGod = false;
+
     public bool isYou;
 
     HealthBarHandler healthBarHandler;

@@ -960,7 +960,7 @@ GameObject:
   - component: {fileID: 4964661149657096176}
   - component: {fileID: 1646613727196863622}
   m_Layer: 0
-  m_Name: ZZraa
+  m_Name: ZZRaa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1010,6 +1010,7 @@ MonoBehaviour:
   hp: 5
   dmg: 2
   fly: 0
+  MainGod: 1
   isYou: 0
 --- !u!1001 &3079903482392905302
 PrefabInstance:

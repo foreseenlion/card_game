@@ -5,4 +5,5 @@ using UnityEngine;
 public class myReligion : MonoBehaviour
 {       
     static public string religion;
+    static public bool youWin;
 }

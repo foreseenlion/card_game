@@ -533,6 +533,7 @@ MonoBehaviour:
   hp: 3
   dmg: 1
   fly: 0
+  MainGod: 1
   isYou: 0
 --- !u!1 &7933584834884648347
 GameObject:

@@ -151,6 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isWhite: 0
+  mainGodPrefab: {fileID: 0}
 --- !u!4 &34664156
 Transform:
   m_ObjectHideFlags: 0
@@ -209,6 +210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isWhite: 1
+  mainGodPrefab: {fileID: 0}
 --- !u!1 &498565037
 GameObject:
   m_ObjectHideFlags: 0
@@ -740,6 +742,10 @@ MonoBehaviour:
   religionId: 
   enemyDeckId: 
   IsGameStart: 0
+  textMessage: {fileID: 5378223597579745653, guid: 3b80a05b477a36f43ad8b4e6ebe52130,
+    type: 3}
+  textMessageYourMove: {fileID: 5378223597579745653, guid: 43b0e5068673be74481d720df42e8f1f,
+    type: 3}
 --- !u!114 &1541292102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -808,6 +814,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isWhite: 1
+  mainGodPrefab: {fileID: 0}
 --- !u!4 &1790158232
 Transform:
   m_ObjectHideFlags: 0
@@ -852,6 +859,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isWhite: 0
+  mainGodPrefab: {fileID: 0}
 --- !u!4 &1905525938
 Transform:
   m_ObjectHideFlags: 0

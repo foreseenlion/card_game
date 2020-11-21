@@ -9,12 +9,13 @@ public class CardManager : MonoBehaviour
     bool isWhite;
 
     int idSelectedCard;
-
+  public  GameObject mainGodPrefab;
     List<GameObject> deck = new List<GameObject>();
     List<GameObject> EnemyDeck = new List<GameObject>();
   
     Dictionary<char, int> indexPrefabCard =new Dictionary<char, int>();
     ChessMan[,] chessMens;
+
 
     bool[,] SpawnAllowed;
 
@@ -85,7 +86,7 @@ public class CardManager : MonoBehaviour
                     if (selectedX >= 0 && selectedY >= 0 && SpawnAllowed[selectedX, selectedY] == true) //czy można spawnować
                     {
                         SendToServer sendToServer = new SendToServer();
-                        EnterSpawn(card,selectedX,selectedY,false);
+                        EnterSpawn(card,selectedX,selectedY,false, false);
                         BoardManager.Instance.UpdateMove();
                         sendToServer.sendSpawnToServer(selectedX, selectedY, idSelectedCard);
 
@@ -116,7 +117,7 @@ public class CardManager : MonoBehaviour
 
         }
     }
-    void EnterSpawn(Card card, int selectedX, int selectedY, bool enemy )
+    void EnterSpawn(Card card, int selectedX, int selectedY, bool enemy , bool spawnMainGod)
     {
         StopCoroutine("WaitForSpawn"); // zatrzymaj pozostałe instancje
         BoardHighlitghs.Instance.HideAll();
@@ -124,15 +125,25 @@ public class CardManager : MonoBehaviour
         Spawn(card.prefab, selectedX, selectedY, enemy);
         BoardHighlitghs.Instance.HideAll();
         card.prefab = null;
+        if(!spawnMainGod)
         Destroy(card.gameObject);
-        
+
     }
     public void DSSpawnEnemy(char idCard, int selectedX, int selectedY)
     {
         Card card = new Card();
-     
+
         card.prefab = deck[int.Parse(idCard.ToString())].GetComponent<Card>().prefab;
-        EnterSpawn(card, selectedX, selectedY,true);
+        EnterSpawn(card, selectedX, selectedY,true, false);
+    }
+
+    public void spawnMainGods(int selectedX, int selectedY, bool enemy)
+    {
+        Card card = new Card();
+        card.prefab = mainGodPrefab.GetComponent<Card>().prefab;
+
+        EnterSpawn(card, selectedX, selectedY, enemy, true);
+
     }
 
 
@@ -172,7 +183,9 @@ public class CardManager : MonoBehaviour
                 break;
         }
 
-        result.Add(tempDeck[9]);
+        
+        mainGodPrefab = tempDeck[9];
+        Debug.Log(mainGodPrefab);
         for (int i = 1; i < cards.Length; i++)
         {
             int index = (int)System.Char.GetNumericValue(cards[i]);
@@ -193,7 +206,7 @@ public class CardManager : MonoBehaviour
 
         for (int i = 0; i < deck.Count; i++)
         {
-            var temp = Instantiate(deck[i], transform);
+           var temp = Instantiate(deck[i], transform);
            temp.transform.localPosition = new Vector3(startX + i, 0.2f, -1f);
 
             temp.GetComponent<Card>().id = i;
