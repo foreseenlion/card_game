@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
 public class BoardManager : MonoBehaviour
 {
 
@@ -42,7 +42,8 @@ public class BoardManager : MonoBehaviour
     private MeterialChanges materialChange;
    public  GameObject textMessage;
    public  GameObject textMessageYourMove;
-
+    public GameObject textMessageWaitForEnemy;
+    GameObject signWaitForPlayer;
 
     public static BoardManager Instance { get; set; }
     public ChessMan[,] ChessMens { get; set; } //tablica wszystkich pionów
@@ -84,6 +85,7 @@ public class BoardManager : MonoBehaviour
             IfICanCeonnection = false;
         }
 
+        signWaitForPlayer= ShowSignWaitForAPlayer(textMessageWaitForEnemy);
 
     }
 
@@ -131,6 +133,7 @@ public class BoardManager : MonoBehaviour
 
     public void spawnMainGods()
     {
+        Destroy(signWaitForPlayer);
         if (yourWhite)
         {
             setGods(WhiteDeck, BlackDeckHide);
@@ -139,8 +142,6 @@ public class BoardManager : MonoBehaviour
         {
             setGods(BlackDeck, WhiteDeckHide);
         }
-
-
         ShowSign(textMessage);
 
     }
@@ -151,7 +152,13 @@ public class BoardManager : MonoBehaviour
          Quaternion.Euler(40, 0, 0));
          Destroy(sign, 3000);  
     }
-
+    GameObject ShowSignWaitForAPlayer(GameObject _sign)
+    {
+        return Instantiate(_sign,
+        new Vector3(4.1f, 1f, 3f),
+         Quaternion.Euler(40, 0, 0));
+       
+    }
 
     private void setGods(CardManager you, CardManager enemy)
     {
@@ -190,7 +197,7 @@ public class BoardManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.C))
         {
-           
+            SceneManager.LoadScene("Choose_God");
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
@@ -371,7 +378,9 @@ public class BoardManager : MonoBehaviour
         {
             GameManager.instance.Winner = isWhiteTurn ? "White" : "Black";
             GameManager.instance.Condition = "kiling the God";
-            myReligion.youWin = isWhiteTurn;
+            if((isWhiteTurn&&yourWhite)|| (!isWhiteTurn && !yourWhite))
+            myReligion.youWin = false;
+            else myReligion.youWin = true;
             SceneManager.LoadScene("End_Game");
 
         }
