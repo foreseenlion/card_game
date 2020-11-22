@@ -10,6 +10,9 @@ public class Card : MonoBehaviour
     Camera camera;
     public event Action onClicked; //akcja kliknięcia na kartę
 
+
+    public event Action onHover;
+
     public int id;
     void Awake()
     {
@@ -32,6 +35,16 @@ public class Card : MonoBehaviour
                 }
                 catch(Exception e)
                 { }
+
+            }
+            try
+            {
+                if (onHover != null)
+                    hit.transform.gameObject.GetComponent<Card>().onHover.Invoke();
+
+            }
+            catch
+            {
 
             }
 

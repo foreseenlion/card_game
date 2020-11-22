@@ -14,7 +14,23 @@ public abstract class ChessMan : MonoBehaviour
     public bool[,] PossibleMove { get => possibleMoves; set => possibleMoves = value; }
     public bool[,] PossibleAtacks { get => possibleAtacks; set => possibleAtacks = value; }
     public int Move_limit { get => move_limit; set => move_limit = value; }
-    
+
+    public struct tureEffect
+    {
+        public int idEfects;
+        public int valueEffect;
+        public int length;
+    }
+
+    List<tureEffect> Effects = new List<tureEffect>();
+
+
+    public string PowreDescription;
+    public string move;
+
+
+
+
     public bool IsYou
     {
         get
@@ -26,7 +42,7 @@ public abstract class ChessMan : MonoBehaviour
             if (healthBarHandler == null)
             {
                 healthBarHandler = GetComponentInChildren<HealthBarHandler>();
-                healthBarHandler.getChampName(name);
+               // healthBarHandler.getChampName(name);
             }
             healthBarHandler.setRotation(value);
             isYou = value;
@@ -104,7 +120,7 @@ public abstract class ChessMan : MonoBehaviour
         
         if (healthBarHandler== null) {
             healthBarHandler = GetComponentInChildren<HealthBarHandler>();
-            healthBarHandler.getChampName(name);
+           // healthBarHandler.getChampName(name);
         }
         
         if (healthBarHandler.haveHpMax())

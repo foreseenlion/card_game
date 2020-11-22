@@ -77,11 +77,19 @@ public class HealthBarHandler : MonoBehaviour
         text.GetComponent<TextMesh>().text = hpNow + " Hp\n" + champName;
     }
 
-    public string getChampName(string name)
+    public static string getChampName(string name)
     {
-        if (name[0] == 'Z' && name[1] == 'Z')
-            return name.Substring(2, name.Length-9);
-        else return name.Substring(0, name.Length - 7);
+        try
+        {
+            if (name[0] == 'Z' && name[1] == 'Z')
+                return name.Substring(2, name.Length - 9);
+            else return name.Substring(0, name.Length - 7);
+        }
+        catch
+        {
+            return "Sorr";
+        }
+        
     }
 
 
@@ -89,12 +97,6 @@ public class HealthBarHandler : MonoBehaviour
     {
         if (isYou)
         {
-            //  Vector3 temp = text.transform.rotation.eulerAngles;
-            //temp.y = -180;
-
-            //  text.transform.rotation = Quaternion.Euler(temp);
-            //  Debug.Log("asdacz");
-
 
             text.transform.Rotate(0,180,0);
         } 

@@ -185,7 +185,6 @@ public class CardManager : MonoBehaviour
 
         
         mainGodPrefab = tempDeck[9];
-        Debug.Log(mainGodPrefab);
         for (int i = 1; i < cards.Length; i++)
         {
             int index = (int)System.Char.GetNumericValue(cards[i]);
@@ -210,15 +209,35 @@ public class CardManager : MonoBehaviour
            temp.transform.localPosition = new Vector3(startX + i, 0.2f, -1f);
 
             temp.GetComponent<Card>().id = i;
-           
-            temp.GetComponent<Card>().onClicked += () =>
+
+            temp.GetComponent<Card>().onHover += () =>
             {
+                try
+                {
+                    string name = temp.GetComponent<Card>().prefab.GetComponent<ChessMan>().name;
+                    int hp = temp.GetComponent<Card>().prefab.GetComponent<ChessMan>().Hp;
+                    int dmg = temp.GetComponent<Card>().prefab.GetComponent<ChessMan>().Dmg;
+                    string move = temp.GetComponent<Card>().prefab.GetComponent<ChessMan>().move;
+                    int move_limit = temp.GetComponent<Card>().prefab.GetComponent<ChessMan>().Move_limit;
+                    string power = temp.GetComponent<Card>().prefab.GetComponent<ChessMan>().PowreDescription;
+                   
+                    BoardManager.Instance.chamInfo.setChampInfo(BoardManager.Instance.yourWhite, name+"(Clone)", hp,
+                  dmg, move, move_limit, power);
+                }
+                catch
+                {
+
+                }
+            };
+
+            temp.GetComponent<Card>().onClicked += () =>
+            {  
                 if (BoardManager.Instance.IsGameStart)
                     if (isWhite == BoardManager.Instance.isWhiteTurn )
                 {
                     idSelectedCard = temp.GetComponent<Card>().id;
-                    
-                    StartCoroutine(WaitForSpawn(temp.GetComponent<Card>()));
+
+                        StartCoroutine(WaitForSpawn(temp.GetComponent<Card>()));
                 }
 
             };

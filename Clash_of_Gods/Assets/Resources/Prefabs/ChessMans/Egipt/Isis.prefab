@@ -451,10 +451,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a456287c565ea974caf723b8feaef999, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PowreDescription: In the first move, she can move two more positions
+  move: Square
   move_limit: 2
   hp: 3
   dmg: 1
   fly: 1
+  MainGod: 0
   isYou: 0
 --- !u!1 &4726734336346452986
 GameObject:

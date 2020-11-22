@@ -7,6 +7,8 @@ public class BoardManager : MonoBehaviour
 
     bool IfICanCeonnection = true;
 
+
+
     // fields and events
     #region
     [SerializeField]      //TALIE
@@ -45,6 +47,10 @@ public class BoardManager : MonoBehaviour
     public GameObject textMessageWaitForEnemy;
     GameObject signWaitForPlayer;
 
+ public  ChamInfo chamInfo;
+
+    public GameObject champInfoObject;
+
     public static BoardManager Instance { get; set; }
     public ChessMan[,] ChessMens { get; set; } //tablica wszystkich pionów
 
@@ -67,7 +73,8 @@ public class BoardManager : MonoBehaviour
 
     private void Start()
     {
-        materialChange= GameObject.FindObjectOfType<MeterialChanges>();
+        chamInfo = champInfoObject.GetComponent<ChamInfo>();
+        materialChange = GameObject.FindObjectOfType<MeterialChanges>();
         religionId = myReligion.religion;
         sendToServer = new SendToServer();
 
@@ -227,6 +234,15 @@ public class BoardManager : MonoBehaviour
             selectedX = (int)hit.point.x;
             selectedY = (int)hit.point.z;
             BoardHighlitghs.Instance.HighlightAllowedMove(selectedX, selectedY);
+            try
+            {
+                chamInfo.setChampInfo(ChessMens[selectedX, selectedY].IsWhite, ChessMens[selectedX, selectedY].name, ChessMens[selectedX, selectedY].Hp,
+                ChessMens[selectedX, selectedY].Dmg, ChessMens[selectedX, selectedY].move, ChessMens[selectedX, selectedY].Move_limit, ChessMens[selectedX, selectedY].PowreDescription);
+            }
+            catch
+            {
+
+            }
         }
 
         else
@@ -280,11 +296,13 @@ public class BoardManager : MonoBehaviour
             return;
         if (ChessMens[x, y].IsWhite != isWhiteTurn || yourWhite!= ChessMens[x, y].IsWhite) //sprawdzenie czy pion ma kolor danego gracza
             return;
-
+       
         selectSpecificChessman(x, y);
     } 
     private void selectSpecificChessman(int x, int y)
     {
+
+
         BoardHighlitghs.Instance.HideAll();
         SelectedChessman = ChessMens[x, y]; //zmiana wybranego piona
         ChessMens[x, y].UpdateMove(); //sprawdzenie jakie ruchy,ataki są dozwolone
