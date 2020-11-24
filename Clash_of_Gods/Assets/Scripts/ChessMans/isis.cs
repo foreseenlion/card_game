@@ -11,6 +11,7 @@ public class isis : ChessMan
         BishopMovement();
     }
 
+    private int move_limitTmp; 
     public void BishopMovement() //aktualizuje tablice możliwych ruchów i ataków
     {
 
@@ -22,72 +23,79 @@ public class isis : ChessMan
 
         int newX, newY;
 
-        for (int i = 1; i <= Move_limit; i++)
+        if (firstmove)
         {
-            for (int j = 0; j <= Move_limit; j++)
+            move_limitTmp = Move_limit;
+               Move_limit += 2;
+        }
+        else
+        {
+            Move_limit = move_limitTmp;
+        }
+            for (int i = 1; i <= Move_limit; i++)
             {
-                newX = CurrentX - ( i * color);
-                newY = CurrentY + (j * color);
-                condition_left_up = isWhite ? (newX >= 0 && newY <= 7) : (newX <= 7 && newY >= 0);
-
-                if (condition_left_up && hits[0]) //ruch w lewo
+                for (int j = 0; j <= Move_limit; j++)
                 {
-                    CheckMove(newX, newY, 0);
+                    newX = CurrentX - (i * color);
+                    newY = CurrentY + (j * color);
+                    condition_left_up = isWhite ? (newX >= 0 && newY <= 7) : (newX <= 7 && newY >= 0);
+
+                    if (condition_left_up && hits[0]) //ruch w lewo
+                    {
+                        CheckMove(newX, newY, 0);
+                    }
+
+                    newX = CurrentX + (i * color);
+                    newY = CurrentY + (j * color);
+                    condition_right_up = isWhite ? (newX <= 7 && newY <= 7) : (newX >= 0 && newY >= 0);
+                    if (condition_right_up && hits[1]) //ruch w prawo
+                    {
+
+
+                        CheckMove(newX, newY, 1);
+                    }
+
+                    newX = CurrentX - (i * color);
+                    newY = CurrentY - (j * color);
+                    condition_left_down = isWhite ? (newX >= 0 && newY >= 0) : (newX <= 7 && newY <= 7);
+                    if (condition_left_down && hits[2]) //ruch w górę
+                    {
+                        CheckMove(newX, newY, 2);
+                    }
+
+
+                    newX = CurrentX + (i * color);
+                    newY = CurrentY - (j * color);
+                    contidion_right_down = isWhite ? (newX <= 7 && newY >= 0) : (newX >= 0 && newY <= 7);
+                    if (contidion_right_down && hits[3]) //ruch w dół
+                    {
+                        CheckMove(newX, newY, 3);
+                    }
                 }
+            }
+            for (int i = 1; i <= Move_limit; i++)
+            {
+                bool condition_up, condition_down;
 
-                newX = CurrentX + (i * color);
-                newY = CurrentY + (j * color);
-                condition_right_up = isWhite ? (newX <= 7 && newY <= 7) : (newX >= 0 && newY >= 0);
-                if (condition_right_up && hits[1]) //ruch w prawo
-                {
+                newX = CurrentX;
+                newY = CurrentY + (color * i);
+                condition_up = isWhite ? newY <= 7 : newY >= 0;
 
-
-                    CheckMove(newX, newY, 1);
-                }
-
-                newX = CurrentX - (i * color);
-                newY = CurrentY - (j * color);
-                condition_left_down = isWhite ? (newX >= 0 && newY >= 0) : (newX <= 7 && newY <= 7);
-                if (condition_left_down && hits[2]) //ruch w górę
+                if (condition_up && hits[2]) //ruch w górę
                 {
                     CheckMove(newX, newY, 2);
                 }
 
+                newX = CurrentX;
+                newY = CurrentY - (color * i);
+                condition_down = isWhite ? newY >= 0 : newY <= 7;
 
-                newX = CurrentX + (i * color);
-                newY = CurrentY - (j * color);
-                contidion_right_down = isWhite ? (newX <= 7 && newY >= 0) : (newX >= 0 && newY <= 7);
-                if (contidion_right_down && hits[3]) //ruch w dół
+                if (condition_down && hits[3]) //ruch w dół
                 {
                     CheckMove(newX, newY, 3);
                 }
             }
-        }
-        for (int i = 1; i <= Move_limit; i++)
-        {
-            bool condition_up, condition_down;
-
-            newX = CurrentX;
-            newY = CurrentY + (color * i);
-            condition_up = isWhite ? newY <= 7 : newY >= 0;
-
-            if (condition_up && hits[2]) //ruch w górę
-            {
-                CheckMove(newX, newY, 2);
-            }
-
-            newX = CurrentX;
-            newY = CurrentY - (color * i);
-            condition_down = isWhite ? newY >= 0 : newY <= 7;
-
-            if (condition_down && hits[3]) //ruch w dół
-            {
-                CheckMove(newX, newY, 3);
-            }
-
-
-        }
-
+        
     }
 
 

@@ -14,7 +14,52 @@ public abstract class ChessMan : MonoBehaviour
     public bool[,] PossibleMove { get => possibleMoves; set => possibleMoves = value; }
     public bool[,] PossibleAtacks { get => possibleAtacks; set => possibleAtacks = value; }
     public int Move_limit { get => move_limit; set => move_limit = value; }
-    public int Hp { get => hp; set =>hp = value;}
+
+    public struct tureEffect
+    {
+        public int idEfects;
+        public int valueEffect;
+        public int length;
+    }
+
+    List<tureEffect> Effects = new List<tureEffect>();
+
+
+    public string PowreDescription;
+    public string move;
+
+
+
+
+    public bool IsYou
+    {
+        get
+        {
+            return isYou;
+        }
+        set
+        {
+            if (healthBarHandler == null)
+            {
+                healthBarHandler = GetComponentInChildren<HealthBarHandler>();
+               // healthBarHandler.getChampName(name);
+            }
+            healthBarHandler.setRotation(value);
+            isYou = value;
+           
+        }
+    }
+
+    public int Hp {
+        get {
+            return hp; 
+        }
+        set {
+            setHpBar(value);
+            hp = value;
+            
+        }
+    }
     public int Dmg { get => dmg; set => dmg = value; }
     public bool IsWhite { 
 
@@ -59,9 +104,28 @@ public abstract class ChessMan : MonoBehaviour
     [SerializeField]
     bool fly= false ;
 
+    [SerializeField]
+   public bool MainGod = false;
+
+    public bool isYou;
+
+    HealthBarHandler healthBarHandler;
+
     private void ChangeColor()
     {
         color = isWhite ? 1 : -1;
+    }
+    public void setHpBar(int value)
+    {
+        
+        if (healthBarHandler== null) {
+            healthBarHandler = GetComponentInChildren<HealthBarHandler>();
+           // healthBarHandler.getChampName(name);
+        }
+        
+        if (healthBarHandler.haveHpMax())
+            healthBarHandler.setHpMax(hp);
+        healthBarHandler.setHp(value);
     }
 
     public void SetPosition(int x,int y) 
@@ -89,7 +153,8 @@ public abstract class ChessMan : MonoBehaviour
         }
         if (c != null && this.isWhite == c.isWhite) //jeśli na lini jest sojusznik nie można ruszyć dalej
         {
-            hits[hit] = false;
+            if (!fly)
+                hits[hit] = false;
             
         }
         

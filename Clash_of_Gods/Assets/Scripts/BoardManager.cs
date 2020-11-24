@@ -1,11 +1,13 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
 public class BoardManager : MonoBehaviour
 {
 
     bool IfICanCeonnection = true;
+
+
 
     // fields and events
     #region
@@ -40,6 +42,14 @@ public class BoardManager : MonoBehaviour
     public bool IsGameStart = false;
 
     private MeterialChanges materialChange;
+   public  GameObject textMessage;
+   public  GameObject textMessageYourMove;
+    public GameObject textMessageWaitForEnemy;
+    GameObject signWaitForPlayer;
+
+ public  ChamInfo chamInfo;
+
+    public GameObject champInfoObject;
 
     public static BoardManager Instance { get; set; }
     public ChessMan[,] ChessMens { get; set; } //tablica wszystkich pionów
@@ -63,7 +73,8 @@ public class BoardManager : MonoBehaviour
 
     private void Start()
     {
-        materialChange= GameObject.FindObjectOfType<MeterialChanges>();
+        chamInfo = champInfoObject.GetComponent<ChamInfo>();
+        materialChange = GameObject.FindObjectOfType<MeterialChanges>();
         religionId = myReligion.religion;
         sendToServer = new SendToServer();
 
@@ -81,6 +92,7 @@ public class BoardManager : MonoBehaviour
             IfICanCeonnection = false;
         }
 
+        signWaitForPlayer= ShowSignWaitForAPlayer(textMessageWaitForEnemy);
 
     }
 
@@ -126,6 +138,44 @@ public class BoardManager : MonoBehaviour
         }
     }
 
+    public void spawnMainGods()
+    {
+        Destroy(signWaitForPlayer);
+        if (yourWhite)
+        {
+            setGods(WhiteDeck, BlackDeckHide);
+        }
+        else
+        {
+            setGods(BlackDeck, WhiteDeckHide);
+        }
+        ShowSign(textMessage);
+
+    }
+    void ShowSign(GameObject _sign)
+    {
+        var sign = Instantiate(_sign,
+        new Vector3(4.1f, 1f, 3f),
+         Quaternion.Euler(40, 0, 0));
+         Destroy(sign, 3000);  
+    }
+    GameObject ShowSignWaitForAPlayer(GameObject _sign)
+    {
+        return Instantiate(_sign,
+        new Vector3(4.1f, 1f, 3f),
+         Quaternion.Euler(40, 0, 0));
+       
+    }
+
+    private void setGods(CardManager you, CardManager enemy)
+    {
+        you.spawnMainGods(3, 0, false);
+        enemy.spawnMainGods(4, 7, true);
+    }
+    public void showTextMessageYourTure()
+    {
+        ShowSign(textMessageYourMove);
+    }
 
     public void changeTure(bool isWhite)
     {
@@ -154,7 +204,7 @@ public class BoardManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.C))
         {
-           
+            SceneManager.LoadScene("Choose_God");
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
@@ -167,6 +217,7 @@ public class BoardManager : MonoBehaviour
 
     private void UpdateSelection()
     {
+        
         if (!Camera.main) //jeśli brakuje kamery nic się nie dzieje
             return;
 
@@ -183,6 +234,15 @@ public class BoardManager : MonoBehaviour
             selectedX = (int)hit.point.x;
             selectedY = (int)hit.point.z;
             BoardHighlitghs.Instance.HighlightAllowedMove(selectedX, selectedY);
+            try
+            {
+                chamInfo.setChampInfo(ChessMens[selectedX, selectedY].IsWhite, ChessMens[selectedX, selectedY].name, ChessMens[selectedX, selectedY].Hp,
+                ChessMens[selectedX, selectedY].Dmg, ChessMens[selectedX, selectedY].move, ChessMens[selectedX, selectedY].Move_limit, ChessMens[selectedX, selectedY].PowreDescription);
+            }
+            catch
+            {
+
+            }
         }
 
         else
@@ -203,7 +263,8 @@ public class BoardManager : MonoBehaviour
                 if (SelectedChessman == null) //jeśli nic nie wybrano wybierz danego piona 
                 {
                     try
-                    {                  
+                    {
+                        
                         SelectChessman(selectedX, selectedY); //zmiana wybranego piona 
                         sendToServer.sendMoveToServer(selectedX, selectedY); //zmiana wybranego piona 
                     }
@@ -235,11 +296,13 @@ public class BoardManager : MonoBehaviour
             return;
         if (ChessMens[x, y].IsWhite != isWhiteTurn || yourWhite!= ChessMens[x, y].IsWhite) //sprawdzenie czy pion ma kolor danego gracza
             return;
-
+       
         selectSpecificChessman(x, y);
     } 
     private void selectSpecificChessman(int x, int y)
     {
+
+
         BoardHighlitghs.Instance.HideAll();
         SelectedChessman = ChessMens[x, y]; //zmiana wybranego piona
         ChessMens[x, y].UpdateMove(); //sprawdzenie jakie ruchy,ataki są dozwolone
@@ -329,10 +392,13 @@ public class BoardManager : MonoBehaviour
 
     private void KillChessMan(ChessMan target)
     {
-        if (target.GetType() == typeof(King)) //jeśli to król zakończ grę
+        if (target.MainGod) //jeśli to król zakończ grę
         {
             GameManager.instance.Winner = isWhiteTurn ? "White" : "Black";
             GameManager.instance.Condition = "kiling the God";
+            if((isWhiteTurn&&yourWhite)|| (!isWhiteTurn && !yourWhite))
+            myReligion.youWin = false;
+            else myReligion.youWin = true;
             SceneManager.LoadScene("End_Game");
 
         }

@@ -85,7 +85,9 @@ public class Network : MonoBehaviour
 			boardManager.number_of_move = 0;
 			boardManager.changeTure(false);
 		}
-		Debug.Log("ture start");	
+		boardManager.showTextMessageYourTure();
+
+
 	}
 
 	void onEnemyDeckBlack(SocketIOEvent evt)
@@ -96,6 +98,7 @@ public class Network : MonoBehaviour
 		boardManager.SetEnemyDecks();
 		Debug.Log("aaaa");
 		boardManager.IsGameStart = true;
+		boardManager.spawnMainGods();
 	}
 
 	void onEnemyDeckWhite(SocketIOEvent evt)
@@ -105,6 +108,7 @@ public class Network : MonoBehaviour
 		boardManager.enemyDeckId = enemydeckId;
 		boardManager.SetEnemyDecks();
 		boardManager.IsGameStart = true;
+		boardManager.spawnMainGods();
 	}
 
 	void onPlayerMove(SocketIOEvent evt)

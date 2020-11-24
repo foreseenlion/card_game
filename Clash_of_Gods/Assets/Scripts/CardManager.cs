@@ -9,12 +9,13 @@ public class CardManager : MonoBehaviour
     bool isWhite;
 
     int idSelectedCard;
-
+  public  GameObject mainGodPrefab;
     List<GameObject> deck = new List<GameObject>();
     List<GameObject> EnemyDeck = new List<GameObject>();
   
     Dictionary<char, int> indexPrefabCard =new Dictionary<char, int>();
     ChessMan[,] chessMens;
+
 
     bool[,] SpawnAllowed;
 
@@ -29,6 +30,7 @@ public class CardManager : MonoBehaviour
     {
         if (chessMens[x, y] == null) //jezeli na wybranym polu nie ma figuty
         {
+            
             GameObject temp;
            if (enemy)
                 temp = Instantiate(prefab, GetTileCenter(x, y), Quaternion.Euler(0, 0, 0)) as GameObject; //tworzy obiekt na podstawie prefabu o określonej pozycji
@@ -40,6 +42,8 @@ public class CardManager : MonoBehaviour
             chessMens[x, y].SetPosition(x, y); //ustawienie pozycji figury
             chessMens[x, y].idFigure = idFigury();
             temp.transform.parent = BoardManager.Instance.transform;
+            setSideSign(isWhite, chessMens[x, y]);
+            chessMens[x, y].IsYou = !enemy;
         }
     }
 
@@ -82,7 +86,7 @@ public class CardManager : MonoBehaviour
                     if (selectedX >= 0 && selectedY >= 0 && SpawnAllowed[selectedX, selectedY] == true) //czy można spawnować
                     {
                         SendToServer sendToServer = new SendToServer();
-                        EnterSpawn(card,selectedX,selectedY,false);
+                        EnterSpawn(card,selectedX,selectedY,false, false);
                         BoardManager.Instance.UpdateMove();
                         sendToServer.sendSpawnToServer(selectedX, selectedY, idSelectedCard);
 
@@ -100,8 +104,20 @@ public class CardManager : MonoBehaviour
             yield return null; //jeśli nie naciśnięto czekaj
         }
     }
+    private void setSideSign(bool isYou, ChessMan chessMan)
+    {
+        SideSign sideSign;
+        try
+        {
+            sideSign = chessMan.GetComponentInChildren<SideSign>();
+            sideSign.setColor(isYou);
+        }
+        catch
+        {
 
-    void EnterSpawn(Card card, int selectedX, int selectedY, bool enemy )
+        }
+    }
+    void EnterSpawn(Card card, int selectedX, int selectedY, bool enemy , bool spawnMainGod)
     {
         StopCoroutine("WaitForSpawn"); // zatrzymaj pozostałe instancje
         BoardHighlitghs.Instance.HideAll();
@@ -109,15 +125,25 @@ public class CardManager : MonoBehaviour
         Spawn(card.prefab, selectedX, selectedY, enemy);
         BoardHighlitghs.Instance.HideAll();
         card.prefab = null;
+        if(!spawnMainGod)
         Destroy(card.gameObject);
-        
+
     }
     public void DSSpawnEnemy(char idCard, int selectedX, int selectedY)
     {
         Card card = new Card();
-     
+
         card.prefab = deck[int.Parse(idCard.ToString())].GetComponent<Card>().prefab;
-        EnterSpawn(card, selectedX, selectedY,true);
+        EnterSpawn(card, selectedX, selectedY,true, false);
+    }
+
+    public void spawnMainGods(int selectedX, int selectedY, bool enemy)
+    {
+        Card card = new Card();
+        card.prefab = mainGodPrefab.GetComponent<Card>().prefab;
+
+        EnterSpawn(card, selectedX, selectedY, enemy, true);
+
     }
 
 
@@ -157,7 +183,8 @@ public class CardManager : MonoBehaviour
                 break;
         }
 
-     
+        
+        mainGodPrefab = tempDeck[9];
         for (int i = 1; i < cards.Length; i++)
         {
             int index = (int)System.Char.GetNumericValue(cards[i]);
@@ -166,6 +193,7 @@ public class CardManager : MonoBehaviour
 
             result.Add(tempDeck[index]);  
         }
+        
         return result;
     }
 
@@ -177,19 +205,39 @@ public class CardManager : MonoBehaviour
 
         for (int i = 0; i < deck.Count; i++)
         {
-            var temp = Instantiate(deck[i], transform);
+           var temp = Instantiate(deck[i], transform);
            temp.transform.localPosition = new Vector3(startX + i, 0.2f, -1f);
 
             temp.GetComponent<Card>().id = i;
-           
-            temp.GetComponent<Card>().onClicked += () =>
+
+            temp.GetComponent<Card>().onHover += () =>
             {
+                try
+                {
+                    string name = temp.GetComponent<Card>().prefab.GetComponent<ChessMan>().name;
+                    int hp = temp.GetComponent<Card>().prefab.GetComponent<ChessMan>().Hp;
+                    int dmg = temp.GetComponent<Card>().prefab.GetComponent<ChessMan>().Dmg;
+                    string move = temp.GetComponent<Card>().prefab.GetComponent<ChessMan>().move;
+                    int move_limit = temp.GetComponent<Card>().prefab.GetComponent<ChessMan>().Move_limit;
+                    string power = temp.GetComponent<Card>().prefab.GetComponent<ChessMan>().PowreDescription;
+                   
+                    BoardManager.Instance.chamInfo.setChampInfo(BoardManager.Instance.yourWhite, name+"(Clone)", hp,
+                  dmg, move, move_limit, power);
+                }
+                catch
+                {
+
+                }
+            };
+
+            temp.GetComponent<Card>().onClicked += () =>
+            {  
                 if (BoardManager.Instance.IsGameStart)
                     if (isWhite == BoardManager.Instance.isWhiteTurn )
                 {
                     idSelectedCard = temp.GetComponent<Card>().id;
-                    
-                    StartCoroutine(WaitForSpawn(temp.GetComponent<Card>()));
+
+                        StartCoroutine(WaitForSpawn(temp.GetComponent<Card>()));
                 }
 
             };
