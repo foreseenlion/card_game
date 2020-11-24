@@ -5,22 +5,67 @@ using UnityEngine;
 public class HandlingEffects : MonoBehaviour
 {
 
-    
-
-    public void getEffect(string effect, int valueEffect, ChessMan chessMan)
+    public void backToNormal(Effects effects, ChessMan chessMan)
     {
-        switch (effect)
+        switch (effects.TypeOfEffect)
         {
             case "dmg":
-                timeDmg(valueEffect, chessMan);
+                break;
+            case "nodmg":
+                BackAttackReduction(effects.oldValue, chessMan);
                 break;
         }
     }
 
-    public void timeDmg(int valueEffect, ChessMan chessMan)
+    public void getEffectTure(string effect, int valueEffect, ChessMan chessMan)
+    {
+        switch (effect)
+        {
+            case "dmg":
+                timeDmgTure(valueEffect, chessMan);
+                break;
+            case "nodmg":
+                attackReduction(valueEffect, chessMan);
+                break;
+            case "adddmg":
+                addDmg(valueEffect, chessMan);
+                break;
+        }
+    }
+
+    public void addDmg(int valueEffect, ChessMan chessMan)
+    {
+        chessMan.Dmg+= valueEffect;
+    }
+
+    public void timeDmgTure(int valueEffect, ChessMan chessMan)
     {
       int demage=  chessMan.Hp - valueEffect;
         BoardManager.Instance.IfHeDies(chessMan, demage);    
+    }
+
+    public void attackReduction(int valueEffect, ChessMan chessMan)
+    {
+    int result   = chessMan.Dmg - valueEffect;
+        if (result <= 0)
+            chessMan.Dmg = 0;
+        else
+        chessMan.Dmg = result;
+    }
+
+    public void getAppearEffect(string effect, int valueEffect, ChessMan chessMan)
+    {
+        switch (effect)
+        {
+            case "dmg":
+                timeDmgTure(valueEffect, chessMan);
+                break;
+        }
+    }
+
+    void BackAttackReduction(int valueEffect, ChessMan chessMan)
+    {
+            chessMan.Dmg = valueEffect;
     }
 
 

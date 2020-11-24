@@ -958,7 +958,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4964661149657096176}
-  - component: {fileID: 1646613727196863622}
+  - component: {fileID: 4021659961777285263}
   m_Layer: 0
   m_Name: ZZRaa
   m_TagString: Untagged
@@ -994,7 +994,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1646613727196863622
+--- !u!114 &4021659961777285263
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1003,9 +1003,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8267866582578408931}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b1b86caf14f72a4facbb1f45265f8b7, type: 3}
+  m_Script: {fileID: 11500000, guid: e65e8aabece247249b3b100e4b32f3ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  range: 0
   Effects: []
   ImposesValueEffect: 2
   ImposesLength: 2
@@ -1015,11 +1016,12 @@ MonoBehaviour:
   PowreDescription: Sets fire to the comma for two turns
   move: Line
   move_limit: 4
-  hp: 10
-  dmg: 1
-  fly: 1
+  hp: 15
+  dmg: 2
+  fly: 0
   MainGod: 1
   isYou: 0
+  movewidth: 0
 --- !u!1001 &3079903482392905302
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -68,20 +68,30 @@ public class BoardManager : MonoBehaviour
                         if ((chess.IsWhite && yourWhite) || (!chess.IsWhite && !yourWhite))
                             foreach (Effects effects in chess.Effects)
                             {
-                                handlingEffects.getEffect(effects.TypeOfEffect, effects.valueEffect, chess);
+                                if (effects.iterateEveryTurn)
+                                handlingEffects.getEffectTure(effects.TypeOfEffect, effects.valueEffect, chess);
                                 effects.length -= 1;
                                 if (effects.length <= 0)
+                                {
+                                    handlingEffects.backToNormal(effects, chess);
                                     chess.Effects.Remove(effects);
+                                }
+                                    
                             }
                     }
                     else
                         if ((chess.IsWhite && !yourWhite) || (!chess.IsWhite && yourWhite))
                         foreach (Effects effects in chess.Effects)
                         {
-                            handlingEffects.getEffect(effects.TypeOfEffect, effects.valueEffect, chess);
+                            if (effects.iterateEveryTurn)
+                                handlingEffects.getEffectTure(effects.TypeOfEffect, effects.valueEffect, chess);
                             effects.length -= 1;
                             if (effects.length <= 0)
+                            {
+                                handlingEffects.backToNormal(effects, chess);
                                 chess.Effects.Remove(effects);
+                            }
+                                
                         }
                 }
                 catch
@@ -94,7 +104,39 @@ public class BoardManager : MonoBehaviour
         }
     }
 
+    public void DoTheEffectsAppear(string type, int value, string toEnemyAppearEffect)
+    {
+        foreach (ChessMan chess in ChessMens)
+        {
+            if (chess != null)
+            {
+                try
+                {
+                    if (toEnemyAppearEffect== "enemy")
+                    {
+                        if ((chess.IsWhite && !yourWhite) || (!chess.IsWhite && yourWhite))
+                            handlingEffects.getEffectTure(type, value, chess);
+                    }
+                    else if(toEnemyAppearEffect== "ally")
+                    {
+                        if ((chess.IsWhite && yourWhite) || (!chess.IsWhite && !yourWhite))
+                            handlingEffects.getEffectTure(type, value, chess);
+                    }
+                    else if (toEnemyAppearEffect == "all")
+                    {
+                            handlingEffects.getEffectTure(type, value, chess);
+                    }
 
+                }
+                catch
+                {
+
+                }
+
+
+            }
+        }
+    }
 
 
     public string DeckId
@@ -427,7 +469,12 @@ public class BoardManager : MonoBehaviour
     {
         //target.GetComponent<Animator>().Play("take_damage");
         if (SelectedChessman.TypeOfEffect == "dmg")
-            target.Effects.Add(new Effects("dmg", SelectedChessman.ImposesValueEffect, SelectedChessman.ImposesLength, SelectedChessman.effectName, SelectedChessman.DescriptionEffect));
+            target.Effects.Add(new Effects("dmg", SelectedChessman.ImposesValueEffect, SelectedChessman.ImposesLength, SelectedChessman.effectName, SelectedChessman.DescriptionEffect, true));
+        if (SelectedChessman.TypeOfEffect == "nodmg")
+        {
+            target.Effects.Add(new Effects("nodmg", SelectedChessman.ImposesValueEffect, SelectedChessman.ImposesLength, SelectedChessman.effectName, SelectedChessman.DescriptionEffect, false, target.Dmg));
+            handlingEffects.getEffectTure("nodmg", SelectedChessman.ImposesValueEffect, target);
+        }
         int damage = target.Hp - SelectedChessman.Dmg; //zmniejszenie HP
         IfHeDies(target, damage);
 

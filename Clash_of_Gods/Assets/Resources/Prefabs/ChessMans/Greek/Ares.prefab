@@ -404,7 +404,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8191098287866073160}
-  - component: {fileID: 8314034157885875379}
+  - component: {fileID: 4450005385870721100}
   m_Layer: 0
   m_Name: Ares
   m_TagString: Untagged
@@ -441,7 +441,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8314034157885875379
+--- !u!114 &4450005385870721100
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -450,14 +450,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 5185887989297291867}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b1b86caf14f72a4facbb1f45265f8b7, type: 3}
+  m_Script: {fileID: 11500000, guid: e65e8aabece247249b3b100e4b32f3ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  move_limit: 8
-  hp: 2
-  dmg: 3
+  range: 0
+  Effects: []
+  ImposesValueEffect: 0
+  ImposesLength: 0
+  TypeOfEffect: 
+  DescriptionEffect: 
+  effectName: 
+  PowreDescription: 
+  move: Cross
+  move_limit: 3
+  hp: 8
+  dmg: 2
   fly: 0
+  MainGod: 0
   isYou: 0
+  movewidth: 1
 --- !u!1 &6094485068551585110
 GameObject:
   m_ObjectHideFlags: 0

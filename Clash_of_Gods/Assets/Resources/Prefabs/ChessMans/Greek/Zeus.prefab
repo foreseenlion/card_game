@@ -537,7 +537,7 @@ MonoBehaviour:
   DescriptionEffect: 
   effectName: 
   PowreDescription: Throws lightning and jumps over enemies
-  move: Cross
+  move: Square
   move_limit: 2
   hp: 15
   dmg: 3

@@ -44,12 +44,29 @@ public class CardManager : MonoBehaviour
             temp.transform.parent = BoardManager.Instance.transform;
             setSideSign(isWhite, chessMens[x, y]);
             chessMens[x, y].IsYou = !enemy;
+            checkAppearEffect(chessMens[x, y],enemy);
         }
     }
 
-
+void checkAppearEffect(ChessMan chessMan, bool enemy)
+    {
+        string result;
+        if (enemy)
+            result = negativ(chessMan.toEnemyAppearEffect);
+        else
+            result = chessMan.toEnemyAppearEffect;
+        if (chessMan.toAppearEffect != null&& chessMan.toAppearEffect != "")
+     BoardManager.Instance.DoTheEffectsAppear(chessMan.toAppearEffect,chessMan.ImposesValueEffect, result);
+    }
   
-
+    string negativ(string toEnemyAppearEffect)
+    {
+        if (toEnemyAppearEffect == "ally")
+            return "enemy";
+        else if (toEnemyAppearEffect == "enemy")
+            return "ally";
+         return toEnemyAppearEffect;
+    }
 
 
     private Vector3 GetTileCenter(int x, int y) //umieszczanie figury na środku danego pola

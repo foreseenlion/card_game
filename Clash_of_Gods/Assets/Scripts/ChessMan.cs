@@ -29,7 +29,9 @@ public abstract class ChessMan : MonoBehaviour
     public string PowreDescription;
     public string move;
 
-
+    public string toAppearEffect;
+    // all, enemy, ally
+    public string toEnemyAppearEffect = "all";
 
 
     public bool IsYou

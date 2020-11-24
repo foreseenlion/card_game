@@ -325,7 +325,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2165409538428530106}
-  - component: {fileID: 8762914067106547753}
+  - component: {fileID: 4933612723175113800}
   m_Layer: 0
   m_Name: Hefajstos
   m_TagString: Untagged
@@ -357,12 +357,12 @@ Transform:
   - {fileID: 2706720833518466686}
   - {fileID: 6688475462737707625}
   - {fileID: 5176953389606864458}
-  - {fileID: 2816517708653629671}
-  - {fileID: 7336422216456483708}
+  - {fileID: 2365419473976685130}
+  - {fileID: 25935910576429738}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8762914067106547753
+--- !u!114 &4933612723175113800
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -371,14 +371,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 2906595651826524073}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37d0f65c30df64049949b1664ff12317, type: 3}
+  m_Script: {fileID: 11500000, guid: e65e8aabece247249b3b100e4b32f3ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  range: 0
+  Effects: []
+  ImposesValueEffect: 2
+  ImposesLength: 0
+  TypeOfEffect: 
+  DescriptionEffect: 
+  effectName: 
+  PowreDescription: When he shows up he gives his ally 2 dmg
+  move: Cross
+  toAppearEffect: adddmg
+  toEnemyAppearEffect: ally
   move_limit: 2
-  hp: 6
-  dmg: 1
-  fly: 0
+  hp: 10
+  dmg: 3
+  fly: 1
+  MainGod: 0
   isYou: 0
+  movewidth: 1
 --- !u!1 &4390022181366377962
 GameObject:
   m_ObjectHideFlags: 0
@@ -1159,7 +1172,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a639eea543de1ca4792ef44bde28b24b, type: 3}
---- !u!4 &7336422216456483708 stripped
+--- !u!4 &25935910576429738 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7317242942299155023, guid: a639eea543de1ca4792ef44bde28b24b,
     type: 3}
@@ -1234,7 +1247,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6978315fb7884d499f517059ab335e3, type: 3}
---- !u!4 &2816517708653629671 stripped
+--- !u!4 &2365419473976685130 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 560117149034504299, guid: d6978315fb7884d499f517059ab335e3,
     type: 3}

@@ -404,7 +404,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6763969530298246506}
-  - component: {fileID: 7740812340264861118}
+  - component: {fileID: -5883673909990785361}
   m_Layer: 0
   m_Name: Hercules
   m_TagString: Untagged
@@ -435,7 +435,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7740812340264861118
+--- !u!114 &-5883673909990785361
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -444,14 +444,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 7747646749739112313}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b1b86caf14f72a4facbb1f45265f8b7, type: 3}
+  m_Script: {fileID: 11500000, guid: e65e8aabece247249b3b100e4b32f3ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  move_limit: 4
-  hp: 4
-  dmg: 2
+  range: 0
+  Effects: []
+  ImposesValueEffect: 0
+  ImposesLength: 0
+  TypeOfEffect: 
+  DescriptionEffect: 
+  effectName: 
+  PowreDescription: 
+  move: Cross
+  move_limit: 2
+  hp: 8
+  dmg: 4
   fly: 0
+  MainGod: 0
   isYou: 0
+  movewidth: 1
 --- !u!1 &8306583942669422958
 GameObject:
   m_ObjectHideFlags: 0

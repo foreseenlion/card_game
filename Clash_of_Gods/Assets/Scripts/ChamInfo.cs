@@ -27,7 +27,7 @@ public class ChamInfo : MonoBehaviour
         string name = HealthBarHandler.getChampName(nameChamp);
         string nameLine = CheckIfTheVariableHasAValue(name + "\n",name);
         string HpLine = CheckIfTheVariableHasAValue("Hp: " + hp + "\n",hp);
-        string dmgLine = CheckIfTheVariableHasAValue("Dmg: " + dmg + "\n",dmg);
+        string dmgLine = "Dmg: " + dmg + "\n";
         string moveLine = CheckIfTheVariableHasAValue("Move: " + move + "\n",move);
         string movelimitLine = CheckIfTheVariableHasAValue("Move limit: " + movelimit + "\n",movelimit);
         string powerDesLine = CheckIfTheVariableHasAValue("Power: " + powerDes, powerDes);
