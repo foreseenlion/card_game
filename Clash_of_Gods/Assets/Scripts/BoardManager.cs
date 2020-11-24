@@ -42,19 +42,63 @@ public class BoardManager : MonoBehaviour
     public bool IsGameStart = false;
 
     private MeterialChanges materialChange;
-   public  GameObject textMessage;
-   public  GameObject textMessageYourMove;
+    public GameObject textMessage;
+    public GameObject textMessageYourMove;
     public GameObject textMessageWaitForEnemy;
     GameObject signWaitForPlayer;
-
- public  ChamInfo chamInfo;
+    HandlingEffects handlingEffects;
+    public ChamInfo chamInfo;
 
     public GameObject champInfoObject;
 
     public static BoardManager Instance { get; set; }
     public ChessMan[,] ChessMens { get; set; } //tablica wszystkich pionów
 
-    public string DeckId {
+    public void DoTheEffects(bool start)
+    {
+        foreach (ChessMan chess in ChessMens)
+        {
+            //&& chess.Effects.Count > 0
+            if (chess != null)
+            {
+                try
+                {
+                    if (start)
+                    {
+                        if ((chess.IsWhite && yourWhite) || (!chess.IsWhite && !yourWhite))
+                            foreach (Effects effects in chess.Effects)
+                            {
+                                handlingEffects.getEffect(effects.TypeOfEffect, effects.valueEffect, chess);
+                                effects.length -= 1;
+                                if (effects.length <= 0)
+                                    chess.Effects.Remove(effects);
+                            }
+                    }
+                    else
+                        if ((chess.IsWhite && !yourWhite) || (!chess.IsWhite && yourWhite))
+                        foreach (Effects effects in chess.Effects)
+                        {
+                            handlingEffects.getEffect(effects.TypeOfEffect, effects.valueEffect, chess);
+                            effects.length -= 1;
+                            if (effects.length <= 0)
+                                chess.Effects.Remove(effects);
+                        }
+                }
+                catch
+                {
+
+                }
+
+
+            }
+        }
+    }
+
+
+
+
+    public string DeckId
+    {
         get
         {
             return deckId;
@@ -67,12 +111,13 @@ public class BoardManager : MonoBehaviour
 
         }
     }
-  
+
     private event Action onDeckIdGenerated;
     #endregion
 
     private void Start()
     {
+        handlingEffects = new HandlingEffects();
         chamInfo = champInfoObject.GetComponent<ChamInfo>();
         materialChange = GameObject.FindObjectOfType<MeterialChanges>();
         religionId = myReligion.religion;
@@ -80,7 +125,7 @@ public class BoardManager : MonoBehaviour
 
         Instance = this;
         ChessMens = new ChessMan[8, 8];
-        
+
         onDeckIdGenerated += () =>
         {
             GetDecks();
@@ -92,7 +137,7 @@ public class BoardManager : MonoBehaviour
             IfICanCeonnection = false;
         }
 
-        signWaitForPlayer= ShowSignWaitForAPlayer(textMessageWaitForEnemy);
+        signWaitForPlayer = ShowSignWaitForAPlayer(textMessageWaitForEnemy);
 
     }
 
@@ -108,7 +153,7 @@ public class BoardManager : MonoBehaviour
             BlackDeck.InstantiateDeck(SetDeckNumber(deckId));
             BlackDeck.ChessMens = ChessMens;
         }
-       
+
     }
 
     public void SetEnemyDecks()
@@ -125,12 +170,12 @@ public class BoardManager : MonoBehaviour
             BlackDeckHide.ChessMens = ChessMens;
         }
     }
-   public void SpawnEnemy(char idCard, int selectedX, int selectedY)
+    public void SpawnEnemy(char idCard, int selectedX, int selectedY)
     {
         if (deckId[1] == '1')
         {
-            WhiteDeckHide.DSSpawnEnemy( idCard,  selectedX,  selectedY);
-          //  WhiteDeckHide
+            WhiteDeckHide.DSSpawnEnemy(idCard, selectedX, selectedY);
+            //  WhiteDeckHide
         }
         else
         {
@@ -157,14 +202,14 @@ public class BoardManager : MonoBehaviour
         var sign = Instantiate(_sign,
         new Vector3(4.1f, 1f, 3f),
          Quaternion.Euler(40, 0, 0));
-         Destroy(sign, 3000);  
+        Destroy(sign, 3000);
     }
     GameObject ShowSignWaitForAPlayer(GameObject _sign)
     {
         return Instantiate(_sign,
         new Vector3(4.1f, 1f, 3f),
          Quaternion.Euler(40, 0, 0));
-       
+
     }
 
     private void setGods(CardManager you, CardManager enemy)
@@ -185,7 +230,7 @@ public class BoardManager : MonoBehaviour
     private string SetDeckNumber(string deckID)
     {
         string deck_number = "";
-        for (int i = 2; i < deckID.Length-1; i++)
+        for (int i = 2; i < deckID.Length - 1; i++)
             deck_number += deckID[i];
         return deck_number;
     }
@@ -208,36 +253,36 @@ public class BoardManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
-           
-                sendToServer.sendShowGamesInServer();
-           
+
+            sendToServer.sendShowGamesInServer();
+
         }
 
     }
 
     private void UpdateSelection()
     {
-        
+
         if (!Camera.main) //jeśli brakuje kamery nic się nie dzieje
             return;
 
         RaycastHit hit;
-       
+
         //warunek niżej, Raycast "wypuszcza" promień z kamery do miejsca gdzie kliknął gracz i zwraca do hit to na co promień natrafił (jeżeli nie trafił na nic zwraca false)
-        if (Physics.Raycast(   
+        if (Physics.Raycast(
             Camera.main.ScreenPointToRay(Input.mousePosition),
             out hit,
             25.0f, //długość promienia
             LayerMask.GetMask("Board"))) //warunek określający nad jakim polem gracz ma umieszczoną myszkę
         {
-            
+
             selectedX = (int)hit.point.x;
             selectedY = (int)hit.point.z;
             BoardHighlitghs.Instance.HighlightAllowedMove(selectedX, selectedY);
             try
             {
                 chamInfo.setChampInfo(ChessMens[selectedX, selectedY].IsWhite, ChessMens[selectedX, selectedY].name, ChessMens[selectedX, selectedY].Hp,
-                ChessMens[selectedX, selectedY].Dmg, ChessMens[selectedX, selectedY].move, ChessMens[selectedX, selectedY].Move_limit, ChessMens[selectedX, selectedY].PowreDescription);
+                ChessMens[selectedX, selectedY].Dmg, ChessMens[selectedX, selectedY].move, ChessMens[selectedX, selectedY].Move_limit, ChessMens[selectedX, selectedY].PowreDescription, ChessMens[selectedX, selectedY].Effects);
             }
             catch
             {
@@ -246,13 +291,13 @@ public class BoardManager : MonoBehaviour
         }
 
         else
-        { 
+        {
             BoardHighlitghs.Instance.DestroySelection();
             selectedX = -1;
             selectedX = -1;
         }
 
-    } 
+    }
 
     private void MakeMove()
     {
@@ -264,7 +309,7 @@ public class BoardManager : MonoBehaviour
                 {
                     try
                     {
-                        
+
                         SelectChessman(selectedX, selectedY); //zmiana wybranego piona 
                         sendToServer.sendMoveToServer(selectedX, selectedY); //zmiana wybranego piona 
                     }
@@ -294,11 +339,11 @@ public class BoardManager : MonoBehaviour
     {
         if (ChessMens[x, y] == null) //sprawdzenie czy na wybranej pozycji jest pion
             return;
-        if (ChessMens[x, y].IsWhite != isWhiteTurn || yourWhite!= ChessMens[x, y].IsWhite) //sprawdzenie czy pion ma kolor danego gracza
+        if (ChessMens[x, y].IsWhite != isWhiteTurn || yourWhite != ChessMens[x, y].IsWhite) //sprawdzenie czy pion ma kolor danego gracza
             return;
-       
+
         selectSpecificChessman(x, y);
-    } 
+    }
     private void selectSpecificChessman(int x, int y)
     {
 
@@ -329,31 +374,31 @@ public class BoardManager : MonoBehaviour
         SelectedChessman = null; //klinięcie w inne niż możliwe miejsce anuluje wybór
     }
 
-  
+
 
     private void moveChessman(int x, int y, bool isPlayer)
     {
         if (IsGameStart)
             if (SelectedChessman.PossibleMove[x, y]) // można wykonać taki ruch?
-        {
-            ChessMens[SelectedChessman.CurrentX, SelectedChessman.CurrentY] = null; //wybrany pion 'znika' z aktualnej pozycji
-            SelectedChessman.transform.position = GetTileCenter(x, y);
-            SelectedChessman.SetPosition(x, y);
-            ChessMens[x, y] = SelectedChessman;
-                if(isPlayer)
-            UpdateMove();
+            {
+                ChessMens[SelectedChessman.CurrentX, SelectedChessman.CurrentY] = null; //wybrany pion 'znika' z aktualnej pozycji
+                SelectedChessman.transform.position = GetTileCenter(x, y);
+                SelectedChessman.SetPosition(x, y);
+                ChessMens[x, y] = SelectedChessman;
+                if (isPlayer)
+                    UpdateMove();
 
-           if (SelectedChessman.firstmove) //wykonanie pierwszego ruchu potrzebne przy pionach
-               SelectedChessman.firstmove = false;
+                if (SelectedChessman.firstmove) //wykonanie pierwszego ruchu potrzebne przy pionach
+                    SelectedChessman.firstmove = false;
 
-        }
+            }
     }
 
     private void makeAttackChessMan(int x, int y, ChessMan target, bool isPlayer)
     {
-        if (SelectedChessman.PossibleAtacks[x,y]) //można atakować
+        if (SelectedChessman.PossibleAtacks[x, y]) //można atakować
         {
-            if (SelectedChessman.GetComponent<Distance>() == null) //jeśli pion nie atakuje z dystasnu musi przemieścić się w kierunku przeciwnika
+            if (SelectedChessman.range == 0) //jeśli pion nie atakuje z dystasnu musi przemieścić się w kierunku przeciwnika
             {
                 int[] newPositions = CalculateNewPosition(x, y, SelectedChessman.CurrentX, SelectedChessman.CurrentY); //funkcja sprawia że pion zostaję na pozycji "przed" celem 
 
@@ -381,14 +426,22 @@ public class BoardManager : MonoBehaviour
     private void AtackChessMan(ChessMan target)
     {
         //target.GetComponent<Animator>().Play("take_damage");
-
+        if (SelectedChessman.TypeOfEffect == "dmg")
+            target.Effects.Add(new Effects("dmg", SelectedChessman.ImposesValueEffect, SelectedChessman.ImposesLength, SelectedChessman.effectName, SelectedChessman.DescriptionEffect));
         int damage = target.Hp - SelectedChessman.Dmg; //zmniejszenie HP
+        IfHeDies(target, damage);
 
-        if (damage <= 0)
-            KillChessMan(target); 
-        else
-            target.Hp = damage;
+
     }
+
+    public void IfHeDies(ChessMan target, int HpLeft)
+    {
+        if (HpLeft <= 0)
+            KillChessMan(target);
+        else
+            target.Hp = HpLeft;
+    }
+
 
     private void KillChessMan(ChessMan target)
     {
@@ -396,9 +449,9 @@ public class BoardManager : MonoBehaviour
         {
             GameManager.instance.Winner = isWhiteTurn ? "White" : "Black";
             GameManager.instance.Condition = "kiling the God";
-            if((isWhiteTurn&&yourWhite)|| (!isWhiteTurn && !yourWhite))
-            myReligion.youWin = false;
-            else myReligion.youWin = true;
+            if ((target.IsWhite && yourWhite) || (!target.IsWhite && !yourWhite))
+                myReligion.youWin = true;
+            else myReligion.youWin = false;
             SceneManager.LoadScene("End_Game");
 
         }
@@ -415,18 +468,20 @@ public class BoardManager : MonoBehaviour
 
     public void UpdateMove() //funkcja przełącza aktywnego gracza
     {
-            
-            if (number_of_move < 2) 
+
+        if (number_of_move < 2)
             number_of_move++;
         if (number_of_move >= 2)
-            {
+        {
+            DoTheEffects(false);
             sendToServer.sendEndTureToServer();
             isWhiteTurn = !isWhiteTurn;
             number_of_move = 0;
         }
     }
 
-    private int[] CalculateNewPosition(int newX,int newY,int CurrentX,int CurrentY) //funkcja potrzebna przy ataku która ustawia pion jedno pole "przed" celem w zależności od strony ataku
+
+    private int[] CalculateNewPosition(int newX, int newY, int CurrentX, int CurrentY) //funkcja potrzebna przy ataku która ustawia pion jedno pole "przed" celem w zależności od strony ataku
     {
         int[] results = new int[2];
 
@@ -441,7 +496,7 @@ public class BoardManager : MonoBehaviour
 
         if (newY - CurrentY < 0) //poruszam się w dół
             results[1] = newY + 1;
-            
+
         if (newY - CurrentY > 0) //poruszam się w górę
             results[1] = newY - 1;
 
@@ -451,7 +506,7 @@ public class BoardManager : MonoBehaviour
         return results;
     }
 
-  
+
 
 
 }

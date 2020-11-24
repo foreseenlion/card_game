@@ -61,10 +61,6 @@ public class Distance : Rook
         {
             CheckAtack(newX, newY);
             
-        }
-
-      
-                
-        
+        }  
     }
 }

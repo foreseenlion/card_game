@@ -220,9 +220,9 @@ public class CardManager : MonoBehaviour
                     string move = temp.GetComponent<Card>().prefab.GetComponent<ChessMan>().move;
                     int move_limit = temp.GetComponent<Card>().prefab.GetComponent<ChessMan>().Move_limit;
                     string power = temp.GetComponent<Card>().prefab.GetComponent<ChessMan>().PowreDescription;
-                   
+                    List<Effects> effects = temp.GetComponent<Card>().prefab.GetComponent<ChessMan>().Effects;
                     BoardManager.Instance.chamInfo.setChampInfo(BoardManager.Instance.yourWhite, name+"(Clone)", hp,
-                  dmg, move, move_limit, power);
+                  dmg, move, move_limit, power, effects);
                 }
                 catch
                 {

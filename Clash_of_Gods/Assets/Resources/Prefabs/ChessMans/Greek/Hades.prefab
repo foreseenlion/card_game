@@ -212,10 +212,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b70416da8dcd36441a3423e720af9417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  move_limit: 3
+  Effects: []
+  ImposesValueEffect: 0
+  ImposesLength: 0
+  TypeOfEffect: 
+  DescriptionEffect: 
+  effectName: 
+  PowreDescription: 
+  move: 
+  move_limit: 2
   hp: 5
   dmg: 2
   fly: 0
+  MainGod: 0
   isYou: 0
   range: 2
 --- !u!1 &3324958469968962329

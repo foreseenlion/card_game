@@ -483,7 +483,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5887560790813945017}
-  - component: {fileID: 1603527634283501634}
+  - component: {fileID: 5677848785980438301}
   m_Layer: 0
   m_Name: Zeus
   m_TagString: Untagged
@@ -517,7 +517,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1603527634283501634
+--- !u!114 &5677848785980438301
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -526,15 +526,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 7489354791201365674}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37d0f65c30df64049949b1664ff12317, type: 3}
+  m_Script: {fileID: 11500000, guid: e65e8aabece247249b3b100e4b32f3ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  move_limit: 8
-  hp: 3
-  dmg: 1
-  fly: 0
+  range: 3
+  Effects: []
+  ImposesValueEffect: 0
+  ImposesLength: 0
+  TypeOfEffect: 
+  DescriptionEffect: 
+  effectName: 
+  PowreDescription: Throws lightning and jumps over enemies
+  move: Cross
+  move_limit: 2
+  hp: 15
+  dmg: 3
+  fly: 1
   MainGod: 1
   isYou: 0
+  movewidth: 2
 --- !u!1 &7933584834884648347
 GameObject:
   m_ObjectHideFlags: 0

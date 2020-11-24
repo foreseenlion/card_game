@@ -4,32 +4,19 @@ using UnityEngine;
 
 public class Effects : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    public string TypeOfEffect;
+        public int valueEffect;
+        public int length;
+    public string name;
+    public string description;
+
+    public Effects(string typeOfEffect, int valueEffect, int length, string name, string description)
     {
-        
+        TypeOfEffect = typeOfEffect;
+        this.valueEffect = valueEffect;
+        this.length = length;
+        this.name = name;
+        this.description = description;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void getEffect(int effect, int valueEffect, ChessMan chessMan)
-    {
-        switch (effect)
-        {
-            case 0:
-                timeDmg(valueEffect, chessMan);
-                break;
-        }
-    }
-
-    public void timeDmg(int valueEffect, ChessMan chessMan)
-    {
-        chessMan.Hp -= valueEffect;
-    }
-
-
 }

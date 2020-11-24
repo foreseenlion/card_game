@@ -1006,10 +1006,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b1b86caf14f72a4facbb1f45265f8b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  move_limit: 8
-  hp: 5
-  dmg: 2
-  fly: 0
+  Effects: []
+  ImposesValueEffect: 2
+  ImposesLength: 2
+  TypeOfEffect: dmg
+  DescriptionEffect: He loses two hp with each turn
+  effectName: Set on fire
+  PowreDescription: Sets fire to the comma for two turns
+  move: Line
+  move_limit: 4
+  hp: 10
+  dmg: 1
+  fly: 1
   MainGod: 1
   isYou: 0
 --- !u!1001 &3079903482392905302
