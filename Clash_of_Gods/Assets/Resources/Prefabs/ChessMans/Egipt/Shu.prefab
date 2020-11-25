@@ -139,10 +139,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37d0f65c30df64049949b1664ff12317, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Effects: []
+  ImposesValueEffect: 0
+  ImposesLength: 0
+  TypeOfEffect: 
+  DescriptionEffect: 
+  PowreDescription: 
+  move: 5
   move_limit: 5
-  hp: 5
-  dmg: 3
+  hp: 6
+  dmg: 4
   fly: 0
+  MainGod: 0
   isYou: 0
 --- !u!1 &2224535518714149857
 GameObject:

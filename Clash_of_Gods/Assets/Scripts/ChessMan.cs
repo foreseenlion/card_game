@@ -15,16 +15,17 @@ public abstract class ChessMan : MonoBehaviour
     public bool[,] PossibleAtacks { get => possibleAtacks; set => possibleAtacks = value; }
     public int Move_limit { get => move_limit; set => move_limit = value; }
 
-    public struct tureEffect
-    {
-        public int idEfects;
-        public int valueEffect;
-        public int length;
-    }
-
-    List<tureEffect> Effects = new List<tureEffect>();
+    [SerializeField]
+    public int range;
 
 
+    public List<Effects> Effects = new List<Effects>();
+
+    public int ImposesValueEffect;
+    public int ImposesLength;
+    public string TypeOfEffect;
+    public string DescriptionEffect;
+    public string effectName;
     public string PowreDescription;
     public string move;
 

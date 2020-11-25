@@ -86,6 +86,7 @@ public class Network : MonoBehaviour
 			boardManager.changeTure(false);
 		}
 		boardManager.showTextMessageYourTure();
+		boardManager.DoTheEffects(true);
 
 
 	}
