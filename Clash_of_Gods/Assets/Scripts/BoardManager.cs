@@ -57,9 +57,9 @@ public class BoardManager : MonoBehaviour
     public void DoTheEffects(bool start)
     {
         foreach (ChessMan chess in ChessMens)
-        {
+        {   
             //&& chess.Effects.Count > 0
-            if (chess != null)
+            if (chess != null&&chess.ChampIsInBoard1)
             {
                 try
                 {

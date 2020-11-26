@@ -32,7 +32,7 @@ public abstract class ChessMan : MonoBehaviour
     public string toAppearEffect;
     // all, enemy, ally
     public string toEnemyAppearEffect = "all";
-
+    private bool ChampIsInBoard = false;
 
     public bool IsYou
     {
@@ -78,6 +78,8 @@ public abstract class ChessMan : MonoBehaviour
         }
     
     }
+
+    public bool ChampIsInBoard1 { get => ChampIsInBoard; set => ChampIsInBoard = value; }
 
     #endregion
 

@@ -45,6 +45,7 @@ public class CardManager : MonoBehaviour
             temp.transform.parent = BoardManager.Instance.transform;
             setSideSign(isWhite, chessMens[x, y]);
             chessMens[x, y].IsYou = !enemy;
+            chessMens[x, y].ChampIsInBoard1 = true;
             checkAppearEffect(chessMens[x, y],enemy);
         }
     }
@@ -85,9 +86,11 @@ void checkAppearEffect(ChessMan chessMan, bool enemy)
         return origin;
     }
 
+    bool SpawDone;
+
     IEnumerator WaitForSpawn(Card card)  //funkcja kóra "czeka" aż gracz wybierzę pole do spawnu
     {
-        
+        SpawDone = true;
         StopCoroutine("WaitForSpawn"); // zatrzymaj pozostałe instancje
         BoardHighlitghs.Instance.HideAll();
 
@@ -99,6 +102,7 @@ void checkAppearEffect(ChessMan chessMan, bool enemy)
 
         while (true)
         {
+           
             if (Input.GetMouseButtonDown(0)) //jeśli naciśnięto myszkę
             {
                
@@ -110,15 +114,15 @@ void checkAppearEffect(ChessMan chessMan, bool enemy)
                     int selectedY = BoardManager.Instance.selectedY;
 
                     //pobiera możliwe pola
-
-                    if (selectedX >= 0 && selectedY >= 0 && SpawnAllowed[selectedX, selectedY] == true) //czy można spawnować
+                    if (SpawDone)
+                        if (selectedX >= 0 && selectedY >= 0 && SpawnAllowed[selectedX, selectedY] == true) //czy można spawnować
                     {
                         SendToServer sendToServer = new SendToServer();
                         EnterSpawn(card,selectedX,selectedY,false, false);
                         BoardManager.Instance.UpdateMove();
                         sendToServer.sendSpawnToServer(selectedX, selectedY, idSelectedCard);
-
-                        yield break; // wykonano ruch
+                            SpawDone = false;
+                        yield break;  // wykonano ruch
 
                     }
                     else // odkliknięcie
