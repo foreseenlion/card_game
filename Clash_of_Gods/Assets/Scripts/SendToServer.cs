@@ -136,7 +136,10 @@ public class SendToServer : MonoBehaviour
 
     }
 
-
+    public void sendDC()
+    {
+        socket.Close();
+    }
 
     public void sendStartGameInfo(string wybranaReligia)
     {

@@ -50,13 +50,20 @@ public class CardManager : MonoBehaviour
 
 void checkAppearEffect(ChessMan chessMan, bool enemy)
     {
-        string result;
-        if (enemy)
-            result = negativ(chessMan.toEnemyAppearEffect);
+        if (chessMan.toEnemyAppearEffect != "me")
+        {
+            string result;
+            if (enemy)
+                result = negativ(chessMan.toEnemyAppearEffect);
+            else
+                result = chessMan.toEnemyAppearEffect;
+            if (chessMan.toAppearEffect != null && chessMan.toAppearEffect != "")
+                BoardManager.Instance.DoTheEffectsAppear(chessMan.toAppearEffect, chessMan.ImposesValueEffect, result);
+        }
         else
-            result = chessMan.toEnemyAppearEffect;
-        if (chessMan.toAppearEffect != null&& chessMan.toAppearEffect != "")
-     BoardManager.Instance.DoTheEffectsAppear(chessMan.toAppearEffect,chessMan.ImposesValueEffect, result);
+        {   if(chessMan.toAppearEffect== "hydra")
+            chessMan.Effects.Add(new Effects("hydra", 1,10, "Regrowth", "The hydra is still growing heads. She gains 1 damage with 10 turn", true, 1));
+        }
     }
   
     string negativ(string toEnemyAppearEffect)

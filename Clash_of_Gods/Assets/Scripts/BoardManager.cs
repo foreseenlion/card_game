@@ -68,30 +68,17 @@ public class BoardManager : MonoBehaviour
                         if ((chess.IsWhite && yourWhite) || (!chess.IsWhite && !yourWhite))
                             foreach (Effects effects in chess.Effects)
                             {
-                                if (effects.iterateEveryTurn)
-                                handlingEffects.getEffectTure(effects.TypeOfEffect, effects.valueEffect, chess);
-                                effects.length -= 1;
-                                if (effects.length <= 0)
-                                {
-                                    handlingEffects.backToNormal(effects, chess);
-                                    chess.Effects.Remove(effects);
-                                }
-                                    
+
+                                DoEffectAndDesReduceLength(effects, chess);
+
                             }
                     }
                     else
                         if ((chess.IsWhite && !yourWhite) || (!chess.IsWhite && yourWhite))
                         foreach (Effects effects in chess.Effects)
                         {
-                            if (effects.iterateEveryTurn)
-                                handlingEffects.getEffectTure(effects.TypeOfEffect, effects.valueEffect, chess);
-                            effects.length -= 1;
-                            if (effects.length <= 0)
-                            {
-                                handlingEffects.backToNormal(effects, chess);
-                                chess.Effects.Remove(effects);
-                            }
-                                
+
+                            DoEffectAndDesReduceLength(effects, chess);
                         }
                 }
                 catch
@@ -101,6 +88,19 @@ public class BoardManager : MonoBehaviour
 
 
             }
+        }
+    }
+
+    void DoEffectAndDesReduceLength(Effects effects, ChessMan chess)
+    {
+        if (effects.iterateEveryTurn)
+            handlingEffects.getEffectTure(effects.TypeOfEffect, effects.valueEffect, chess);
+        effects.length -= 1;
+        if (effects.length == -1) { }else
+        if (effects.length <= 0)
+        {
+            handlingEffects.backToNormal(effects, chess);
+            chess.Effects.Remove(effects);
         }
     }
 
@@ -291,6 +291,7 @@ public class BoardManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.C))
         {
+            sendToServer.sendDC();
             SceneManager.LoadScene("Choose_God");
         }
         if (Input.GetKeyDown(KeyCode.S))

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using SocketIO;
+using UnityEngine.SceneManagement;
+
 public class Network : MonoBehaviour
 {
 	SocketIOComponent socket;
@@ -29,11 +31,12 @@ public class Network : MonoBehaviour
 
 	void onEnemyDisconnet(SocketIOEvent evt)
 	{
-		Debug.Log(evt.data.GetField("message"));
+
 		socket.Close();
+		myReligion.youWin = false;
+		SceneManager.LoadScene("End_Game");
 	}
-
-
+	
 
 	// This is the listener function definition
 	void onConnectionEstabilished(SocketIOEvent evt)

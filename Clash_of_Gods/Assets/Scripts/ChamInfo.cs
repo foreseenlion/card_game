@@ -5,7 +5,10 @@ using UnityEngine.UI;
 
 public class ChamInfo : MonoBehaviour
 {
+    void infinityLength()
+    {
 
+    }
 
     public void setChampInfo(bool iswhite,string nameChamp, int hp, int dmg, string move, int movelimit, string powerDes, List<Effects> effects)
     {
@@ -14,12 +17,17 @@ public class ChamInfo : MonoBehaviour
             if (activeEfect == "")
                 activeEfect = "Effects: \n";
         foreach (Effects effect in effects)
+        {
+            if (effect.length != -1)
             {
-            if (effect.length != 1)
-                activeEfect += effect.name + " " + effect.length + " more turns\n"+ effect.description+"\n";
-            else
-                activeEfect += effect.name + " " + effect.length + " more turn\n"+ effect.description + "\n";
+                if (effect.length != 1)
+                    activeEfect += effect.name + " " + effect.length + " more turns\n" + effect.description + "\n";
+                else
+                    activeEfect += effect.name + " " + effect.length + " more turn\n" + effect.description + "\n";
             }
+            else activeEfect += effect.name + "\n";
+        }
+       
 
         if (iswhite)
            GetComponent<Text>().color = Color.blue;

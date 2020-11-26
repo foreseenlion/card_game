@@ -30,6 +30,9 @@ public class HandlingEffects : MonoBehaviour
             case "adddmg":
                 addDmg(valueEffect, chessMan);
                 break;
+            case "hydra":
+                addDmg(valueEffect, chessMan);
+                break;
         }
     }
 

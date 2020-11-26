@@ -207,10 +207,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0b59bc1ccbf0c34397201c9ae3060b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  move_limit: 8
-  hp: 3
+  range: 0
+  Effects: []
+  ImposesValueEffect: 1
+  ImposesLength: 0
+  TypeOfEffect: hydra
+  DescriptionEffect: 
+  effectName: 
+  PowreDescription: 
+  move: Oblique
+  toAppearEffect: hydra
+  toEnemyAppearEffect: me
+  move_limit: 2
+  hp: 5
   dmg: 2
   fly: 0
+  MainGod: 0
   isYou: 0
 --- !u!1 &7141394721055140310
 GameObject:
