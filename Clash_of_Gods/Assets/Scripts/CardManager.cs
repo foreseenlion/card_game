@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class CardManager : MonoBehaviour
 {
     [SerializeField]
@@ -86,22 +87,25 @@ void checkAppearEffect(ChessMan chessMan, bool enemy)
 
     IEnumerator WaitForSpawn(Card card)  //funkcja kóra "czeka" aż gracz wybierzę pole do spawnu
     {
+        
         StopCoroutine("WaitForSpawn"); // zatrzymaj pozostałe instancje
         BoardHighlitghs.Instance.HideAll();
 
-        yield return new WaitForEndOfFrame();
-
         SpawnAllowed = isSpawnAllowed();
-        BoardHighlitghs.Instance.HighlightAllowedMoves(SpawnAllowed); //podaje możliwe pola do spawnu
+
+        BoardHighlitghs.Instance.HighlightAllowedMoves(isSpawnAllowed()); //podaje możliwe pola do spawnu
+
+        yield return new WaitForSeconds(1f);
 
         while (true)
         {
             if (Input.GetMouseButtonDown(0)) //jeśli naciśnięto myszkę
             {
-
+               
                 RaycastHit hit = new RaycastHit();
                 if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit)) //jeśli "promień" trafił na obiekt
                 {
+               
                     int selectedX = BoardManager.Instance.selectedX; //odczyruje pozycje
                     int selectedY = BoardManager.Instance.selectedY;
 
@@ -114,7 +118,7 @@ void checkAppearEffect(ChessMan chessMan, bool enemy)
                         BoardManager.Instance.UpdateMove();
                         sendToServer.sendSpawnToServer(selectedX, selectedY, idSelectedCard);
 
-                        yield break;//wykonano ruch
+                        yield break; // wykonano ruch
 
                     }
                     else // odkliknięcie
