@@ -6,4 +6,5 @@ public class myReligion : MonoBehaviour
 {       
     static public string religion;
     static public bool youWin;
+    static public bool SpawStop;
 }

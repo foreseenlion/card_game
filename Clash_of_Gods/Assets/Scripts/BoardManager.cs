@@ -2,12 +2,14 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+
+
 public class BoardManager : MonoBehaviour
 {
 
     bool IfICanCeonnection = true;
 
-
+    public bool SpawDone;
 
     // fields and events
     #region
@@ -335,6 +337,7 @@ public class BoardManager : MonoBehaviour
 
         else
         {
+            SelectedChessman = null;
             BoardHighlitghs.Instance.DestroySelection();
             selectedX = -1;
             selectedX = -1;
@@ -344,6 +347,7 @@ public class BoardManager : MonoBehaviour
 
     private void MakeMove()
     {
+      
         if (Input.GetMouseButtonDown(0)) //wduszenie lewego przycisku myszy
         {
             if (selectedX >= 0 || selectedY >= 0) //sprawdzenie czy kliknięto na planszy
@@ -352,7 +356,6 @@ public class BoardManager : MonoBehaviour
                 {
                     try
                     {
-
                         SelectChessman(selectedX, selectedY); //zmiana wybranego piona 
                         sendToServer.sendMoveToServer(selectedX, selectedY); //zmiana wybranego piona 
                     }
@@ -408,6 +411,7 @@ public class BoardManager : MonoBehaviour
 
     private void MoveAndAttackChessman(int x, int y, bool isPlayer)
     {
+        myReligion.SpawStop = false;
         ChessMan target = ChessMens[x, y];
         moveChessman(x, y, isPlayer);
         if (IsGameStart)
@@ -439,6 +443,7 @@ public class BoardManager : MonoBehaviour
 
     private void makeAttackChessMan(int x, int y, ChessMan target, bool isPlayer)
     {
+
         if (SelectedChessman.PossibleAtacks[x, y]) //można atakować
         {
             if (SelectedChessman.range == 0) //jeśli pion nie atakuje z dystasnu musi przemieścić się w kierunku przeciwnika

@@ -88,47 +88,54 @@ void checkAppearEffect(ChessMan chessMan, bool enemy)
 
     bool SpawDone;
 
+
     IEnumerator WaitForSpawn(Card card)  //funkcja kóra "czeka" aż gracz wybierzę pole do spawnu
     {
+       myReligion.SpawStop = true;
         SpawDone = true;
-        StopCoroutine("WaitForSpawn"); // zatrzymaj pozostałe instancje
+        //StopCoroutine("WaitForSpawn"); // zatrzymaj pozostałe instancje  
         BoardHighlitghs.Instance.HideAll();
 
         SpawnAllowed = isSpawnAllowed();
 
         BoardHighlitghs.Instance.HighlightAllowedMoves(isSpawnAllowed()); //podaje możliwe pola do spawnu
-
+        BoardManager.Instance.SpawDone = true;
         yield return new WaitForSeconds(1f);
 
-        while (true)
+        while (myReligion.SpawStop)
         {
-           
+            
             if (Input.GetMouseButtonDown(0)) //jeśli naciśnięto myszkę
             {
                
                 RaycastHit hit = new RaycastHit();
                 if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit)) //jeśli "promień" trafił na obiekt
                 {
-               
+                    
                     int selectedX = BoardManager.Instance.selectedX; //odczyruje pozycje
                     int selectedY = BoardManager.Instance.selectedY;
-
+                    
                     //pobiera możliwe pola
                     if (SpawDone)
+                    {
+                        
                         if (selectedX >= 0 && selectedY >= 0 && SpawnAllowed[selectedX, selectedY] == true) //czy można spawnować
-                    {
-                        SendToServer sendToServer = new SendToServer();
-                        EnterSpawn(card,selectedX,selectedY,false, false);
-                        BoardManager.Instance.UpdateMove();
-                        sendToServer.sendSpawnToServer(selectedX, selectedY, idSelectedCard);
+                        {
+                            Debug.Log(" aaa");
+                            SendToServer sendToServer = new SendToServer();
+                            EnterSpawn(card, selectedX, selectedY, false, false);
+                            BoardManager.Instance.UpdateMove();
+                            sendToServer.sendSpawnToServer(selectedX, selectedY, idSelectedCard);
                             SpawDone = false;
-                        yield break;  // wykonano ruch
+                            yield break;  // wykonano ruch
 
-                    }
-                    else // odkliknięcie
-                    {
-                        BoardHighlitghs.Instance.HideAll();
-                        yield break;
+                        }
+                        else // odkliknięcie
+                        {
+                            Debug.Log(" bbb");
+                            BoardHighlitghs.Instance.HideAll();
+                            yield break;
+                        }
                     }
                 }
 
