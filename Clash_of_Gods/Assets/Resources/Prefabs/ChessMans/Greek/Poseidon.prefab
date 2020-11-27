@@ -483,7 +483,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 674703928007488400}
-  - component: {fileID: -7841910952346769078}
+  - component: {fileID: -949395663803986288}
   m_Layer: 0
   m_Name: Poseidon
   m_TagString: Untagged
@@ -512,12 +512,12 @@ Transform:
   - {fileID: 5440963914295794755}
   - {fileID: 1670908060296848778}
   - {fileID: 8990761226345583020}
-  - {fileID: 8078240763608766864}
-  - {fileID: 4847542455977891585}
+  - {fileID: 8637414496609336124}
+  - {fileID: 2795046098582273751}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-7841910952346769078
+--- !u!114 &-949395663803986288
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -526,14 +526,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 4541421166201700739}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0b59bc1ccbf0c34397201c9ae3060b4, type: 3}
+  m_Script: {fileID: 11500000, guid: e65e8aabece247249b3b100e4b32f3ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  move_limit: 8
-  hp: 3
-  dmg: 1
-  fly: 0
+  range: 3
+  Effects: []
+  ImposesValueEffect: 0
+  ImposesLength: 0
+  TypeOfEffect: 
+  DescriptionEffect: 
+  effectName: 
+  PowreDescription: 
+  move: Cross
+  toAppearEffect: 
+  toEnemyAppearEffect: all
+  move_limit: 1
+  hp: 10
+  dmg: 3
+  fly: 1
+  MainGod: 0
   isYou: 0
+  movewidth: 3
 --- !u!1 &6525510134396600771
 GameObject:
   m_ObjectHideFlags: 0
@@ -919,7 +932,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a639eea543de1ca4792ef44bde28b24b, type: 3}
---- !u!4 &4847542455977891585 stripped
+--- !u!4 &2795046098582273751 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7317242942299155023, guid: a639eea543de1ca4792ef44bde28b24b,
     type: 3}
@@ -994,7 +1007,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6978315fb7884d499f517059ab335e3, type: 3}
---- !u!4 &8078240763608766864 stripped
+--- !u!4 &8637414496609336124 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 560117149034504299, guid: d6978315fb7884d499f517059ab335e3,
     type: 3}

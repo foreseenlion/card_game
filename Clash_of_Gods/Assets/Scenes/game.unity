@@ -918,6 +918,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d58e822a6e9f90742ab9ea59b83b5acf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SpawDone: 0
   WhiteDeck: {fileID: 1790158228}
   BlackDeck: {fileID: 1905525937}
   WhiteDeckHide: {fileID: 276080106}
