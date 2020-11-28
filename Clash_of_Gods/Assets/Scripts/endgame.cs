@@ -11,15 +11,21 @@ public class endgame : MonoBehaviour
     public GameObject Object;
     private float value = 0;
     private bool on = true;
+    public GameObject Text;
 
     public Button btn;
     void Start()
     {
-        
         if (myReligion.youWin)
+        {
             Object.GetComponent<MeshRenderer>().material = Material1;
+            Text.GetComponent<Text>().text = "You Lost";
+        }
         else
+        {
             Object.GetComponent<MeshRenderer>().material = Material2;
+            Text.GetComponent<Text>().text = "You Win";
+        }  
         btn = FindObjectOfType<Button>();
         btn.onClick.AddListener(goToMenu);
     }

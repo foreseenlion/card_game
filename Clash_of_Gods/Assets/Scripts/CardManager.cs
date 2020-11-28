@@ -125,7 +125,7 @@ void checkAppearEffect(ChessMan chessMan, bool enemy)
                             SendToServer sendToServer = new SendToServer();
                             EnterSpawn(card, selectedX, selectedY, false, false);
                             BoardManager.Instance.UpdateMove();
-                            sendToServer.sendSpawnToServer(selectedX, selectedY, idSelectedCard);
+                            sendToServer.sendSpawnToServer(selectedX, selectedY, idSelectedCard, BoardManager.Instance.number_of_move, BoardManager.Instance.number_of_move_reverse);
                             SpawDone = false;
                             yield break;  // wykonano ruch
 

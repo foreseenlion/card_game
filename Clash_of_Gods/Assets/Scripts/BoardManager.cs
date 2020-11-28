@@ -31,7 +31,8 @@ public class BoardManager : MonoBehaviour
     public int selectedX = -1; //wybrane pole
     public int selectedY = -1;
     public int number_of_move = 0; //który ruch gracz wykonał (co dwa ruchy zmienia się aktywny graCZ)
-
+    public int number_of_move_reverse = 2; //który ruch gracz wykonał (co dwa ruchy zmienia się aktywny graCZ)
+    
     public bool isWhiteTurn = true; //czyja kolej?
 
     public bool yourWhite;
@@ -49,12 +50,17 @@ public class BoardManager : MonoBehaviour
     public GameObject textMessageWaitForEnemy;
     GameObject signWaitForPlayer;
     HandlingEffects handlingEffects;
-    public ChamInfo chamInfo;
 
+    public GameObject textTureMessage;
+
+    public ChamInfo chamInfo;
+    public TextTureMessage tureMessage;
     public GameObject champInfoObject;
 
     public static BoardManager Instance { get; set; }
     public ChessMan[,] ChessMens { get; set; } //tablica wszystkich pionów
+
+
 
     public void DoTheEffects(bool start)
     {
@@ -163,6 +169,7 @@ public class BoardManager : MonoBehaviour
     {
         handlingEffects = new HandlingEffects();
         chamInfo = champInfoObject.GetComponent<ChamInfo>();
+        tureMessage = textTureMessage.GetComponent<TextTureMessage>();
         materialChange = GameObject.FindObjectOfType<MeterialChanges>();
         religionId = myReligion.religion;
         sendToServer = new SendToServer();
@@ -214,8 +221,9 @@ public class BoardManager : MonoBehaviour
             BlackDeckHide.ChessMens = ChessMens;
         }
     }
-    public void SpawnEnemy(char idCard, int selectedX, int selectedY)
+    public void SpawnEnemy(char idCard, int selectedX, int selectedY, int moveLeft, int move)
     {
+        tureMessage.setTureInfo(whoseTurn(), !yourWhite, move - moveLeft);
         if (deckId[1] == '1')
         {
             WhiteDeckHide.DSSpawnEnemy(idCard, selectedX, selectedY);
@@ -239,6 +247,7 @@ public class BoardManager : MonoBehaviour
             setGods(BlackDeck, WhiteDeckHide);
         }
         ShowSign(textMessage);
+        tureMessage.setTureInfo(whoseTurn(), yourWhite, 2);
 
     }
     void ShowSign(GameObject _sign)
@@ -263,6 +272,7 @@ public class BoardManager : MonoBehaviour
     }
     public void showTextMessageYourTure()
     {
+        tureMessage.setTureInfo(whoseTurn(), yourWhite, number_of_move_reverse - number_of_move);
         ShowSign(textMessageYourMove);
     }
 
@@ -368,7 +378,7 @@ public class BoardManager : MonoBehaviour
                 {
                     try
                     {
-                        sendToServer.sendPlayerMove(selectedX, selectedY, SelectedChessman);
+                        sendToServer.sendPlayerMove(selectedX, selectedY, SelectedChessman, number_of_move+1, number_of_move_reverse);
                         MoveAndAttackChessman(selectedX, selectedY, true); //rusz wybrany pion na daną pozycję                    
                     }
                     catch (Exception e)
@@ -402,8 +412,10 @@ public class BoardManager : MonoBehaviour
     }
 
 
-    public void DSmoveChessMan(int zPolaX, int zPolaY, int naPoleX, int naPoleY)
+    public void DSmoveChessMan(int zPolaX, int zPolaY, int naPoleX, int naPoleY, int moveLeft, int move)
     {
+        
+        tureMessage.setTureInfo(whoseTurn(), !yourWhite, move-moveLeft);
         selectSpecificChessman(zPolaX, zPolaY);
         MoveAndAttackChessman(naPoleX, naPoleY, false);
     }
@@ -520,19 +532,27 @@ public class BoardManager : MonoBehaviour
     }
 
     public void UpdateMove() //funkcja przełącza aktywnego gracza
-    {
-
-        if (number_of_move < 2)
+    {  
+        if (number_of_move < number_of_move_reverse)
+        {
             number_of_move++;
-        if (number_of_move >= 2)
+            tureMessage.setTureInfo(whoseTurn(), yourWhite, number_of_move_reverse-number_of_move);
+        } 
+        if (number_of_move >= number_of_move_reverse)
         {
             DoTheEffects(false);
             sendToServer.sendEndTureToServer();
             isWhiteTurn = !isWhiteTurn;
             number_of_move = 0;
+            tureMessage.setTureInfo(whoseTurn(), !yourWhite, 2);
         }
     }
-
+  public  bool whoseTurn()
+    {
+        if ((isWhiteTurn && yourWhite)|| (!isWhiteTurn && !yourWhite))
+            return true;
+        return false;
+    }
 
     private int[] CalculateNewPosition(int newX, int newY, int CurrentX, int CurrentY) //funkcja potrzebna przy ataku która ustawia pion jedno pole "przed" celem w zależności od strony ataku
     {

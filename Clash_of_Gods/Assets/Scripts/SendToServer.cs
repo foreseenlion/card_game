@@ -49,9 +49,11 @@ public class SendToServer : MonoBehaviour
 
     // ACHTUNG!!!!  wszystko dodawane do JSONA musi byc w Stringach bo server nie zaraguje na Emit
 
-    public void sendSpawnToServer(int x, int y, int cardId)
+    public void sendSpawnToServer(int x, int y, int cardId, int pozostaloRuchow, int iloscRuchow)
     {
         spawn.Clear();
+        spawn.AddField("iloscRuchow", pozostaloRuchow.ToString());
+        spawn.AddField("pozostaloRuchow", iloscRuchow.ToString());
         spawn.AddField("PoleX", x.ToString());
         spawn.AddField("PoleY", y.ToString());
         spawn.AddField("cardId", cardId.ToString());
@@ -109,7 +111,7 @@ public class SendToServer : MonoBehaviour
         return deck_number;
     }
 
-    public void sendPlayerMove(int poleDoceloweX, int poleDoceloweY, ChessMan SelectedChessman)
+    public void sendPlayerMove(int poleDoceloweX, int poleDoceloweY, ChessMan SelectedChessman, int pozostaloRuchow, int iloscRuchow)
     {
         ruch.Clear();
         //Mechanizm id widze w ten sposob że albo server rozdaje id pionka ktore sa tworzone albo pionek tworzony u gracza podaje id drugiemu graczowi
@@ -119,6 +121,8 @@ public class SendToServer : MonoBehaviour
         //trzeba stworzy mechanizm idetyfikowania pionka po id
         ruch.AddField("idPionka", SelectedChessman.idFigure.ToString());
         // Czy pole startowe jest potrzebne jezeli mam id
+        ruch.AddField("iloscRuchow", pozostaloRuchow.ToString());
+        ruch.AddField("pozostaloRuchow", iloscRuchow.ToString());
         ruch.AddField("poleStartoweX", SelectedChessman.CurrentX.ToString());
         ruch.AddField("poleStartoweY", SelectedChessman.CurrentY.ToString());
         ruch.AddField("poleDoceloweX", poleDoceloweX.ToString());

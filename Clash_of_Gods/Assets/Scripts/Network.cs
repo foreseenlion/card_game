@@ -54,10 +54,12 @@ public class Network : MonoBehaviour
 		string poleX = evt.data.GetField("PoleX").ToString();
 		string poleY = evt.data.GetField("PoleY").ToString();
 		string id = evt.data.GetField("id").ToString();
-		//DSSpawnEnemy
-		Debug.Log("Spawn na pozycji x" + poleX + " y" + poleY + " id karty: " + id);
-		boardManager.SpawnEnemy(id[1], int.Parse(poleX), int.Parse(poleY));
-		Debug.Log("Spawn na pozycji x" + poleX + " y" + poleY + " id karty: " + id);
+
+		int iloscRuchow = int.Parse(evt.data.GetField("iloscRuchow").ToString().Substring(1, evt.data.GetField("iloscRuchow").ToString().Length - 2));
+		int pozostaloRuchow = int.Parse(evt.data.GetField("pozostaloRuchow").ToString().Substring(1, evt.data.GetField("pozostaloRuchow").ToString().Length - 2));
+
+		boardManager.SpawnEnemy(id[1], int.Parse(poleX), int.Parse(poleY), iloscRuchow,pozostaloRuchow);
+		
 	}
 
 
@@ -90,6 +92,7 @@ public class Network : MonoBehaviour
 		}
 		boardManager.showTextMessageYourTure();
 		boardManager.DoTheEffects(true);
+		
 
 
 	}
@@ -116,13 +119,17 @@ public class Network : MonoBehaviour
 	}
 
 	void onPlayerMove(SocketIOEvent evt)
-	{	
-
+	{
+		
 		int zPolaX = int.Parse(evt.data.GetField("poleStartoweX").ToString());
 		int zPolaY = int.Parse(evt.data.GetField("poleStartoweY").ToString());
 		int naPoleX = int.Parse(evt.data.GetField("poleDoceloweX").ToString());
 		int naPoleY = int.Parse(evt.data.GetField("poleDoceloweY").ToString());
-		boardManager.DSmoveChessMan(zPolaX,zPolaY,naPoleX,naPoleY);
+
+		int iloscRuchow = int.Parse(evt.data.GetField("iloscRuchow").ToString().Substring(1, evt.data.GetField("iloscRuchow").ToString().Length-2));
+		int pozostaloRuchow = int.Parse(evt.data.GetField("pozostaloRuchow").ToString().Substring(1, evt.data.GetField("pozostaloRuchow").ToString().Length - 2));
+
+		boardManager.DSmoveChessMan(zPolaX,zPolaY,naPoleX,naPoleY, iloscRuchow, pozostaloRuchow);
 
 	}
 
