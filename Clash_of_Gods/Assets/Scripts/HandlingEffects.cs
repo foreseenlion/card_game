@@ -52,11 +52,37 @@ public class HandlingEffects : MonoBehaviour
         else
         if (effects.length <= 0)
         {
+            if (effects.effectAnimation != null)
+            {
+                Debug.Log("jadro");
+                if (chcekIfThereIsSameEffect(effects, chess)) {
+                    Debug.Log("ciemnosci");
+                    deleteAnimation(effects.effectAnimation.name + "(Clone)", chess);
+                }
+                
+            }
             backToNormal(effects, chess);
             chess.Effects.Remove(effects);
         }
     }
     
+    bool chcekIfThereIsSameEffect(Effects effects, ChessMan chess)
+    {
+        int count=0;
+        foreach(Effects effects1 in chess.Effects)
+        {
+            if (effects.TypeOfEffect == effects1.TypeOfEffect)
+            {
+                count++;
+            }
+        }
+        if (count > 1)
+            return false;
+        return true;
+    }
+
+
+
     // Obsluguje efekty pojawienia sie na planszy ( wszystkich, wrogow, sojusznikow)
     public void DoTheEffectsAppear(string type, int value, string toEnemyAppearEffect)
     {
@@ -92,6 +118,23 @@ public class HandlingEffects : MonoBehaviour
         }
     }
 
+    void deleteAnimation(string name, ChessMan chess)
+    {
+        Debug.Log(chess.transform.Find(name).name);
+        try
+        {
+       
+            Destroy(chess.transform.Find(name).gameObject);
+        }
+        catch
+        {
+
+        }
+        
+     
+    }
+
+
     // switch efektow w trakcie atakowania przez stwory (stwor narzuca na innego cos podczas atakowania)
     public void setEffectWhenChamAttack(string TypeOfEffect, ChessMan SelectedChessman, ChessMan target)
     {
@@ -102,7 +145,8 @@ public class HandlingEffects : MonoBehaviour
                     target.Effects.Add(new Effects("dmg", SelectedChessman.ImposesValueEffect, SelectedChessman.ImposesLength, SelectedChessman.effectName, SelectedChessman.DescriptionEffect, true, 0, SelectedChessman.effectAnimation));
                     if (SelectedChessman.effectAnimation != null)
                     {
-                        Instantiate(SelectedChessman.effectAnimation, target.GetTileCenter(0.75f), Quaternion.Euler(0f, 0f, 0f), target.transform);
+                        if(target.transform.Find("fire(Clone)") ==null)
+                        Instantiate(SelectedChessman.effectAnimation, target.GetTileCenter(0.3f), Quaternion.Euler(0f, 0f, 0f), target.transform);
                     }
                     break;
                 }
