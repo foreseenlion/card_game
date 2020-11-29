@@ -91,11 +91,13 @@ public abstract class ChessMan : MonoBehaviour
         {
             hpMani = hp - value;
             c = Color.red;
+            BoardManager.Instance.DmgAnimation(this);
         }
         else
         {
             hpMani = value - hp;
             c = Color.green;
+            
         }
         showHpManiText(BoardManager.Instance.HpManipulationText, hpMani.ToString());
     }

@@ -45,6 +45,8 @@ public class BoardManager : MonoBehaviour
     public bool IsGameStart = false;
 
     public RuntimeAnimatorController DeadAnimator;
+    public RuntimeAnimatorController DmgAnimator;
+    public RuntimeAnimatorController EmptyAnimator;
 
     private MeterialChanges materialChange;
     public GameObject textMessage;
@@ -510,6 +512,14 @@ public class BoardManager : MonoBehaviour
         else
             target.Hp = HpLeft;
     }
+
+    public void DmgAnimation(ChessMan target)
+    {
+        target.GetComponent<Animator>().runtimeAnimatorController = EmptyAnimator;
+        target.GetComponent<Animator>().runtimeAnimatorController = DmgAnimator;
+        
+    }
+
 
 
     private void KillChessMan(ChessMan target)
