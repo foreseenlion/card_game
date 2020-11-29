@@ -76,13 +76,30 @@ public abstract class ChessMan : MonoBehaviour
         }
         set
         {
-            int hpMani = hp - value;
-            showHpManiText(BoardManager.Instance.HpManipulationText, hpMani.ToString());
+            showHpManipulation( value);
             setHpBar(value);
             hp = value;
 
         }
     }
+
+    void showHpManipulation(int value)
+    {
+        int hpMani;
+        Color c;
+        if (value < hp)
+        {
+            hpMani = hp - value;
+            c = Color.red;
+        }
+        else
+        {
+            hpMani = value - hp;
+            c = Color.green;
+        }
+        showHpManiText(BoardManager.Instance.HpManipulationText, hpMani.ToString());
+    }
+
     public int Dmg { get => dmg; set => dmg = value; }
     public bool IsWhite
     {

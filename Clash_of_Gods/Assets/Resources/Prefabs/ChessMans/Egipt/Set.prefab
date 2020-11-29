@@ -326,6 +326,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1942524991498240554}
   - component: {fileID: 4604166446774442490}
+  - component: {fileID: -1989889864969614459}
   m_Layer: 0
   m_Name: Set
   m_TagString: Untagged
@@ -391,6 +392,25 @@ MonoBehaviour:
   fly: 0
   MainGod: 0
   isYou: 0
+--- !u!95 &-1989889864969614459
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3219622834917912633}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3317650487423959619
 GameObject:
   m_ObjectHideFlags: 0

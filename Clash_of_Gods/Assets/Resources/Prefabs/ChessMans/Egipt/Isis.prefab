@@ -406,6 +406,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1046552509775457191}
   - component: {fileID: -2510247839023467529}
+  - component: {fileID: 6193564995186144735}
   m_Layer: 0
   m_Name: Isis
   m_TagString: Untagged
@@ -434,8 +435,8 @@ Transform:
   - {fileID: 3165391222380640872}
   - {fileID: 7422536740431375924}
   - {fileID: 5334930308383062887}
-  - {fileID: 6199303179766014051}
-  - {fileID: 4745162362574659279}
+  - {fileID: 5894568637127803602}
+  - {fileID: 2618321701677135661}
   - {fileID: 8702842294221902431}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -469,6 +470,25 @@ MonoBehaviour:
   fly: 1
   MainGod: 0
   isYou: 0
+--- !u!95 &6193564995186144735
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4097501804846340532}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4726734336346452986
 GameObject:
   m_ObjectHideFlags: 0
@@ -1058,7 +1078,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a639eea543de1ca4792ef44bde28b24b, type: 3}
---- !u!4 &4745162362574659279 stripped
+--- !u!4 &2618321701677135661 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7317242942299155023, guid: a639eea543de1ca4792ef44bde28b24b,
     type: 3}
@@ -1133,7 +1153,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6978315fb7884d499f517059ab335e3, type: 3}
---- !u!4 &6199303179766014051 stripped
+--- !u!4 &5894568637127803602 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 560117149034504299, guid: d6978315fb7884d499f517059ab335e3,
     type: 3}

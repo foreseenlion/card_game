@@ -982,6 +982,75 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f4c1ef973d635e498a267d8bd64f028, type: 3}
+--- !u!1001 &1279644556
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1046552509775457191, guid: ebc5659b642426e4e9ae881faf34b31c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1046552509775457191, guid: ebc5659b642426e4e9ae881faf34b31c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1046552509775457191, guid: ebc5659b642426e4e9ae881faf34b31c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1046552509775457191, guid: ebc5659b642426e4e9ae881faf34b31c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1046552509775457191, guid: ebc5659b642426e4e9ae881faf34b31c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1046552509775457191, guid: ebc5659b642426e4e9ae881faf34b31c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1046552509775457191, guid: ebc5659b642426e4e9ae881faf34b31c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1046552509775457191, guid: ebc5659b642426e4e9ae881faf34b31c,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1046552509775457191, guid: ebc5659b642426e4e9ae881faf34b31c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1046552509775457191, guid: ebc5659b642426e4e9ae881faf34b31c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1046552509775457191, guid: ebc5659b642426e4e9ae881faf34b31c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4097501804846340532, guid: ebc5659b642426e4e9ae881faf34b31c,
+        type: 3}
+      propertyPath: m_Name
+      value: Isis
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ebc5659b642426e4e9ae881faf34b31c, type: 3}
 --- !u!1001 &1372857805
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1194,7 +1263,7 @@ MonoBehaviour:
     type: 3}
   textMessageWaitForEnemy: {fileID: 7354835723556645804, guid: 64f5a5073e392cf43832aba73eee1ed2,
     type: 3}
-  HpManipulationText: {fileID: 2882818353125727756, guid: 35a17ae15638aef4984a7d02966463aa,
+  HpManipulationText: {fileID: 7903759652454312917, guid: 3bf94b7dcc4aae740992066c6bb0c4ba,
     type: 3}
   textTureMessage: {fileID: 1795766473}
   chamInfo: {fileID: 0}
@@ -1218,6 +1287,31 @@ MonoBehaviour:
     type: 3}
   SelectHightlightPrefab: {fileID: 462555056902882165, guid: 123585c55634a9d4ea5784b337f45e68,
     type: 3}
+--- !u!1 &1634096731 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4097501804846340532, guid: ebc5659b642426e4e9ae881faf34b31c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1279644556}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1634096732
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1634096731}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e4b057985c3de7e41aa9e523b9542e0f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1742347691 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: a9b4a8ba5d109934090b6850d6868b5f,

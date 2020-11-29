@@ -44,6 +44,8 @@ public class BoardManager : MonoBehaviour
 
     public bool IsGameStart = false;
 
+    public RuntimeAnimatorController DeadAnimator;
+
     private MeterialChanges materialChange;
     public GameObject textMessage;
     public GameObject textMessageYourMove;
@@ -512,6 +514,14 @@ public class BoardManager : MonoBehaviour
 
     private void KillChessMan(ChessMan target)
     {
+        try
+        {
+            target.GetComponent<Animator>().runtimeAnimatorController = DeadAnimator;
+        }
+        catch
+        {
+
+        }
         if (target.MainGod) //jeśli to król zakończ grę
         {
             GameManager.instance.Winner = isWhiteTurn ? "White" : "Black";
@@ -522,7 +532,7 @@ public class BoardManager : MonoBehaviour
             SceneManager.LoadScene("End_Game");
 
         }
-        Destroy(target.gameObject); //zniszczenie figury, automatycznie sniknie też z listy
+        Destroy(target.gameObject, 1.4f); //zniszczenie figury, automatycznie sniknie też z listy
     }
 
     private Vector3 GetTileCenter(int x, int y) //umieszczanie figury na środku danego pola

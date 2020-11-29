@@ -406,6 +406,7 @@ GameObject:
   m_Component:
   - component: {fileID: 649188472603198330}
   - component: {fileID: 4064633075271457984}
+  - component: {fileID: 2269537213723485667}
   m_Layer: 0
   m_Name: Bes
   m_TagString: Untagged
@@ -467,6 +468,25 @@ MonoBehaviour:
   fly: 0
   MainGod: 0
   isYou: 0
+--- !u!95 &2269537213723485667
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4564741961497194857}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7980740232547252825
 GameObject:
   m_ObjectHideFlags: 0

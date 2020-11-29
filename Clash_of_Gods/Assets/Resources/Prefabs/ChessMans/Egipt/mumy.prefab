@@ -169,6 +169,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2340489791688917008}
   - component: {fileID: 1385904266033933673}
+  - component: {fileID: 4263258382661407216}
   m_Layer: 0
   m_Name: mumy
   m_TagString: Untagged
@@ -225,6 +226,25 @@ MonoBehaviour:
   fly: 0
   MainGod: 0
   isYou: 0
+--- !u!95 &4263258382661407216
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1594360890157511171}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8637259371910814892
 GameObject:
   m_ObjectHideFlags: 0
