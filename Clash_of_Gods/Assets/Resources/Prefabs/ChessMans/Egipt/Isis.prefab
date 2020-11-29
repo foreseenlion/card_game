@@ -435,8 +435,8 @@ Transform:
   - {fileID: 3165391222380640872}
   - {fileID: 7422536740431375924}
   - {fileID: 5334930308383062887}
-  - {fileID: 5894568637127803602}
-  - {fileID: 2618321701677135661}
+  - {fileID: 6199303179766014051}
+  - {fileID: 4745162362574659279}
   - {fileID: 8702842294221902431}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -1078,7 +1078,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a639eea543de1ca4792ef44bde28b24b, type: 3}
---- !u!4 &2618321701677135661 stripped
+--- !u!4 &4745162362574659279 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7317242942299155023, guid: a639eea543de1ca4792ef44bde28b24b,
     type: 3}
@@ -1153,7 +1153,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6978315fb7884d499f517059ab335e3, type: 3}
---- !u!4 &5894568637127803602 stripped
+--- !u!4 &6199303179766014051 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 560117149034504299, guid: d6978315fb7884d499f517059ab335e3,
     type: 3}

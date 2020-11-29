@@ -1017,6 +1017,8 @@ MonoBehaviour:
   effectName: Set on fire
   PowreDescription: Sets fire to the comma for two turns
   move: Line
+  effectAnimation: {fileID: 5218029435438226454, guid: 8d2fe3f220f6e42498eb1c2030c06e4e,
+    type: 3}
   toAppearEffect: 
   toEnemyAppearEffect: all
   move_limit: 4

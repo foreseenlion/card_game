@@ -29,6 +29,8 @@ public abstract class ChessMan : MonoBehaviour
     public string PowreDescription;
     public string move;
 
+    public GameObject effectAnimation;
+
     public string toAppearEffect;
     // all, enemy, ally
     public string toEnemyAppearEffect = "all";
@@ -52,18 +54,18 @@ public abstract class ChessMan : MonoBehaviour
 
         }
     }
-    private Vector3 GetTileCenter() //umieszczanie figury na środku danego pola
+    public Vector3 GetTileCenter(float y) //umieszczanie figury na środku danego pola
     {
         Vector3 origin = Vector3.zero;
         origin.x += (1f * CurrentX) + 0.5f; //ustawianie na  srodku
         origin.z += (1f * CurrentY) + 0.5f;
-        origin.y += 2.1f;
+        origin.y += y;
         return origin;
     }
 
     public void showHpManiText(Text text, string texthp)
     {
-        Text textTmp = Instantiate(text, GetTileCenter(), Quaternion.Euler(0f, 0f, 0f), transform.Find("CanvasHpManipulation").GetComponent<Canvas>().transform);
+        Text textTmp = Instantiate(text, GetTileCenter(2.1f), Quaternion.Euler(0f, 0f, 0f), transform.Find("CanvasHpManipulation").GetComponent<Canvas>().transform);
         textTmp.GetComponent<Text>().text = texthp;
         Destroy(textTmp, 3f);
     }
@@ -91,7 +93,7 @@ public abstract class ChessMan : MonoBehaviour
         {
             hpMani = hp - value;
             c = Color.red;
-            BoardManager.Instance.DmgAnimation(this);
+            BoardManager.Instance.GetComponent<AnimationsHendling>().DmgAnimation(this);
         }
         else
         {
@@ -99,7 +101,7 @@ public abstract class ChessMan : MonoBehaviour
             c = Color.green;
             
         }
-        showHpManiText(BoardManager.Instance.HpManipulationText, hpMani.ToString());
+        showHpManiText(BoardManager.Instance.GetComponent<TextDevelop>().HpManipulationText, hpMani.ToString());
     }
 
     public int Dmg { get => dmg; set => dmg = value; }

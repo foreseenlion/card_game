@@ -60,7 +60,7 @@ void checkAppearEffect(ChessMan chessMan, bool enemy)
             else
                 result = chessMan.toEnemyAppearEffect;
             if (chessMan.toAppearEffect != null && chessMan.toAppearEffect != "")
-                BoardManager.Instance.DoTheEffectsAppear(chessMan.toAppearEffect, chessMan.ImposesValueEffect, result);
+                BoardManager.Instance.handlingEffects.DoTheEffectsAppear(chessMan.toAppearEffect, chessMan.ImposesValueEffect, result);
         }
         else
         {   if(chessMan.toAppearEffect== "hydra")
@@ -260,7 +260,7 @@ void checkAppearEffect(ChessMan chessMan, bool enemy)
                     int move_limit = temp.GetComponent<Card>().prefab.GetComponent<ChessMan>().Move_limit;
                     string power = temp.GetComponent<Card>().prefab.GetComponent<ChessMan>().PowreDescription;
                     List<Effects> effects = temp.GetComponent<Card>().prefab.GetComponent<ChessMan>().Effects;
-                    BoardManager.Instance.chamInfo.setChampInfo(BoardManager.Instance.yourWhite, name+"(Clone)", hp,
+                    BoardManager.Instance.GetComponent<TextDevelop>().chamInfo.setChampInfo(BoardManager.Instance.yourWhite, name+"(Clone)", hp,
                   dmg, move, move_limit, power, effects);
                 }
                 catch

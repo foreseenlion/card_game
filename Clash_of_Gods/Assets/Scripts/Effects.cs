@@ -12,8 +12,8 @@ public class Effects : MonoBehaviour
     public string description;
     public bool iterateEveryTurn;
     public int oldValue;
-
-    public Effects(string typeOfEffect, int valueEffect, int length, string name, string description, bool iterateEveryTurn, int oldValue = 0)
+    public GameObject effectAnimation;
+    public Effects(string typeOfEffect, int valueEffect, int length, string name, string description, bool iterateEveryTurn, int oldValue = 0, GameObject effectAnimation = null)
     {
         TypeOfEffect = typeOfEffect;
         this.valueEffect = valueEffect;
@@ -22,9 +22,10 @@ public class Effects : MonoBehaviour
         this.description = description;
         this.iterateEveryTurn = iterateEveryTurn;
         this.oldValue = oldValue;
+        this.effectAnimation = effectAnimation;
     }
 
-    
+
 
 
 }

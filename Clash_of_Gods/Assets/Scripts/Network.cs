@@ -90,11 +90,8 @@ public class Network : MonoBehaviour
 			boardManager.number_of_move = 0;
 			boardManager.changeTure(false);
 		}
-		boardManager.showTextMessageYourTure();
-		boardManager.DoTheEffects(true);
-		
-
-
+		BoardManager.Instance.GetComponent<TextDevelop>().showTextMessageYourTure();
+		boardManager.handlingEffects.DoTheEffects(true);
 	}
 
 	void onEnemyDeckBlack(SocketIOEvent evt)
