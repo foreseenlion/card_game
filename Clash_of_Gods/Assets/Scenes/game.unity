@@ -1194,6 +1194,8 @@ MonoBehaviour:
     type: 3}
   textMessageWaitForEnemy: {fileID: 7354835723556645804, guid: 64f5a5073e392cf43832aba73eee1ed2,
     type: 3}
+  HpManipulationText: {fileID: 2882818353125727756, guid: 35a17ae15638aef4984a7d02966463aa,
+    type: 3}
   textTureMessage: {fileID: 1795766473}
   chamInfo: {fileID: 0}
   tureMessage: {fileID: 0}

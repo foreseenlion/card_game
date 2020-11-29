@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public abstract class ChessMan : MonoBehaviour
 {
@@ -45,26 +45,47 @@ public abstract class ChessMan : MonoBehaviour
             if (healthBarHandler == null)
             {
                 healthBarHandler = GetComponentInChildren<HealthBarHandler>();
-               // healthBarHandler.getChampName(name);
+                // healthBarHandler.getChampName(name);
             }
             healthBarHandler.setRotation(value);
             isYou = value;
-           
+
         }
     }
+    private Vector3 GetTileCenter() //umieszczanie figury na środku danego pola
+    {
+        Vector3 origin = Vector3.zero;
+        origin.x += (1f * CurrentX) + 0.5f; //ustawianie na  srodku
+        origin.z += (1f * CurrentY) + 0.5f;
+        origin.y += 2.1f;
+        return origin;
+    }
 
-    public int Hp {
-        get {
-            return hp; 
+    public void showHpManiText(Text text, string texthp)
+    {
+        Text textTmp = Instantiate(text, GetTileCenter(), Quaternion.Euler(0f, 0f, 0f), transform.Find("CanvasHpManipulation").GetComponent<Canvas>().transform);
+        textTmp.GetComponent<Text>().text = texthp;
+        Destroy(textTmp, 3f);
+    }
+
+    public int Hp
+    {
+        get
+        {
+            return hp;
         }
-        set {
+        set
+        {
+            int hpMani = hp - value;
+            showHpManiText(BoardManager.Instance.HpManipulationText, hpMani.ToString());
             setHpBar(value);
             hp = value;
-            
+
         }
     }
     public int Dmg { get => dmg; set => dmg = value; }
-    public bool IsWhite { 
+    public bool IsWhite
+    {
 
         get
         {
@@ -76,7 +97,7 @@ public abstract class ChessMan : MonoBehaviour
             isWhite = value;
             ChangeColor();
         }
-    
+
     }
 
     public bool ChampIsInBoard1 { get => ChampIsInBoard; set => ChampIsInBoard = value; }
@@ -98,7 +119,7 @@ public abstract class ChessMan : MonoBehaviour
     protected int color; //zależnie od koloru inna jest orientacja (to co dla białego jest prawo dla czarnego lewo)
 
     [SerializeField]
-    int move_limit=8; //ile może wykonać ruchów
+    int move_limit = 8; //ile może wykonać ruchów
 
     [SerializeField]
     int hp = 3;
@@ -107,10 +128,10 @@ public abstract class ChessMan : MonoBehaviour
     int dmg = 1;
 
     [SerializeField]
-    bool fly= false ;
+    bool fly = false;
 
     [SerializeField]
-   public bool MainGod = false;
+    public bool MainGod = false;
 
     public bool isYou;
 
@@ -122,30 +143,31 @@ public abstract class ChessMan : MonoBehaviour
     }
     public void setHpBar(int value)
     {
-        
-        if (healthBarHandler== null) {
+
+        if (healthBarHandler == null)
+        {
             healthBarHandler = GetComponentInChildren<HealthBarHandler>();
-           // healthBarHandler.getChampName(name);
+            // healthBarHandler.getChampName(name);
         }
-        
+
         if (healthBarHandler.haveHpMax())
             healthBarHandler.setHpMax(hp);
         healthBarHandler.setHp(value);
     }
 
-    public void SetPosition(int x,int y) 
+    public void SetPosition(int x, int y)
     {
         CurrentX = x;
         CurrentY = y;
     }
     public virtual void UpdateMove() //virtual oznacza że klasa może zosta nadpisana, każdy rodzaj piona ma swój schemat ruchów
     {
-        possibleMoves = new bool[8,8];
+        possibleMoves = new bool[8, 8];
         possibleAtacks = new bool[8, 8];
     }
 
     //sprawdza czy ruch może zostać wykonany, hit jest potrzebne gdy pion wykonuje więcej niż jeden ruch w turze
-    protected void CheckMove(int _newX, int _newY, int hit)  
+    protected void CheckMove(int _newX, int _newY, int hit)
     {
 
         ChessMan c;
@@ -160,20 +182,20 @@ public abstract class ChessMan : MonoBehaviour
         {
             if (!fly)
                 hits[hit] = false;
-            
+
         }
-        
+
         if (c != null && this.isWhite != c.isWhite) //jeśli na lini jest przeciwnik zaatakuj go
         {
             possibleAtacks[_newX, _newY] = true;
             possibleMoves[_newX, _newY] = false;
             if (!fly)
-              hits[hit] = false; //jeżeli podczas pętli trafimy na sojusznika lub wroga nie sprawdzamy dalej danego kierunku 
+                hits[hit] = false; //jeżeli podczas pętli trafimy na sojusznika lub wroga nie sprawdzamy dalej danego kierunku 
         }
 
     }
 
-    protected void CheckMove(int _newX, int _newY) 
+    protected void CheckMove(int _newX, int _newY)
     {
         ChessMan c;
         c = BoardManager.Instance.ChessMens[_newX, _newY];
@@ -184,7 +206,7 @@ public abstract class ChessMan : MonoBehaviour
         {
             possibleAtacks[_newX, _newY] = true;
             possibleMoves[_newX, _newY] = false;
-            
+
         }
 
     }
@@ -194,7 +216,7 @@ public abstract class ChessMan : MonoBehaviour
         ChessMan c;
         c = BoardManager.Instance.ChessMens[_newX, _newY];
 
-        
+
         if (c != null && this.isWhite != c.isWhite) //jeśli na lini jest przeciwnik zaatakuj go
         {
             possibleAtacks[_newX, _newY] = true;

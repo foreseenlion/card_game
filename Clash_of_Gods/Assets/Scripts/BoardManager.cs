@@ -51,6 +51,8 @@ public class BoardManager : MonoBehaviour
     GameObject signWaitForPlayer;
     HandlingEffects handlingEffects;
 
+    public Text HpManipulationText;
+
     public GameObject textTureMessage;
 
     public ChamInfo chamInfo;
