@@ -9,4 +9,8 @@ public class Load_Choose_God : MonoBehaviour
     {
         SceneManager.LoadScene("Choose_God");
     }
+    public void changeSceneState()
+    {
+        SceneManager.LoadScene("stats");
+    }
 }

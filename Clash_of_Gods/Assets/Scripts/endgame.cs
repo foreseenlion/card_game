@@ -28,6 +28,7 @@ public class endgame : MonoBehaviour
         }  
         btn = FindObjectOfType<Button>();
         btn.onClick.AddListener(goToMenu);
+        statMenager();
     }
 
     void Update()
@@ -45,5 +46,67 @@ public class endgame : MonoBehaviour
     {
         SceneManager.LoadScene("Choose_God");
     }
+
+
+    public void statMenager()
+    {
+        Mystat mystat = new Mystat(0,0,0,0,0,0,0,0,0,0,0);
+        mystat.gameCount = 1;
+        if (!myReligion.youWin)
+            mystat.winCount = 1;
+        else mystat.lossCount = 1;
+
+        switch (myReligion.religion)
+        {
+            case "G":
+                {
+                    mystat.grecjaCount = 1;
+                    break;
+                }
+            case "S":
+                {
+                    mystat.slavCount = 1;
+                    break;
+                }
+            case "N":
+                {
+                    mystat.nordCount = 1;
+                    break;
+                }
+            case "E":
+                {
+                    mystat.egipCount = 1;
+                    break;
+                }
+        }
+
+        switch (myReligion.enemyReligion)
+        {
+            case "G":
+                {
+                    mystat.grecjaEnemyCount = 1;
+                    break;
+                }
+            case "S":
+                {
+                    mystat.slavEnemyCount = 1;
+                    break;
+                }
+            case "N":
+                {
+                    mystat.nordEnemyCount = 1;
+                    break;
+                }
+            case "E":
+                {
+                    mystat.egipEnemyCount = 1;
+                    break;
+                }
+        }
+        stat.SaveStat(mystat);
+
+    }
+    
+
 
 }

@@ -77,6 +77,7 @@ public class BoardManager : MonoBehaviour
 
     public void SetEnemyDecks()
     {
+        myReligion.enemyReligion = enemyDeckId[2].ToString();
         if (deckId[1] == '1')
         {
             WhiteDeckHide.InstantiateDeck(SetDeckNumber(enemyDeckId));
