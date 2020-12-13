@@ -385,11 +385,12 @@ MonoBehaviour:
   effectName: 
   PowreDescription: When he shows up he gives his ally 2 dmg
   move: Cross
+  effectAnimation: {fileID: 0}
   toAppearEffect: adddmg
   toEnemyAppearEffect: ally
   move_limit: 2
   hp: 10
-  dmg: 3
+  dmg: 1
   fly: 1
   MainGod: 0
   isYou: 0

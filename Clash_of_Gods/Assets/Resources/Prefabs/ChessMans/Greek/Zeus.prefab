@@ -543,7 +543,7 @@ MonoBehaviour:
   effectAnimation: {fileID: 0}
   toAppearEffect: 
   toEnemyAppearEffect: all
-  move_limit: 2
+  move_limit: 1
   hp: 15
   dmg: 3
   fly: 1

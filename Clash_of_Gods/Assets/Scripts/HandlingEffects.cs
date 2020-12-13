@@ -120,18 +120,14 @@ public class HandlingEffects : MonoBehaviour
 
     void deleteAnimation(string name, ChessMan chess)
     {
-        Debug.Log(chess.transform.Find(name).name);
         try
         {
-       
             Destroy(chess.transform.Find(name).gameObject);
         }
         catch
         {
 
         }
-        
-     
     }
 
 

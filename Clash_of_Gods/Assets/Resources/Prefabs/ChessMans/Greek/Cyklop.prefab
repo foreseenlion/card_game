@@ -222,15 +222,16 @@ MonoBehaviour:
   PowreDescription: He has a problem with stereoscopic vision, but it doesn't stop
     him from throwing stones
   move: Square
+  effectAnimation: {fileID: 0}
   toAppearEffect: 
   toEnemyAppearEffect: 1
   move_limit: 2
   hp: 6
   dmg: 2
-  fly: 0
+  fly: 1
   MainGod: 0
   isYou: 0
-  movewidth: 2
+  movewidth: 1
 --- !u!95 &7282813458028229506
 Animator:
   serializedVersion: 3

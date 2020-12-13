@@ -223,12 +223,13 @@ MonoBehaviour:
   PowreDescription: Won't you have a drink with me?  After an attack, it lowers the
     enemy's attack by 3
   move: Cross
+  effectAnimation: {fileID: 0}
   toAppearEffect: 
   toEnemyAppearEffect: all
   move_limit: 2
   hp: 3
   dmg: 1
-  fly: 0
+  fly: 1
   MainGod: 0
   isYou: 0
   movewidth: 1

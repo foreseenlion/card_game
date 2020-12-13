@@ -466,12 +466,13 @@ MonoBehaviour:
   effectName: 
   PowreDescription: 
   move: Line
+  effectAnimation: {fileID: 0}
   toAppearEffect: 
   toEnemyAppearEffect: all
-  move_limit: 5
+  move_limit: 4
   hp: 8
   dmg: 2
-  fly: 1
+  fly: 0
   MainGod: 0
   isYou: 0
   movewidth: 0

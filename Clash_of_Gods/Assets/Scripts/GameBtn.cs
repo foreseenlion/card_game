@@ -23,7 +23,7 @@ public class GameBtn : MonoBehaviour
         if (BoardManager.Instance.IsGameStart)
         {
             BoardManager.Instance.sendToServer.sendDC();
-            myReligion.youWin = false;
+            myReligion.youWin = true;
             SceneManager.LoadScene("End_Game");
 
         }

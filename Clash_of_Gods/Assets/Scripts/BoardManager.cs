@@ -139,6 +139,8 @@ public class BoardManager : MonoBehaviour
 
     private void setGods(CardManager you, CardManager enemy)
     {
+        Debug.Log(DeckId);
+        Debug.Log(enemyDeckId);
         you.spawnMainGods(3, 0, false);
         enemy.spawnMainGods(4, 7, true);
     }
