@@ -6,16 +6,41 @@ using UnityEngine.UI;
 
 public class stat : MonoBehaviour
 {
-    public GameObject text;
+    public GameObject text_gameCount;
+    public GameObject text_winCount;
+    public GameObject text_lossCount;
+    public GameObject text_grecjaCount;
+    public GameObject text_egipCount;
+    public GameObject text_nordCount;
+    public GameObject text_slavCount;
+    public GameObject text_grecjaEnemyCount;
+    public GameObject text_egipEnemyCount;
+    public GameObject text_nordEnemyCount;
+    public GameObject text_slavEnemyCount;
 
     private Mystat mystat;
     // Start is called before the first frame update
     void Start()
     {
         mystat = JsonUtility.FromJson<Mystat>(ReadStat());
-        text.GetComponent<Text>().text = createText();
+        //text.GetComponent<Text>().text = createText();
 
+        //Put data from "mystat" to text in Statistics_Menu Scene
+        text_gameCount.GetComponent<Text>().text = mystat.gameCount.ToString();
+        text_winCount.GetComponent<Text>().text = mystat.winCount.ToString();
+        text_lossCount.GetComponent<Text>().text = mystat.lossCount.ToString();
+        text_grecjaCount.GetComponent<Text>().text = mystat.grecjaCount.ToString();
+        text_egipCount.GetComponent<Text>().text = mystat.egipCount.ToString();
+        text_nordCount.GetComponent<Text>().text = mystat.nordCount.ToString();
+        text_slavCount.GetComponent<Text>().text = mystat.slavCount.ToString();
+        text_grecjaEnemyCount.GetComponent<Text>().text = mystat.grecjaEnemyCount.ToString();
+        text_egipEnemyCount.GetComponent<Text>().text = mystat.egipEnemyCount.ToString();
+        text_nordEnemyCount.GetComponent<Text>().text = mystat.nordEnemyCount.ToString();
+        text_slavEnemyCount.GetComponent<Text>().text = mystat.slavEnemyCount.ToString();
     }
+
+
+
     public string createText()
     {
         string result = "";
@@ -90,7 +115,7 @@ public class stat : MonoBehaviour
             mystat.slavEnemyCount + oldMyStat.slavEnemyCount,
             mystat.nordEnemyCount + oldMyStat.nordEnemyCount,
             mystat.egipEnemyCount + oldMyStat.egipEnemyCount
- );
+        );
     }
 
 }
