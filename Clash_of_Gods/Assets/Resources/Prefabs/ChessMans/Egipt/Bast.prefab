@@ -169,7 +169,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4632004751019730166}
   - component: {fileID: -2009653125781701078}
-  - component: {fileID: 4997669609823839170}
+  - component: {fileID: 2752312379576794502}
   m_Layer: 0
   m_Name: Bast
   m_TagString: Untagged
@@ -215,7 +215,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &4997669609823839170
+--- !u!114 &2752312379576794502
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -224,7 +224,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8508273998594119397}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ab6f2a69017a8a42bf6eeff5b192013, type: 3}
+  m_Script: {fileID: 11500000, guid: 1aa5d09a92e9af648ba5a921a056082a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   range: 0
@@ -239,13 +239,21 @@ MonoBehaviour:
   effectAnimation: {fileID: 0}
   toAppearEffect: 
   toEnemyAppearEffect: all
-  move_limit: 2
+  move_limit: 8
   hp: 3
   dmg: 1
   fly: 0
   MainGod: 0
   isYou: 0
-  movewidth: 3
+  movewidth: 0
+  A: 000000000000000000000000
+  B: 000000000000000000000000
+  C: 000000000000000001000000
+  D: 
+  E: 
+  F: 
+  G: 
+  H: 
 --- !u!1001 &2290431653523565775
 PrefabInstance:
   m_ObjectHideFlags: 0
