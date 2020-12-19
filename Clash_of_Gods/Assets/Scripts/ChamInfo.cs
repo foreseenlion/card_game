@@ -10,7 +10,7 @@ public class ChamInfo : MonoBehaviour
 
     }
 
-    public void setChampInfo(bool iswhite,string nameChamp, int hp, int dmg, string move, int movelimit, string powerDes, List<Effects> effects)
+    public void setChampInfo(bool iswhite,string nameChamp, int hp, int dmg,  int movelimit, string powerDes, List<Effects> effects)
     {
         string activeEfect = "";
         if (effects.Count>0)
@@ -36,11 +36,10 @@ public class ChamInfo : MonoBehaviour
         string nameLine = CheckIfTheVariableHasAValue(name + "\n",name);
         string HpLine = CheckIfTheVariableHasAValue("Hp: " + hp + "\n",hp);
         string dmgLine = "Dmg: " + dmg + "\n";
-        string moveLine = CheckIfTheVariableHasAValue("Move: " + move + "\n",move);
         string movelimitLine = CheckIfTheVariableHasAValue("Move limit: " + movelimit + "\n",movelimit);
         string powerDesLine = CheckIfTheVariableHasAValue("Power: " + powerDes, powerDes);
 
-        GetComponent<Text>().text = nameLine + HpLine + dmgLine + moveLine + movelimitLine + activeEfect + powerDesLine;
+        GetComponent<Text>().text = nameLine + HpLine + dmgLine +  movelimitLine + activeEfect + powerDesLine;
     }
 
     public string CheckIfTheVariableHasAValue(string value, string valueToCheck)

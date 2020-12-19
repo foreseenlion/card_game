@@ -54,9 +54,9 @@ public class HandlingEffects : MonoBehaviour
         {
             if (effects.effectAnimation != null)
             {
-                Debug.Log("jadro");
+              
                 if (chcekIfThereIsSameEffect(effects, chess)) {
-                    Debug.Log("ciemnosci");
+                    
                     deleteAnimation(effects.effectAnimation.name + "(Clone)", chess);
                 }
                 
@@ -152,6 +152,12 @@ public class HandlingEffects : MonoBehaviour
                    getEffectTure("nodmg", SelectedChessman.ImposesValueEffect, target);
                     break;
                 }
+            case "youremine":
+                {
+                    target.Effects.Add(new Effects("youremine", SelectedChessman.ImposesValueEffect, SelectedChessman.ImposesLength, SelectedChessman.effectName, SelectedChessman.DescriptionEffect, false, 0));
+                    getEffectTure("youremine", SelectedChessman.ImposesValueEffect, target);
+                    break;
+                }
         }
     }
 
@@ -164,6 +170,9 @@ public class HandlingEffects : MonoBehaviour
                 break;
             case "nodmg":
                 BackAttackReduction(effects.oldValue, chessMan);
+                break;
+            case "youremine":
+                youremineBack( chessMan);
                 break;
         }
     }
@@ -185,6 +194,9 @@ public class HandlingEffects : MonoBehaviour
             case "hydra":
                 addDmg(valueEffect, chessMan);
                 break;
+            case "youremine":
+                youremine(chessMan);
+                break;
         }
     }
 
@@ -192,6 +204,14 @@ public class HandlingEffects : MonoBehaviour
     {
         chessMan.Dmg+= valueEffect;
     }
+    public void youremine( ChessMan chessMan)
+    {
+        chessMan.IsWhite = !chessMan.IsWhite;
+        chessMan.transform.rotation=  Quaternion.Euler(0,  chessMan.transform.rotation.y + 180, 0);
+        chessMan.GetComponentInChildren<SideSign>().setColor(chessMan.IsWhite);
+        chessMan.healthBarHandler.setRotation(true);
+    }
+
 
     public void timeDmgTure(int valueEffect, ChessMan chessMan)
     {
@@ -223,5 +243,14 @@ public class HandlingEffects : MonoBehaviour
             chessMan.Dmg = valueEffect;
     }
 
-
+    void youremineBack( ChessMan chessMan)
+    {
+        Debug.Log("enter");
+        chessMan.IsWhite = !chessMan.IsWhite;
+        Debug.Log(chessMan.transform.rotation.y);
+        chessMan.transform.rotation = Quaternion.Euler(0, chessMan.transform.rotation.y , 0);
+        Debug.Log(chessMan.transform.rotation.y);
+        chessMan.GetComponentInChildren<SideSign>().setColor(chessMan.IsWhite);
+        chessMan.healthBarHandler.transform.rotation = Quaternion.Euler(0, chessMan.transform.rotation.y, 0);
+    }
 }

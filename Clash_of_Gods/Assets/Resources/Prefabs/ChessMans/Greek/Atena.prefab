@@ -404,8 +404,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1249063013704010364}
-  - component: {fileID: -3807704298741722607}
   - component: {fileID: -6874991753457836828}
+  - component: {fileID: -6737133866956551587}
   m_Layer: 0
   m_Name: Atena
   m_TagString: Untagged
@@ -445,37 +445,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-3807704298741722607
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2814408822376822895}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e65e8aabece247249b3b100e4b32f3ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 0
-  Effects: []
-  ImposesValueEffect: 0
-  ImposesLength: 0
-  TypeOfEffect: 
-  DescriptionEffect: 
-  effectName: 
-  PowreDescription: 
-  move: Line
-  effectAnimation: {fileID: 0}
-  toAppearEffect: 
-  toEnemyAppearEffect: all
-  move_limit: 4
-  hp: 8
-  dmg: 2
-  fly: 0
-  MainGod: 0
-  isYou: 0
-  movewidth: 0
 --- !u!95 &-6874991753457836828
 Animator:
   serializedVersion: 3
@@ -495,6 +464,45 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-6737133866956551587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2814408822376822895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aa5d09a92e9af648ba5a921a056082a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 0
+  Effects: []
+  ImposesValueEffect: 0
+  ImposesLength: 0
+  TypeOfEffect: 
+  DescriptionEffect: 
+  effectName: 
+  PowreDescription: 
+  move: 
+  effectAnimation: {fileID: 0}
+  toAppearEffect: 
+  toEnemyAppearEffect: all
+  move_limit: 8
+  hp: 6
+  dmg: 6
+  fly: 0
+  MainGod: 0
+  isYou: 0
+  movewidth: 0
+  A: 0000000001000000
+  B: 000000000000000001000000
+  C: 0000000001000000
+  D: 
+  E: 
+  F: 
+  G: 
+  H: 
 --- !u!1 &3244200058387404963
 GameObject:
   m_ObjectHideFlags: 0

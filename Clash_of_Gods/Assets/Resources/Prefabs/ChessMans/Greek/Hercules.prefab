@@ -404,8 +404,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6763969530298246506}
-  - component: {fileID: -5883673909990785361}
   - component: {fileID: 1578112292436826869}
+  - component: {fileID: -1139347755846717501}
   m_Layer: 0
   m_Name: Hercules
   m_TagString: Untagged
@@ -437,37 +437,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-5883673909990785361
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7747646749739112313}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e65e8aabece247249b3b100e4b32f3ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 0
-  Effects: []
-  ImposesValueEffect: 0
-  ImposesLength: 0
-  TypeOfEffect: 
-  DescriptionEffect: 
-  effectName: 
-  PowreDescription: 
-  move: Cross
-  effectAnimation: {fileID: 0}
-  toAppearEffect: 
-  toEnemyAppearEffect: all
-  move_limit: 1
-  hp: 8
-  dmg: 4
-  fly: 1
-  MainGod: 0
-  isYou: 0
-  movewidth: 2
 --- !u!95 &1578112292436826869
 Animator:
   serializedVersion: 3
@@ -487,6 +456,45 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-1139347755846717501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7747646749739112313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aa5d09a92e9af648ba5a921a056082a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 0
+  Effects: []
+  ImposesValueEffect: 0
+  ImposesLength: 0
+  TypeOfEffect: 
+  DescriptionEffect: 
+  effectName: 
+  PowreDescription: 
+  move: 
+  effectAnimation: {fileID: 0}
+  toAppearEffect: 
+  toEnemyAppearEffect: all
+  move_limit: 8
+  hp: 10
+  dmg: 6
+  fly: 0
+  MainGod: 0
+  isYou: 0
+  movewidth: 0
+  A: 0000000001000000
+  B: 0000000001000000
+  C: 
+  D: 
+  E: 
+  F: 
+  G: 
+  H: 
 --- !u!1 &8306583942669422958
 GameObject:
   m_ObjectHideFlags: 0

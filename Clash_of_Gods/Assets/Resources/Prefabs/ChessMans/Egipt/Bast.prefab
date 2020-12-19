@@ -230,12 +230,11 @@ MonoBehaviour:
   range: 0
   Effects: []
   ImposesValueEffect: 0
-  ImposesLength: 0
-  TypeOfEffect: 
+  ImposesLength: 2
+  TypeOfEffect: youremine
   DescriptionEffect: 
   effectName: 
   PowreDescription: 
-  move: 
   effectAnimation: {fileID: 0}
   toAppearEffect: 
   toEnemyAppearEffect: all
@@ -245,15 +244,22 @@ MonoBehaviour:
   fly: 0
   MainGod: 0
   isYou: 0
-  movewidth: 0
   A: 000000000000000000000000
-  B: 000000000000000000000000
-  C: 000000000000000001000000
+  B: 00000000000000000100000001000000
+  C: 000000000000000000000000
   D: 
   E: 
   F: 
   G: 
   H: 
+  A_range: 
+  B_range: 
+  C_range: 
+  D_range: 
+  E_range: 
+  F_range: 
+  G_range: 
+  H_range: 
 --- !u!1001 &2290431653523565775
 PrefabInstance:
   m_ObjectHideFlags: 0

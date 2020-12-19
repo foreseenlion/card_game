@@ -27,7 +27,7 @@ public abstract class ChessMan : MonoBehaviour
     public string DescriptionEffect;
     public string effectName;
     public string PowreDescription;
-    public string move;
+    
 
     public GameObject effectAnimation;
 
@@ -156,7 +156,7 @@ public abstract class ChessMan : MonoBehaviour
 
     public bool isYou;
 
-    HealthBarHandler healthBarHandler;
+    public HealthBarHandler healthBarHandler;
 
     private void ChangeColor()
     {

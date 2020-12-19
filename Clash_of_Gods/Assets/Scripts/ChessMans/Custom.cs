@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Custom : ChessMan
 {
-    public int movewidth = 0;
 
     //pole a wychodzi z pionka, nastepne litery to kolejne kolumny 
     public int[] A;
@@ -16,7 +15,16 @@ public class Custom : ChessMan
     public int[] G;
     public int[] H;
 
-    int width;
+    #region
+    public int[] A_range;
+    public int[] B_range;
+    public int[] C_range;
+    public int[] D_range;
+    public int[] E_range;
+    public int[] F_range;
+    public int[] G_range;
+    public int[] H_range;
+    #endregion
     public override void UpdateMove()
     {
         possibleMoves = new bool[8, 8];
@@ -105,9 +113,21 @@ public class Custom : ChessMan
     }
 
 
-    public void RookMovement()
+    List<int[]> rangeList()
     {
-
+        List<int[]> range = new List<int[]>();
+        range.Add(A_range);
+        range.Add(B_range);
+        range.Add(C_range);
+        range.Add(D_range);
+        range.Add(E_range);
+        range.Add(F_range);
+        range.Add(G_range);
+        range.Add(H_range);
+        return range;
+    }
+    List<int[]> positonsList()
+    {
         List<int[]> positons = new List<int[]>();
         positons.Add(A);
         positons.Add(B);
@@ -117,15 +137,15 @@ public class Custom : ChessMan
         positons.Add(F);
         positons.Add(G);
         positons.Add(H);
+        return positons;
+    }
 
-
-        for (int i = 0; i < hits.Length; i++)
-            hits[i] = true;
-
+    void setMoveAndAttack(List<int[]> positonsOrAttacks, bool isMove)
+    {
         for (int i = 0; i <= 3; i++)
         {
             int x = 0;
-            foreach (int[] column in positons)
+            foreach (int[] column in positonsOrAttacks)
             {
                 int y = 0;
                 foreach (int pos in column)
@@ -137,13 +157,16 @@ public class Custom : ChessMan
                         {
                             try
                             {
+                                if(isMove)
                                 CheckMove(newX, newY, i);
+                                else
+                                CheckAtack(newX, newY);
                             }
                             catch
                             {
 
                             }
-                            
+
                         }
                     }
                     y++;
@@ -151,22 +174,20 @@ public class Custom : ChessMan
                 x++;
             }
         }
-          
+    }
 
-        //for (int i = 1; i <= Move_limit; i++)
-        //{
-        //    try { Move(i, "left", 0, false); } catch { }
-        //    try { Move(i, "right", 1, false); } catch { }
-        //    try { Move(i, "up", 2, false); } catch { }
-        //    try { Move(i, "down", 3, false); } catch { }
-        //}
-        //if (range != 0)
-        //    for (int i = 1; i <= range; i++)
-        //    {
-        //        try { Move(i, "left", 0, true); } catch { }
-        //        try { Move(i, "right", 1, true); } catch { }
-        //        try { Move(i, "up", 2, true); } catch { }
-        //        try { Move(i, "down", 3, true); } catch { }
-        //    }
+
+    public void RookMovement()
+    {
+
+        List<int[]> positons = positonsList();
+        List<int[]> range = rangeList();
+
+        for (int i = 0; i < hits.Length; i++)
+            hits[i] = true;
+        setMoveAndAttack(positons, true);
+        setMoveAndAttack(range, false);
+
+
     }
 }

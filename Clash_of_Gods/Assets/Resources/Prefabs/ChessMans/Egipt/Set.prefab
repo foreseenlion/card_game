@@ -325,8 +325,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1942524991498240554}
-  - component: {fileID: 4604166446774442490}
   - component: {fileID: -1989889864969614459}
+  - component: {fileID: 8803928598049377470}
   m_Layer: 0
   m_Name: Set
   m_TagString: Untagged
@@ -363,35 +363,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4604166446774442490
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3219622834917912633}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0b59bc1ccbf0c34397201c9ae3060b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 0
-  Effects: []
-  ImposesValueEffect: 0
-  ImposesLength: 0
-  TypeOfEffect: 
-  DescriptionEffect: 
-  effectName: 
-  PowreDescription: 
-  move: 
-  toAppearEffect: 
-  toEnemyAppearEffect: all
-  move_limit: 6
-  hp: 2
-  dmg: 3
-  fly: 0
-  MainGod: 0
-  isYou: 0
 --- !u!95 &-1989889864969614459
 Animator:
   serializedVersion: 3
@@ -411,6 +382,52 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8803928598049377470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3219622834917912633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aa5d09a92e9af648ba5a921a056082a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 0
+  Effects: []
+  ImposesValueEffect: 0
+  ImposesLength: 0
+  TypeOfEffect: 
+  DescriptionEffect: 
+  effectName: 
+  PowreDescription: 
+  move: 
+  effectAnimation: {fileID: 0}
+  toAppearEffect: 
+  toEnemyAppearEffect: all
+  move_limit: 8
+  hp: 5
+  dmg: 5
+  fly: 0
+  MainGod: 0
+  isYou: 0
+  A: 000000000100000001000000
+  B: 000000000000000001000000
+  C: 0000000001000000
+  D: 
+  E: 
+  F: 
+  G: 
+  H: 
+  A_range: 00000000000000000000000001000000
+  B_range: 00000000000000000000000001000000
+  C_range: 
+  D_range: 0000000001000000
+  E_range: 
+  F_range: 
+  G_range: 
+  H_range: 
 --- !u!1 &3317650487423959619
 GameObject:
   m_ObjectHideFlags: 0
