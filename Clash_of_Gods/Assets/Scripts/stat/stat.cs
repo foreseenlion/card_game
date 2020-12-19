@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
-
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 public class stat : MonoBehaviour
 {
     public GameObject text_gameCount;
@@ -98,7 +100,10 @@ public class stat : MonoBehaviour
                 writer.Write(json);
             }
         }
-        UnityEditor.AssetDatabase.Refresh();
+#if UNITY_EDITOR
+        AssetDatabase.Refresh();
+#endif
+
     }
 
     static Mystat sumStat(Mystat mystat, Mystat oldMyStat)

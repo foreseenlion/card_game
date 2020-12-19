@@ -11,6 +11,6 @@ public class Load_Choose_God : MonoBehaviour
     }
     public void changeSceneState()
     {
-        SceneManager.LoadScene("stats");
+        SceneManager.LoadScene("Statistics_Menu");
     }
 }
