@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Load_Choose_God : MonoBehaviour
+public class LoadScene : MonoBehaviour
 {
-    public void changeScene()
+    public void loadGodScene()
     {
         SceneManager.LoadScene("Choose_God");
     }
-    public void changeSceneState()
+    public void loadStatsScene()
     {
         SceneManager.LoadScene("Statistics_Menu");
     }
+
 }
