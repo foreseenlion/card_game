@@ -234,7 +234,9 @@ MonoBehaviour:
   TypeOfEffect: youremine
   DescriptionEffect: 
   effectName: 
-  PowreDescription: 
+  PowreDescription: After hitting an enemy, it takes control of it for two turns
+  imageMove: {fileID: 21300000, guid: 3152f066def37e84db5a30c60d78b6b2, type: 3}
+  imageAttack: {fileID: 21300000, guid: 884246af3c6b965418a4da2921c356c4, type: 3}
   effectAnimation: {fileID: 0}
   toAppearEffect: 
   toEnemyAppearEffect: all
@@ -244,6 +246,7 @@ MonoBehaviour:
   fly: 0
   MainGod: 0
   isYou: 0
+  healthBarHandler: {fileID: 0}
   A: 000000000000000000000000
   B: 00000000000000000100000001000000
   C: 000000000000000000000000

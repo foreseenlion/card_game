@@ -555,21 +555,22 @@ MonoBehaviour:
   Effects: []
   ImposesValueEffect: 0
   ImposesLength: 0
-  TypeOfEffect: 
+  TypeOfEffect: halflife
   DescriptionEffect: 
   effectName: 
-  PowreDescription: 
-  move: 
+  PowreDescription: ' His attack reduces the opponent''s hp by half'
+  imageMove: {fileID: 21300000, guid: ae00e1f1f229b5a459f70f734fa41476, type: 3}
+  imageAttack: {fileID: 21300000, guid: 5bcafd07088401c478a15330e2c2f188, type: 3}
   effectAnimation: {fileID: 0}
   toAppearEffect: 
   toEnemyAppearEffect: all
   move_limit: 8
   hp: 12
-  dmg: 3
+  dmg: 0
   fly: 0
   MainGod: 0
   isYou: 0
-  movewidth: 0
+  healthBarHandler: {fileID: 0}
   A: 000000000100000001000000
   B: 0000000001000000
   C: 
@@ -578,6 +579,14 @@ MonoBehaviour:
   F: 
   G: 
   H: 
+  A_range: 
+  B_range: 
+  C_range: 
+  D_range: 
+  E_range: 
+  F_range: 
+  G_range: 
+  H_range: 
 --- !u!1 &5075617675288833383
 GameObject:
   m_ObjectHideFlags: 0

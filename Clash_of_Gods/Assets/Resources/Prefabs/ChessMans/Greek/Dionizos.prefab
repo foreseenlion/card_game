@@ -241,7 +241,8 @@ MonoBehaviour:
   effectName: Drunk
   PowreDescription: Won't you have a drink with me?  After an attack, it lowers the    
     enemy's attack by 3
-  move: Cross
+  imageMove: {fileID: 21300000, guid: 63b14031911edd14fa53edef23789aba, type: 3}
+  imageAttack: {fileID: 21300000, guid: ed876de5343196b41a802789fbbabfd3, type: 3}
   effectAnimation: {fileID: 0}
   toAppearEffect: 
   toEnemyAppearEffect: all
@@ -251,6 +252,7 @@ MonoBehaviour:
   fly: 0
   MainGod: 0
   isYou: 0
+  healthBarHandler: {fileID: 0}
 --- !u!1 &3470170710788820933
 GameObject:
   m_ObjectHideFlags: 0

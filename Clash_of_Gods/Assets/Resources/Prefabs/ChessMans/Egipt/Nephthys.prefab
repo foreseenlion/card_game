@@ -716,17 +716,18 @@ MonoBehaviour:
   DescriptionEffect: 
   effectName: 
   PowreDescription: 
-  move: 
+  imageMove: {fileID: 21300000, guid: 648fac5e64d1aaf44900b73f9a01899b, type: 3}
+  imageAttack: {fileID: 21300000, guid: de02d63b7984ccf4d9e1a1b0344a50f0, type: 3}
   effectAnimation: {fileID: 0}
-  toAppearEffect: 
-  toEnemyAppearEffect: all
+  toAppearEffect: healRa
+  toEnemyAppearEffect: ally
   move_limit: 8
   hp: 3
   dmg: 6
   fly: 0
   MainGod: 0
   isYou: 0
-  movewidth: 0
+  healthBarHandler: {fileID: 0}
   A: 
   B: 000000000100000001000000
   C: 000000000100000001000000
@@ -735,6 +736,14 @@ MonoBehaviour:
   F: 
   G: 
   H: 
+  A_range: 
+  B_range: 
+  C_range: 
+  D_range: 
+  E_range: 
+  F_range: 
+  G_range: 
+  H_range: 
 --- !u!1 &8072651884829585854
 GameObject:
   m_ObjectHideFlags: 0

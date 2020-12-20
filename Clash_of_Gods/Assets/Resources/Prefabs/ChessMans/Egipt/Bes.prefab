@@ -478,7 +478,8 @@ MonoBehaviour:
   DescriptionEffect: 
   effectName: 
   PowreDescription: 
-  move: 
+  imageMove: {fileID: 21300000, guid: a1bdb8f8123a60446a59f63f029a6373, type: 3}
+  imageAttack: {fileID: 21300000, guid: 20e34759a025e1b4ca36bbab37dafc5c, type: 3}
   effectAnimation: {fileID: 0}
   toAppearEffect: 
   toEnemyAppearEffect: all
@@ -488,6 +489,7 @@ MonoBehaviour:
   fly: 0
   MainGod: 0
   isYou: 0
+  healthBarHandler: {fileID: 0}
   A: 0000000001000000
   B: 0000000001000000
   C: 000000000000000001000000

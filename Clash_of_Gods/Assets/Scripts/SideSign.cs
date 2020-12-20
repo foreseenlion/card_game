@@ -10,6 +10,10 @@ public class SideSign : MonoBehaviour
     public Material materialBlackGod;
     public Material materialWhiteGod;
 
+    public Images Move;
+    public Images Attack;
+
+
        public  bool God=false;
 
     public GameObject Object;

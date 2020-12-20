@@ -27,7 +27,9 @@ public abstract class ChessMan : MonoBehaviour
     public string DescriptionEffect;
     public string effectName;
     public string PowreDescription;
-    
+
+    public Sprite imageMove;
+    public Sprite imageAttack;
 
     public GameObject effectAnimation;
 

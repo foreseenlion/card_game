@@ -260,8 +260,11 @@ void checkAppearEffect(ChessMan chessMan, bool enemy)
                     int move_limit = temp.GetComponent<Card>().prefab.GetComponent<ChessMan>().Move_limit;
                     string power = temp.GetComponent<Card>().prefab.GetComponent<ChessMan>().PowreDescription;
                     List<Effects> effects = temp.GetComponent<Card>().prefab.GetComponent<ChessMan>().Effects;
+
+                    Sprite imageAttack= temp.GetComponent<Card>().prefab.GetComponent<ChessMan>().imageAttack;
+                    Sprite imageMove= temp.GetComponent<Card>().prefab.GetComponent<ChessMan>().imageMove;
                     BoardManager.Instance.GetComponent<TextDevelop>().chamInfo.setChampInfo(BoardManager.Instance.yourWhite, name+"(Clone)", hp,
-                  dmg, move_limit, power, effects);
+                  dmg, move_limit, power, effects, imageMove, imageAttack);
                 }
                 catch
                 {

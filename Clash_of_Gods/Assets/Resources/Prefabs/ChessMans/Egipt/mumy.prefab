@@ -236,16 +236,18 @@ MonoBehaviour:
   DescriptionEffect: 
   effectName: 
   PowreDescription: 
-  move: 
+  imageMove: {fileID: 21300000, guid: a6b8beec3ac0c214dbe0b2ca8c98097f, type: 3}
+  imageAttack: {fileID: 21300000, guid: 1ef8042724cb9504e8f69b02f37d688f, type: 3}
   effectAnimation: {fileID: 0}
   toAppearEffect: 
   toEnemyAppearEffect: all
   move_limit: 3
-  hp: 8
-  dmg: 4
+  hp: 15
+  dmg: 2
   fly: 0
   MainGod: 0
   isYou: 0
+  healthBarHandler: {fileID: 0}
 --- !u!1 &8637259371910814892
 GameObject:
   m_ObjectHideFlags: 0

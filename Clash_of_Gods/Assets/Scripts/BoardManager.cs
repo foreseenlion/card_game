@@ -19,6 +19,8 @@ public class BoardManager : MonoBehaviour
     [SerializeField]
     CardManager BlackDeck;
 
+    public GameObject moveImage;
+    public GameObject imageAttack;
 
 
     public SendToServer sendToServer;
@@ -300,7 +302,7 @@ public class BoardManager : MonoBehaviour
             try
             {
                 GetComponent<TextDevelop>().chamInfo.setChampInfo(ChessMens[selectedX, selectedY].IsWhite, ChessMens[selectedX, selectedY].name, ChessMens[selectedX, selectedY].Hp,
-                ChessMens[selectedX, selectedY].Dmg,  ChessMens[selectedX, selectedY].Move_limit, ChessMens[selectedX, selectedY].PowreDescription, ChessMens[selectedX, selectedY].Effects);
+                ChessMens[selectedX, selectedY].Dmg,  ChessMens[selectedX, selectedY].Move_limit, ChessMens[selectedX, selectedY].PowreDescription, ChessMens[selectedX, selectedY].Effects, ChessMens[selectedX, selectedY].imageMove, ChessMens[selectedX, selectedY].imageAttack);
             }
             catch
             {
