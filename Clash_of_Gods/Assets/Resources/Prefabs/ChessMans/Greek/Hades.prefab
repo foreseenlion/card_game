@@ -167,8 +167,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1205142830539968470}
-  - component: {fileID: -607399692611854008}
   - component: {fileID: 298618250393660533}
+  - component: {fileID: 3148810350833740617}
   m_Layer: 0
   m_Name: Hades
   m_TagString: Untagged
@@ -202,37 +202,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-607399692611854008
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2802046954692378053}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e65e8aabece247249b3b100e4b32f3ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 0
-  Effects: []
-  ImposesValueEffect: 4
-  ImposesLength: 0
-  TypeOfEffect: 
-  DescriptionEffect: 
-  effectName: 
-  PowreDescription: All must die. When it shows up, it takes 4 hp from all  character
-    on the board
-  move: Cross
-  toAppearEffect: dmg
-  toEnemyAppearEffect: all
-  move_limit: 1
-  hp: 12
-  dmg: 4
-  fly: 1
-  MainGod: 0
-  isYou: 0
-  movewidth: 2
 --- !u!95 &298618250393660533
 Animator:
   serializedVersion: 3
@@ -252,6 +221,55 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3148810350833740617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2802046954692378053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aa5d09a92e9af648ba5a921a056082a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 0
+  Effects: []
+  ImposesValueEffect: 4
+  ImposesLength: 0
+  TypeOfEffect: 
+  DescriptionEffect: 
+  effectName: 
+  PowreDescription: All must die. When it shows up, it takes 4 hp from all  character 
+    on the board
+  imageMove: {fileID: 21300000, guid: c666f472a3fb210479eb7352ce6d7755, type: 3}
+  imageAttack: {fileID: 21300000, guid: ab142f086f1fc3a46840f6eb6add0b42, type: 3}
+  effectAnimation: {fileID: 0}
+  toAppearEffect: dmg
+  toEnemyAppearEffect: all
+  move_limit: 8
+  hp: 12
+  dmg: 5
+  fly: 0
+  MainGod: 0
+  isYou: 0
+  healthBarHandler: {fileID: 0}
+  A: 000000000100000001000000
+  B: 0000000001000000
+  C: 
+  D: 
+  E: 
+  F: 
+  G: 
+  H: 
+  A_range: 
+  B_range: 
+  C_range: 
+  D_range: 
+  E_range: 
+  F_range: 
+  G_range: 
+  H_range: 
 --- !u!1 &3324958469968962329
 GameObject:
   m_ObjectHideFlags: 0

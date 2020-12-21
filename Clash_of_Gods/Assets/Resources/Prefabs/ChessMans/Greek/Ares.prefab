@@ -404,8 +404,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8191098287866073160}
-  - component: {fileID: 4450005385870721100}
   - component: {fileID: 1859643191557578038}
+  - component: {fileID: 6356487693336759862}
   m_Layer: 0
   m_Name: Ares
   m_TagString: Untagged
@@ -443,36 +443,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4450005385870721100
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5185887989297291867}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e65e8aabece247249b3b100e4b32f3ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 0
-  Effects: []
-  ImposesValueEffect: 0
-  ImposesLength: 0
-  TypeOfEffect: 
-  DescriptionEffect: 
-  effectName: 
-  PowreDescription: 
-  move: Cross
-  toAppearEffect: 
-  toEnemyAppearEffect: all
-  move_limit: 3
-  hp: 8
-  dmg: 2
-  fly: 0
-  MainGod: 0
-  isYou: 0
-  movewidth: 1
 --- !u!95 &1859643191557578038
 Animator:
   serializedVersion: 3
@@ -492,6 +462,54 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6356487693336759862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5185887989297291867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aa5d09a92e9af648ba5a921a056082a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 0
+  Effects: []
+  ImposesValueEffect: 0
+  ImposesLength: 0
+  TypeOfEffect: 
+  DescriptionEffect: 
+  effectName: 
+  PowreDescription: 
+  imageMove: {fileID: 21300000, guid: 9ea14d8bb724b1c4ca2ed6fdadefc4e9, type: 3}
+  imageAttack: {fileID: 21300000, guid: 9186093781b9b4f4588dab3e738f92b0, type: 3}
+  effectAnimation: {fileID: 0}
+  toAppearEffect: 
+  toEnemyAppearEffect: all
+  move_limit: 8
+  hp: 10
+  dmg: 4
+  fly: 0
+  MainGod: 0
+  isYou: 0
+  healthBarHandler: {fileID: 0}
+  A: 000000000000000001000000
+  B: 
+  C: 000000000000000001000000
+  D: 
+  E: 
+  F: 
+  G: 
+  H: 
+  A_range: 
+  B_range: 
+  C_range: 
+  D_range: 
+  E_range: 
+  F_range: 
+  G_range: 
+  H_range: 
 --- !u!1 &6094485068551585110
 GameObject:
   m_ObjectHideFlags: 0

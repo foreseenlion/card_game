@@ -10,10 +10,25 @@ public class ChamInfo : MonoBehaviour
 
     }
 
-    public void setChampInfo(bool iswhite,string nameChamp, int hp, int dmg, string move, int movelimit, string powerDes, List<Effects> effects)
+    public void setImage(Sprite move, Sprite attack)
+    {
+        Debug.Log(move);
+        Debug.Log(attack);
+        try {
+            SpriteRenderer m_SpriteRenderer = BoardManager.Instance.moveImage.GetComponent<SpriteRenderer>();
+            SpriteRenderer a_SpriteRenderer = BoardManager.Instance.imageAttack.GetComponent<SpriteRenderer>();
+
+            m_SpriteRenderer.sprite = move;
+            a_SpriteRenderer.sprite = attack;
+        } catch { }
+        
+    }
+
+
+    public void setChampInfo(bool iswhite, string nameChamp, int hp, int dmg, int movelimit, string powerDes, List<Effects> effects, Sprite move, Sprite attack)
     {
         string activeEfect = "";
-        if (effects.Count>0)
+        if (effects.Count > 0)
             if (activeEfect == "")
                 activeEfect = "Effects: \n";
         foreach (Effects effect in effects)
@@ -27,25 +42,25 @@ public class ChamInfo : MonoBehaviour
             }
             else activeEfect += effect.name + "\n";
         }
-       
+
 
         if (iswhite)
-           GetComponent<Text>().color = Color.blue;
+            GetComponent<Text>().color = Color.blue;
         else GetComponent<Text>().color = new Color(0.3f, 0, 0);
         string name = HealthBarHandler.getChampName(nameChamp);
-        string nameLine = CheckIfTheVariableHasAValue(name + "\n",name);
-        string HpLine = CheckIfTheVariableHasAValue("Hp: " + hp + "\n",hp);
+        string nameLine = CheckIfTheVariableHasAValue(name + "\n", name);
+        string HpLine = CheckIfTheVariableHasAValue("Hp: " + hp + "\n", hp);
         string dmgLine = "Dmg: " + dmg + "\n";
-        string moveLine = CheckIfTheVariableHasAValue("Move: " + move + "\n",move);
-        string movelimitLine = CheckIfTheVariableHasAValue("Move limit: " + movelimit + "\n",movelimit);
+        string movelimitLine = CheckIfTheVariableHasAValue("Move limit: " + movelimit + "\n", movelimit);
         string powerDesLine = CheckIfTheVariableHasAValue("Power: " + powerDes, powerDes);
 
-        GetComponent<Text>().text = nameLine + HpLine + dmgLine + moveLine + movelimitLine + activeEfect + powerDesLine;
+        setImage(move,attack);
+        GetComponent<Text>().text = nameLine + HpLine + dmgLine + movelimitLine + activeEfect + powerDesLine;
     }
 
     public string CheckIfTheVariableHasAValue(string value, string valueToCheck)
     {
-        if (valueToCheck == null|| valueToCheck=="")
+        if (valueToCheck == null || valueToCheck == "")
             return "";
         else return value;
     }

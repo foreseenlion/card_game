@@ -19,6 +19,8 @@ public class BoardManager : MonoBehaviour
     [SerializeField]
     CardManager BlackDeck;
 
+    public GameObject moveImage;
+    public GameObject imageAttack;
 
 
     public SendToServer sendToServer;
@@ -77,6 +79,7 @@ public class BoardManager : MonoBehaviour
 
     public void SetEnemyDecks()
     {
+        myReligion.enemyReligion = enemyDeckId[2].ToString();
         if (deckId[1] == '1')
         {
             WhiteDeckHide.InstantiateDeck(SetDeckNumber(enemyDeckId));
@@ -139,6 +142,8 @@ public class BoardManager : MonoBehaviour
 
     private void setGods(CardManager you, CardManager enemy)
     {
+        Debug.Log(DeckId);
+        Debug.Log(enemyDeckId);
         you.spawnMainGods(3, 0, false);
         enemy.spawnMainGods(4, 7, true);
     }
@@ -297,7 +302,7 @@ public class BoardManager : MonoBehaviour
             try
             {
                 GetComponent<TextDevelop>().chamInfo.setChampInfo(ChessMens[selectedX, selectedY].IsWhite, ChessMens[selectedX, selectedY].name, ChessMens[selectedX, selectedY].Hp,
-                ChessMens[selectedX, selectedY].Dmg, ChessMens[selectedX, selectedY].move, ChessMens[selectedX, selectedY].Move_limit, ChessMens[selectedX, selectedY].PowreDescription, ChessMens[selectedX, selectedY].Effects);
+                ChessMens[selectedX, selectedY].Dmg,  ChessMens[selectedX, selectedY].Move_limit, ChessMens[selectedX, selectedY].PowreDescription, ChessMens[selectedX, selectedY].Effects, ChessMens[selectedX, selectedY].imageMove, ChessMens[selectedX, selectedY].imageAttack);
             }
             catch
             {

@@ -167,8 +167,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1712558338024304002}
-  - component: {fileID: -1931800303060023134}
   - component: {fileID: -1573644254403994549}
+  - component: {fileID: -6934519240376825389}
   m_Layer: 0
   m_Name: Dionizos
   m_TagString: Untagged
@@ -201,37 +201,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-1931800303060023134
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2422764409127739281}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e65e8aabece247249b3b100e4b32f3ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 0
-  Effects: []
-  ImposesValueEffect: 3
-  ImposesLength: 2
-  TypeOfEffect: nodmg
-  DescriptionEffect: The character's ability to attack is weakened
-  effectName: Drunk
-  PowreDescription: Won't you have a drink with me?  After an attack, it lowers the
-    enemy's attack by 3
-  move: Cross
-  toAppearEffect: 
-  toEnemyAppearEffect: all
-  move_limit: 2
-  hp: 3
-  dmg: 1
-  fly: 0
-  MainGod: 0
-  isYou: 0
-  movewidth: 1
 --- !u!95 &-1573644254403994549
 Animator:
   serializedVersion: 3
@@ -251,6 +220,39 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-6934519240376825389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2422764409127739281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b1b86caf14f72a4facbb1f45265f8b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 0
+  Effects: []
+  ImposesValueEffect: 3
+  ImposesLength: 2
+  TypeOfEffect: nodmg
+  DescriptionEffect: The character's ability to attack is weakened
+  effectName: Drunk
+  PowreDescription: Won't you have a drink with me?  After an attack, it lowers the    
+    enemy's attack by 3
+  imageMove: {fileID: 21300000, guid: 63b14031911edd14fa53edef23789aba, type: 3}
+  imageAttack: {fileID: 21300000, guid: ed876de5343196b41a802789fbbabfd3, type: 3}
+  effectAnimation: {fileID: 0}
+  toAppearEffect: 
+  toEnemyAppearEffect: all
+  move_limit: 2
+  hp: 10
+  dmg: 4
+  fly: 0
+  MainGod: 0
+  isYou: 0
+  healthBarHandler: {fileID: 0}
 --- !u!1 &3470170710788820933
 GameObject:
   m_ObjectHideFlags: 0

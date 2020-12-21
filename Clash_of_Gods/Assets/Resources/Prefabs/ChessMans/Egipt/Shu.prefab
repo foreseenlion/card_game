@@ -89,8 +89,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3035627354466483080}
-  - component: {fileID: 6957351351864851103}
   - component: {fileID: -810509767743981239}
+  - component: {fileID: 1655890910911830118}
   m_Layer: 0
   m_Name: Shu
   m_TagString: Untagged
@@ -129,35 +129,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6957351351864851103
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2052497002674522523}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37d0f65c30df64049949b1664ff12317, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 0
-  Effects: []
-  ImposesValueEffect: 0
-  ImposesLength: 0
-  TypeOfEffect: 
-  DescriptionEffect: 
-  effectName: 
-  PowreDescription: 
-  move: 5
-  toAppearEffect: 
-  toEnemyAppearEffect: all
-  move_limit: 5
-  hp: 6
-  dmg: 4
-  fly: 0
-  MainGod: 0
-  isYou: 0
 --- !u!95 &-810509767743981239
 Animator:
   serializedVersion: 3
@@ -177,6 +148,38 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1655890910911830118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052497002674522523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b1b86caf14f72a4facbb1f45265f8b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 0
+  Effects: []
+  ImposesValueEffect: 0
+  ImposesLength: 0
+  TypeOfEffect: 
+  DescriptionEffect: 
+  effectName: 
+  PowreDescription: 
+  imageMove: {fileID: 21300000, guid: 57d442041a9c7d34d9f4224736f859af, type: 3}
+  imageAttack: {fileID: 21300000, guid: 10cc81c32e9d17d44ad7b1983a78028a, type: 3}
+  effectAnimation: {fileID: 0}
+  toAppearEffect: 
+  toEnemyAppearEffect: all
+  move_limit: 4
+  hp: 8
+  dmg: 5
+  fly: 0
+  MainGod: 0
+  isYou: 0
+  healthBarHandler: {fileID: 0}
 --- !u!1 &2224535518714149857
 GameObject:
   m_ObjectHideFlags: 0

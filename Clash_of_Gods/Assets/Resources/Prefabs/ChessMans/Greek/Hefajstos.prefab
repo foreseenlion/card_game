@@ -325,8 +325,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2165409538428530106}
-  - component: {fileID: 4933612723175113800}
   - component: {fileID: 881943093317618327}
+  - component: {fileID: -7148853977055729354}
   m_Layer: 0
   m_Name: Hefajstos
   m_TagString: Untagged
@@ -364,36 +364,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4933612723175113800
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2906595651826524073}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e65e8aabece247249b3b100e4b32f3ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 0
-  Effects: []
-  ImposesValueEffect: 2
-  ImposesLength: 0
-  TypeOfEffect: 
-  DescriptionEffect: 
-  effectName: 
-  PowreDescription: When he shows up he gives his ally 2 dmg
-  move: Cross
-  toAppearEffect: adddmg
-  toEnemyAppearEffect: ally
-  move_limit: 2
-  hp: 10
-  dmg: 3
-  fly: 1
-  MainGod: 0
-  isYou: 0
-  movewidth: 1
 --- !u!95 &881943093317618327
 Animator:
   serializedVersion: 3
@@ -413,6 +383,54 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-7148853977055729354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2906595651826524073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aa5d09a92e9af648ba5a921a056082a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 0
+  Effects: []
+  ImposesValueEffect: 2
+  ImposesLength: 0
+  TypeOfEffect: 
+  DescriptionEffect: 
+  effectName: 
+  PowreDescription: When he shows up he gives his ally 2 dmg
+  imageMove: {fileID: 21300000, guid: 3917587eb55ea7943a7ab869a5d8e082, type: 3}
+  imageAttack: {fileID: 21300000, guid: 3917587eb55ea7943a7ab869a5d8e082, type: 3}
+  effectAnimation: {fileID: 0}
+  toAppearEffect: adddmg
+  toEnemyAppearEffect: ally
+  move_limit: 8
+  hp: 10
+  dmg: 4
+  fly: 0
+  MainGod: 0
+  isYou: 0
+  healthBarHandler: {fileID: 0}
+  A: 
+  B: 000000000000000001000000
+  C: 0000000001000000
+  D: 
+  E: 
+  F: 
+  G: 
+  H: 
+  A_range: 
+  B_range: 
+  C_range: 
+  D_range: 
+  E_range: 
+  F_range: 
+  G_range: 
+  H_range: 
 --- !u!1 &4390022181366377962
 GameObject:
   m_ObjectHideFlags: 0

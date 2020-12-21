@@ -167,8 +167,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1852400636134253837}
-  - component: {fileID: -6592155147437629191}
   - component: {fileID: 7282813458028229506}
+  - component: {fileID: 3490054702060820620}
   m_Layer: 0
   m_Name: Cyklop
   m_TagString: Untagged
@@ -200,37 +200,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-6592155147437629191
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3453791734212564766}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e65e8aabece247249b3b100e4b32f3ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 4
-  Effects: []
-  ImposesValueEffect: 0
-  ImposesLength: 0
-  TypeOfEffect: 
-  DescriptionEffect: 
-  effectName: 
-  PowreDescription: He has a problem with stereoscopic vision, but it doesn't stop
-    him from throwing stones
-  move: Square
-  toAppearEffect: 
-  toEnemyAppearEffect: 1
-  move_limit: 2
-  hp: 6
-  dmg: 2
-  fly: 0
-  MainGod: 0
-  isYou: 0
-  movewidth: 2
 --- !u!95 &7282813458028229506
 Animator:
   serializedVersion: 3
@@ -250,6 +219,54 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3490054702060820620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3453791734212564766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aa5d09a92e9af648ba5a921a056082a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 1
+  Effects: []
+  ImposesValueEffect: 0
+  ImposesLength: 0
+  TypeOfEffect: 
+  DescriptionEffect: 
+  effectName: 
+  PowreDescription: 
+  imageMove: {fileID: 21300000, guid: 3301f45f518507247bbcf91ca0e9292a, type: 3}
+  imageAttack: {fileID: 21300000, guid: 7b123ff0b48c7c54e8cd373390472c9b, type: 3}
+  effectAnimation: {fileID: 0}
+  toAppearEffect: 
+  toEnemyAppearEffect: all
+  move_limit: 8
+  hp: 8
+  dmg: 4
+  fly: 0
+  MainGod: 0
+  isYou: 0
+  healthBarHandler: {fileID: 0}
+  A: 000000000100000001000000
+  B: 
+  C: 
+  D: 
+  E: 
+  F: 
+  G: 
+  H: 
+  A_range: 
+  B_range: 00000000010000000100000001000000
+  C_range: 00000000010000000100000001000000
+  D_range: 00000000010000000100000001000000
+  E_range: 
+  F_range: 
+  G_range: 
+  H_range: 
 --- !u!1 &3637026235634131339
 GameObject:
   m_ObjectHideFlags: 0

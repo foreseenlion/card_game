@@ -461,7 +461,9 @@ MonoBehaviour:
   DescriptionEffect: 
   effectName: 
   PowreDescription: In the first move, she can move two more positions
-  move: Square
+  imageMove: {fileID: 21300000, guid: 0fcbad2c97baf9d4a8fbdcb69b493a8e, type: 3}
+  imageAttack: {fileID: 21300000, guid: 0ab2626ff512fed40b40417a99a96ac7, type: 3}
+  effectAnimation: {fileID: 0}
   toAppearEffect: 
   toEnemyAppearEffect: all
   move_limit: 2
@@ -470,6 +472,7 @@ MonoBehaviour:
   fly: 1
   MainGod: 0
   isYou: 0
+  healthBarHandler: {fileID: 0}
 --- !u!95 &6193564995186144735
 Animator:
   serializedVersion: 3

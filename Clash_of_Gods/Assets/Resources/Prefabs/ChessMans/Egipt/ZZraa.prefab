@@ -1016,17 +1016,19 @@ MonoBehaviour:
   DescriptionEffect: He loses two hp with each turn
   effectName: Set on fire
   PowreDescription: Sets fire to the comma for two turns
-  move: Line
+  imageMove: {fileID: 21300000, guid: e0377cc8e947a1141bbdcf56f0b0ca24, type: 3}
+  imageAttack: {fileID: 21300000, guid: 09cf70fdaef52c147938aa66e78a598d, type: 3}
   effectAnimation: {fileID: 6381559578185948776, guid: 33da78dc9aee5624a851d65b561e61d8,
     type: 3}
   toAppearEffect: 
   toEnemyAppearEffect: all
   move_limit: 4
   hp: 15
-  dmg: 2
-  fly: 0
+  dmg: 5
+  fly: 1
   MainGod: 1
   isYou: 0
+  healthBarHandler: {fileID: 0}
   movewidth: 0
 --- !u!95 &-4672473860074785850
 Animator:
