@@ -65,6 +65,10 @@ void checkAppearEffect(ChessMan chessMan, bool enemy)
         else
         {   if(chessMan.toAppearEffect== "hydra")
             chessMan.Effects.Add(new Effects("hydra", 1,10, "Regrowth", "The hydra is still growing heads. She gains 1 damage with 10 turn", true, 1));
+            if (chessMan.toAppearEffect == "addture")
+                BoardManager.Instance.handlingEffects.getEffectTure("addture", chessMan.ImposesValueEffect, chessMan);
+            if (chessMan.toAppearEffect == "healture")
+                chessMan.Effects.Add(new Effects("healture", 2, -1, chessMan.effectName, chessMan.DescriptionEffect, true, 1));
         }
     }
   
@@ -205,6 +209,7 @@ void checkAppearEffect(ChessMan chessMan, bool enemy)
     }
     private List<GameObject> CreateDeck(string cards)
     {
+        Debug.Log(cards);
         GameObject[] tempDeck = new GameObject[10];
         List<GameObject> result = new List<GameObject>();
         switch (cards[0])
@@ -217,6 +222,12 @@ void checkAppearEffect(ChessMan chessMan, bool enemy)
                 tempDeck = Resources.LoadAll<GameObject>("Prefabs/Cards/Egipt");
                 break;
 
+            case 'N':
+                tempDeck = Resources.LoadAll<GameObject>("Prefabs/Cards/Nord");
+                break;
+            case 'S':
+                tempDeck = Resources.LoadAll<GameObject>("Prefabs/Cards/Slavic");
+                break;
             default:
                 tempDeck = Resources.LoadAll<GameObject>("Prefabs/Cards/Greek");
                 break;

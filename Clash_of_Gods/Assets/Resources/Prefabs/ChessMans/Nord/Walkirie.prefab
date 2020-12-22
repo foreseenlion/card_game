@@ -326,6 +326,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1592376755179979270}
   - component: {fileID: -4784528530533244404}
+  - component: {fileID: 6641887901371695003}
   m_Layer: 0
   m_Name: Walkirie
   m_TagString: Untagged
@@ -363,8 +364,8 @@ Transform:
   - {fileID: 2547722784591281381}
   - {fileID: 44868364794299319}
   - {fileID: 8675407094153444465}
-  - {fileID: 7626310386804358408}
-  - {fileID: 3951720264095527443}
+  - {fileID: 7931955430288662075}
+  - {fileID: 6006470483046423671}
   - {fileID: 8500604008677971366}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -389,20 +390,20 @@ MonoBehaviour:
   DescriptionEffect: 
   effectName: 
   PowreDescription: 
-  imageMove: {fileID: 0}
-  imageAttack: {fileID: 0}
+  imageMove: {fileID: 21300000, guid: 3bbe02d5cea4a3749b9043355d15a759, type: 3}
+  imageAttack: {fileID: 21300000, guid: ebc8bca3c64edd748a8295d8f9dd7c89, type: 3}
   effectAnimation: {fileID: 0}
   toAppearEffect: 
   toEnemyAppearEffect: all
   move_limit: 8
-  hp: 3
-  dmg: 1
+  hp: 14
+  dmg: 3
   fly: 0
   MainGod: 0
   isYou: 0
   healthBarHandler: {fileID: 0}
-  A: 
-  B: 
+  A: 00000000010000000100000001000000
+  B: 0000000001000000
   C: 
   D: 
   E: 
@@ -417,6 +418,25 @@ MonoBehaviour:
   F_range: 
   G_range: 
   H_range: 
+--- !u!95 &6641887901371695003
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2324451007477674005}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2514934398152557167
 GameObject:
   m_ObjectHideFlags: 0
@@ -1796,7 +1816,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a639eea543de1ca4792ef44bde28b24b, type: 3}
---- !u!4 &3951720264095527443 stripped
+--- !u!4 &6006470483046423671 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7317242942299155023, guid: a639eea543de1ca4792ef44bde28b24b,
     type: 3}
@@ -1871,7 +1891,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6978315fb7884d499f517059ab335e3, type: 3}
---- !u!4 &7626310386804358408 stripped
+--- !u!4 &7931955430288662075 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 560117149034504299, guid: d6978315fb7884d499f517059ab335e3,
     type: 3}

@@ -247,8 +247,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8266015821241204820}
   - component: {fileID: 7952496653108854057}
+  - component: {fileID: 2935554339626816039}
   m_Layer: 0
-  m_Name: odyn
+  m_Name: ZZodyn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -277,8 +278,8 @@ Transform:
   - {fileID: 9140842685097745300}
   - {fileID: 6331334186456175003}
   - {fileID: 8415726328286620612}
-  - {fileID: 8039057362844754979}
-  - {fileID: 3988790038442800182}
+  - {fileID: 7518081731083618064}
+  - {fileID: 5969264948239817298}
   - {fileID: 7350960346789439427}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -303,22 +304,22 @@ MonoBehaviour:
   DescriptionEffect: 
   effectName: 
   PowreDescription: 
-  imageMove: {fileID: 0}
-  imageAttack: {fileID: 0}
+  imageMove: {fileID: 21300000, guid: 7213ad59fbfc6b340b2957c85ad00a05, type: 3}
+  imageAttack: {fileID: 21300000, guid: 5261b9376a99a1e43a7f3e8a4d2cc233, type: 3}
   effectAnimation: {fileID: 0}
   toAppearEffect: 
   toEnemyAppearEffect: all
   move_limit: 8
-  hp: 3
-  dmg: 1
+  hp: 18
+  dmg: 5
   fly: 0
   MainGod: 0
   isYou: 0
   healthBarHandler: {fileID: 0}
   A: 
-  B: 
-  C: 
-  D: 
+  B: 00000000000000000100000001000000
+  C: 000000000100000001000000
+  D: 0000000001000000
   E: 
   F: 
   G: 
@@ -331,6 +332,25 @@ MonoBehaviour:
   F_range: 
   G_range: 
   H_range: 
+--- !u!95 &2935554339626816039
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4966784572693000775}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5685494821658350219
 GameObject:
   m_ObjectHideFlags: 0
@@ -1174,6 +1194,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8266015821241204820}
     m_Modifications:
+    - target: {fileID: 375264258490654645, guid: a639eea543de1ca4792ef44bde28b24b,
+        type: 3}
+      propertyPath: MainGod
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2723870485251482920, guid: a639eea543de1ca4792ef44bde28b24b,
         type: 3}
       propertyPath: m_Name
@@ -1236,7 +1261,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a639eea543de1ca4792ef44bde28b24b, type: 3}
---- !u!4 &3988790038442800182 stripped
+--- !u!4 &5969264948239817298 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7317242942299155023, guid: a639eea543de1ca4792ef44bde28b24b,
     type: 3}
@@ -1249,6 +1274,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8266015821241204820}
     m_Modifications:
+    - target: {fileID: 268711212443976675, guid: d6978315fb7884d499f517059ab335e3,
+        type: 3}
+      propertyPath: God
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 560117149034504299, guid: d6978315fb7884d499f517059ab335e3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1311,7 +1341,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6978315fb7884d499f517059ab335e3, type: 3}
---- !u!4 &8039057362844754979 stripped
+--- !u!4 &7518081731083618064 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 560117149034504299, guid: d6978315fb7884d499f517059ab335e3,
     type: 3}

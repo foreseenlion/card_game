@@ -563,6 +563,7 @@ GameObject:
   m_Component:
   - component: {fileID: 922448326799850643}
   - component: {fileID: -4574566271755601521}
+  - component: {fileID: 8542685949850420778}
   m_Layer: 0
   m_Name: tyr
   m_TagString: Untagged
@@ -593,8 +594,8 @@ Transform:
   - {fileID: 3001247419264953692}
   - {fileID: 770488014671746819}
   - {fileID: 4690692526472044526}
-  - {fileID: 2663101301284059531}
-  - {fileID: 1610151855649113757}
+  - {fileID: 2535758665598950072}
+  - {fileID: 8346429208852916473}
   - {fileID: 702559259934950866}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -619,19 +620,19 @@ MonoBehaviour:
   DescriptionEffect: 
   effectName: 
   PowreDescription: 
-  imageMove: {fileID: 0}
-  imageAttack: {fileID: 0}
+  imageMove: {fileID: 21300000, guid: e7505eb6e6a6d524ea3b597096152162, type: 3}
+  imageAttack: {fileID: 21300000, guid: dac0cdc05ba504b4aab05fbcac586c0f, type: 3}
   effectAnimation: {fileID: 0}
   toAppearEffect: 
   toEnemyAppearEffect: all
   move_limit: 8
-  hp: 3
-  dmg: 1
+  hp: 6
+  dmg: 6
   fly: 0
   MainGod: 0
   isYou: 0
   healthBarHandler: {fileID: 0}
-  A: 
+  A: 00000000010000000100000001000000
   B: 
   C: 
   D: 
@@ -647,6 +648,25 @@ MonoBehaviour:
   F_range: 
   G_range: 
   H_range: 
+--- !u!95 &8542685949850420778
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4221676072549748352}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4882992667256792590
 GameObject:
   m_ObjectHideFlags: 0
@@ -1111,7 +1131,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a639eea543de1ca4792ef44bde28b24b, type: 3}
---- !u!4 &1610151855649113757 stripped
+--- !u!4 &8346429208852916473 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7317242942299155023, guid: a639eea543de1ca4792ef44bde28b24b,
     type: 3}
@@ -1186,7 +1206,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6978315fb7884d499f517059ab335e3, type: 3}
---- !u!4 &2663101301284059531 stripped
+--- !u!4 &2535758665598950072 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 560117149034504299, guid: d6978315fb7884d499f517059ab335e3,
     type: 3}

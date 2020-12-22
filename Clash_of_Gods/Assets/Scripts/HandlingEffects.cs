@@ -7,7 +7,7 @@ public class HandlingEffects : MonoBehaviour
 
     // Idzie po wszystkich champ i wykonuje efekty jakie maja na sobie 
     public void DoTheEffects(bool start)
-    {
+    {   
         foreach (ChessMan chess in BoardManager.Instance.ChessMens)
         {
             //&& chess.Effects.Count > 0
@@ -50,7 +50,7 @@ public class HandlingEffects : MonoBehaviour
         effects.length -= 1;
         if (effects.length == -1) { }
         else
-        if (effects.length <= 0)
+        if (effects.length == 0)
         {
             if (effects.effectAnimation != null)
             {
@@ -106,8 +106,7 @@ public class HandlingEffects : MonoBehaviour
                     else if (toEnemyAppearEffect == "all")
                     {
                         getEffectTure(type, value, chess);
-                    }
-
+                    }    
                 }
                 catch
                 {
@@ -187,6 +186,7 @@ public class HandlingEffects : MonoBehaviour
     // Switch z konkretnymi efektami do wykonania
     public void getEffectTure(string effect, int valueEffect, ChessMan chessMan)
     {
+        
         switch (effect)
         {
             case "dmg":
@@ -210,10 +210,90 @@ public class HandlingEffects : MonoBehaviour
             case "healRa":
                 healRa();
                 break;
+            case "lessdmg":
+                lessdmg(valueEffect, chessMan);
+                break;
+            case "healall":
+                healall(chessMan);
+                break;
+            case "addture":
+                addTure();
+                break;
+            case "healture":
+                healture(valueEffect, chessMan);
+                break;
+            case "healtureApper":
+                healtureApper(valueEffect, chessMan);
+                break;
+
 
         }
     }
 
+    public void healture(int valueEffect, ChessMan chessMan)
+    {
+        chessMan.Hp += valueEffect;
+
+    }
+    public void healtureApper(int valueEffect, ChessMan chessMan)
+    {
+        champEffectTure("healture", 2, "ally");
+
+    }
+
+    public void champEffectTure(string type, int value, string toEnemyAppearEffect)
+    {
+        foreach (ChessMan chess in BoardManager.Instance.ChessMens)
+        {
+            if (chess != null)
+            {
+                try
+                {
+                    if (toEnemyAppearEffect == "enemy")
+                    {
+                        if ((chess.IsWhite && !BoardManager.Instance.yourWhite) || (!chess.IsWhite && BoardManager.Instance.yourWhite))
+                            getEffectTure(type, value, chess);
+                    }
+                    else if (toEnemyAppearEffect == "ally")
+                    {
+                        if ((chess.IsWhite && BoardManager.Instance.yourWhite) || (!chess.IsWhite && !BoardManager.Instance.yourWhite))
+                            getEffectTure(type, value, chess);
+                    }
+                    else if (toEnemyAppearEffect == "all")
+                    {
+                        getEffectTure(type, value, chess);
+                    }
+                }
+                catch
+                {
+
+                }
+            }
+        }
+    }
+    
+    public void addTure()
+    {
+        if (BoardManager.Instance.whoseTurn())
+        {
+            BoardManager.Instance.number_of_move_reverse++;
+        }
+       
+    }
+
+
+    public void lessdmg(int valueEffect, ChessMan chessMan)
+    {
+        if (chessMan.Dmg - valueEffect < 0)
+            chessMan.Dmg = 0;
+        else
+            chessMan.Dmg -= valueEffect;
+
+    }
+    public void healall( ChessMan chessMan)
+    {
+        chessMan.Hp =15;
+    }
     public void addDmg(int valueEffect, ChessMan chessMan)
     {
         chessMan.Dmg += valueEffect;
@@ -288,7 +368,6 @@ public class HandlingEffects : MonoBehaviour
 
     void youremineBack(ChessMan chessMan)
     {
-        Debug.Log("enter");
         chessMan.IsWhite = !chessMan.IsWhite;
         Debug.Log(chessMan.transform.rotation.y);
         chessMan.transform.rotation = Quaternion.Euler(0, chessMan.transform.rotation.y, 0);

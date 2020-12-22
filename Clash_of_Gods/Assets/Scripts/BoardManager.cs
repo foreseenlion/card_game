@@ -170,6 +170,15 @@ public class BoardManager : MonoBehaviour
     #region atak
     private void MoveAndAttackChessman(int x, int y, bool isPlayer)
     {
+        try
+        {
+            Debug.Log(SelectedChessman.name);
+        }
+        catch
+        {
+            Debug.Log("xxx");
+        }
+        
         myReligion.SpawStop = false;
         ChessMan target = ChessMens[x, y];
         moveChessman(x, y, isPlayer);
@@ -241,7 +250,6 @@ public class BoardManager : MonoBehaviour
 
         int damage = target.Hp - SelectedChessman.Dmg; //zmniejszenie HP
         IfHeDies(target, damage);
-
 
     }
 
