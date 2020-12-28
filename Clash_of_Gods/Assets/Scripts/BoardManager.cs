@@ -32,6 +32,7 @@ public class BoardManager : MonoBehaviour
 
     public int number_of_move = 0; //który ruch gracz wykonał (co dwa ruchy zmienia się aktywny graCZ)
     public int number_of_move_reverse = 2; // Ile ruchow gracz ma na maxa 
+    public int number_of_move_reverse_enemy = 2;
 
     public bool isWhiteTurn = true; //czyja kolej?
 
@@ -162,7 +163,7 @@ public class BoardManager : MonoBehaviour
             setGods(BlackDeck, WhiteDeckHide);
         }
         GetComponent<TextDevelop>().ShowSign(GetComponent<TextDevelop>().textMessage);
-        GetComponent<TextDevelop>().tureMessage.setTureInfo(whoseTurn(), yourWhite, 2);
+        GetComponent<TextDevelop>().tureMessage.setTureInfo(whoseTurn(), yourWhite, number_of_move_reverse);
     }
 
     #endregion
@@ -362,7 +363,7 @@ public class BoardManager : MonoBehaviour
             sendToServer.sendEndTureToServer();
             isWhiteTurn = !isWhiteTurn;
             number_of_move = 0;
-            GetComponent<TextDevelop>().tureMessage.setTureInfo(whoseTurn(), !yourWhite, 2);
+            GetComponent<TextDevelop>().tureMessage.setTureInfo(whoseTurn(), !yourWhite, number_of_move_reverse_enemy);
         }
     }
     public bool whoseTurn()

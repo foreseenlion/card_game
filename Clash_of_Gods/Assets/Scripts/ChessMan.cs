@@ -65,10 +65,14 @@ public abstract class ChessMan : MonoBehaviour
         return origin;
     }
 
-    public void showHpManiText(Text text, string texthp)
+    public void showHpManiText(Text text, string texthp, bool heal)
     {
         Text textTmp = Instantiate(text, GetTileCenter(2.1f), Quaternion.Euler(0f, 0f, 0f), transform.Find("CanvasHpManipulation").GetComponent<Canvas>().transform);
         textTmp.GetComponent<Text>().text = texthp;
+        if (heal)
+        {
+            textTmp.GetComponent<Text>().color = Color.green;
+        }else textTmp.GetComponent<Text>().color = Color.red;
         Destroy(textTmp, 3f);
     }
 
@@ -96,14 +100,16 @@ public abstract class ChessMan : MonoBehaviour
             hpMani = hp - value;
             c = Color.red;
             BoardManager.Instance.GetComponent<AnimationsHendling>().DmgAnimation(this);
+            showHpManiText(BoardManager.Instance.GetComponent<TextDevelop>().HpManipulationText, hpMani.ToString(),true);
         }
         else
         {
             hpMani = value - hp;
             c = Color.green;
-            
+            showHpManiText(BoardManager.Instance.GetComponent<TextDevelop>().HpManipulationText, hpMani.ToString(),false);
+
         }
-        showHpManiText(BoardManager.Instance.GetComponent<TextDevelop>().HpManipulationText, hpMani.ToString());
+        
     }
 
     public int Dmg { get => dmg; set => dmg = value; }

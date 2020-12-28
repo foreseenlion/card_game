@@ -237,8 +237,8 @@ public class HandlingEffects : MonoBehaviour
     }
     public void healtureApper(int valueEffect, ChessMan chessMan)
     {
-        champEffectTure("healture", 2, "ally");
-
+        chessMan.Effects.Add(new Effects("Heal", 2, -1, "Heal", "he will heal allies every ture", true, 1));
+        champEffectTure("healture", valueEffect, "ally");
     }
 
     public void champEffectTure(string type, int value, string toEnemyAppearEffect)
@@ -273,8 +273,13 @@ public class HandlingEffects : MonoBehaviour
     }
     
     public void addTure()
+        
     {
-        if (BoardManager.Instance.whoseTurn())
+        if (!BoardManager.Instance.whoseTurn())
+        {
+            BoardManager.Instance.number_of_move_reverse_enemy++;
+        }
+            if (BoardManager.Instance.whoseTurn())
         {
             BoardManager.Instance.number_of_move_reverse++;
         }
