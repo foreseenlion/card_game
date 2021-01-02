@@ -68,7 +68,10 @@ void checkAppearEffect(ChessMan chessMan, bool enemy)
             if (chessMan.toAppearEffect == "addture")
                 BoardManager.Instance.handlingEffects.getEffectTure("addture", chessMan.ImposesValueEffect, chessMan);
             if (chessMan.toAppearEffect == "healture")
+            {
                 chessMan.Effects.Add(new Effects("healture", 2, -1, chessMan.effectName, chessMan.DescriptionEffect, true, 1));
+            }
+               
         }
     }
   

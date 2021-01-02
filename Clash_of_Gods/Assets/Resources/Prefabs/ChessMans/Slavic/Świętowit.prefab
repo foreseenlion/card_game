@@ -222,7 +222,7 @@ MonoBehaviour:
   imageAttack: {fileID: 21300000, guid: db9bd8401a971fc49a7e1e11cd0b3e00, type: 3}
   effectAnimation: {fileID: 0}
   toAppearEffect: healture
-  toEnemyAppearEffect: ally
+  toEnemyAppearEffect: me
   move_limit: 8
   hp: 8
   dmg: 2

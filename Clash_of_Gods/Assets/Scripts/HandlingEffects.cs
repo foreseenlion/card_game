@@ -237,6 +237,7 @@ public class HandlingEffects : MonoBehaviour
     }
     public void healtureApper(int valueEffect, ChessMan chessMan)
     {
+        Debug.Log("hellp");
         chessMan.Effects.Add(new Effects("Heal", 2, -1, "Heal", "he will heal allies every ture", true, 1));
         champEffectTure("healture", valueEffect, "ally");
     }
@@ -262,6 +263,10 @@ public class HandlingEffects : MonoBehaviour
                     else if (toEnemyAppearEffect == "all")
                     {
                         getEffectTure(type, value, chess);
+                    }
+                    else if (toEnemyAppearEffect == "me")
+                    {
+                        Debug.Log("hello");
                     }
                 }
                 catch
