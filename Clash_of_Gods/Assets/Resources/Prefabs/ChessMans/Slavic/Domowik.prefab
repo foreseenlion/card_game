@@ -380,8 +380,8 @@ MonoBehaviour:
   imageMove: {fileID: 21300000, guid: eb86ec11697485a4c80052a58527ac36, type: 3}
   imageAttack: {fileID: 21300000, guid: 97eb9468f3919b246a9f9d4ed5fd3712, type: 3}
   effectAnimation: {fileID: 0}
-  toAppearEffect: 
-  toEnemyAppearEffect: all
+  toAppearEffect: addhpally
+  toEnemyAppearEffect: ally
   move_limit: 8
   hp: 10
   dmg: 4

@@ -9,12 +9,16 @@ public class MenuButton : MonoBehaviour
 
 	public void select()
     {
+		Debug.Log("s");
 		buttonAnimator.SetBool("selected", true);
+		Debug.Log("ss");
 		squareAnimator.SetBool("selected", true);
+		Debug.Log("sss");
 	}
 
 	public void deselect()
     {
+		
 		buttonAnimator.SetBool("selected", false);
 		squareAnimator.SetBool("selected", false);
 	}

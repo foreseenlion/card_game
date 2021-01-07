@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Custom : ChessMan
 {
-
     //pole a wychodzi z pionka, nastepne litery to kolejne kolumny 
     public int[] A;
     public int[] B;

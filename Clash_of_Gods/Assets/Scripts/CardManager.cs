@@ -67,10 +67,7 @@ void checkAppearEffect(ChessMan chessMan, bool enemy)
             chessMan.Effects.Add(new Effects("hydra", 1,10, "Regrowth", "The hydra is still growing heads. She gains 1 damage with 10 turn", true, 1));
             if (chessMan.toAppearEffect == "addture")
                 BoardManager.Instance.handlingEffects.getEffectTure("addture", chessMan.ImposesValueEffect, chessMan);
-            if (chessMan.toAppearEffect == "healture")
-            {
-                chessMan.Effects.Add(new Effects("healture", 2, -1, chessMan.effectName, chessMan.DescriptionEffect, true, 1));
-            }
+         
                
         }
     }

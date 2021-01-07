@@ -533,7 +533,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 0
   Effects: []
-  ImposesValueEffect: 0
+  ImposesValueEffect: 5
   ImposesLength: 0
   TypeOfEffect: addture
   DescriptionEffect: 
@@ -542,11 +542,11 @@ MonoBehaviour:
   imageMove: {fileID: 21300000, guid: d2e1bd958b6990e4a82ecf1278203f3f, type: 3}
   imageAttack: {fileID: 21300000, guid: 7211a71acca3126469998948e332cce7, type: 3}
   effectAnimation: {fileID: 0}
-  toAppearEffect: addture
-  toEnemyAppearEffect: me
+  toAppearEffect: adddmgandlosehp
+  toEnemyAppearEffect: ally
   move_limit: 8
-  hp: 10
-  dmg: 3
+  hp: 14
+  dmg: 0
   fly: 0
   MainGod: 0
   isYou: 0

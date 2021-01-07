@@ -18,6 +18,8 @@ public abstract class ChessMan : MonoBehaviour
     [SerializeField]
     public int range;
 
+    [NonSerialized]
+    public bool firstdeath = true;
 
     public List<Effects> Effects = new List<Effects>();
 

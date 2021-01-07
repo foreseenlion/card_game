@@ -11,6 +11,8 @@ public class BoardManager : MonoBehaviour
 
     public bool SpawDone;
 
+
+    public bool click;
     // fields and events
 
     [SerializeField]      //TALIE
@@ -187,7 +189,7 @@ public class BoardManager : MonoBehaviour
             makeAttackChessMan(x, y, target, isPlayer);
 
         BoardHighlitghs.Instance.HideAll();
-        SelectedChessman = null; //klinięcie w inne niż możliwe miejsce anuluje wybór
+        deselectChessMan(); //klinięcie w inne niż możliwe miejsce anuluje wybór
     }
     private int[] CalculateNewPosition(int newX, int newY, int CurrentX, int CurrentY) //funkcja potrzebna przy ataku która ustawia pion jedno pole "przed" celem w zależności od strony ataku
     {
@@ -240,7 +242,7 @@ public class BoardManager : MonoBehaviour
         }
 
         BoardHighlitghs.Instance.HideAll();
-        SelectedChessman = null; //klinięcie w inne niż możliwe miejsce anuluje wybór
+        deselectChessMan(); //klinięcie w inne niż możliwe miejsce anuluje wybór
     }
 
 
@@ -268,31 +270,43 @@ public class BoardManager : MonoBehaviour
 
     private void KillChessMan(ChessMan target)
     {
-        try
+        if (target.name.Contains("Marzana") && target.firstdeath)
         {
-            target.GetComponent<Animator>().runtimeAnimatorController =GetComponent<AnimationsHendling>().DeadAnimator;
+            target.firstdeath = false;
+            target.Hp = 10;
         }
-        catch
+        else
         {
+            try
+            {
+                target.GetComponent<Animator>().runtimeAnimatorController = GetComponent<AnimationsHendling>().DeadAnimator;
+            }
+            catch
+            {
+
+            }
+            if (target.MainGod) //jeśli to król zakończ grę
+            {
+
+
+                GameManager.instance.Winner = isWhiteTurn ? "White" : "Black";
+                GameManager.instance.Condition = "kiling the God";
+                if ((target.IsWhite && yourWhite) || (!target.IsWhite && !yourWhite))
+                    myReligion.youWin = true;
+                else myReligion.youWin = false;
+                SceneManager.LoadScene("End_Game");
+
+            }
+            Destroy(target.gameObject, 1.4f); //zniszczenie figury, automatycznie sniknie też z listy}
 
         }
-        if (target.MainGod) //jeśli to król zakończ grę
-        {
-            GameManager.instance.Winner = isWhiteTurn ? "White" : "Black";
-            GameManager.instance.Condition = "kiling the God";
-            if ((target.IsWhite && yourWhite) || (!target.IsWhite && !yourWhite))
-                myReligion.youWin = true;
-            else myReligion.youWin = false;
-            SceneManager.LoadScene("End_Game");
-
-        }
-        Destroy(target.gameObject, 1.4f); //zniszczenie figury, automatycznie sniknie też z listy
     }
     #endregion
 
     #region zaznaczanie pionkow
     private void UpdateSelection()
     {
+        click = true;
         if (!Camera.main) //jeśli brakuje kamery nic się nie dzieje
             return;
 
@@ -318,15 +332,25 @@ public class BoardManager : MonoBehaviour
 
             }
         }
-        else
+        else 
         {
-            SelectedChessman = null;
-            BoardHighlitghs.Instance.DestroySelection();
-            selectedX = -1;
-            selectedX = -1;
+           if(!click)
+            {
+                deselectChessMan();
+            }
+            
         }
 
     }
+
+    private void deselectChessMan()
+    {
+        SelectedChessman = null;
+        BoardHighlitghs.Instance.DestroySelection();
+        selectedX = -1;
+        selectedX = -1;
+    }
+
     private void SelectChessman(int x, int y)
     {
         if (ChessMens[x, y] == null) //sprawdzenie czy na wybranej pozycji jest pion
@@ -462,7 +486,10 @@ public class BoardManager : MonoBehaviour
 
     private void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            click = false;
+        }
         UpdateSelection(); // co klatkę gra sprawdza na jakie pole najechał gracz
         MakeMove(); // w zależności gdzie i czy kliknięto gracz wykona ruch, zaatakuje lub zmieni aktywnego piona
 

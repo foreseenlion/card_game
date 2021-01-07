@@ -216,8 +216,9 @@ MonoBehaviour:
   ImposesLength: 10
   TypeOfEffect: healture
   DescriptionEffect: Character gets 1 hp every turn
-  effectName: "The gift of the \u015Awiatowid"
-  PowreDescription: 
+  effectName: 
+  PowreDescription: "The gift of the \u015Awiatowid.  When attacking adds 1 hp to
+    allies"
   imageMove: {fileID: 21300000, guid: 0acbd5b06df590e49829d32e8a8eea6f, type: 3}
   imageAttack: {fileID: 21300000, guid: db9bd8401a971fc49a7e1e11cd0b3e00, type: 3}
   effectAnimation: {fileID: 0}

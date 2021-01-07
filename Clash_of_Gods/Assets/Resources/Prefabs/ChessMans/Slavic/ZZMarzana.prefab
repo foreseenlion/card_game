@@ -641,8 +641,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 670382269565341251}
-  - component: {fileID: -7511069696458891339}
   - component: {fileID: 3603475356398060066}
+  - component: {fileID: -7625005049496405948}
   m_Layer: 0
   m_Name: ZZMarzana
   m_TagString: Untagged
@@ -678,7 +678,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-7511069696458891339
+--- !u!95 &3603475356398060066
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4546090012612983888}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-7625005049496405948
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -687,7 +706,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4546090012612983888}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1aa5d09a92e9af648ba5a921a056082a, type: 3}
+  m_Script: {fileID: 11500000, guid: b334e17b853125746b85ede5eea72f6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   range: 0
@@ -698,13 +717,13 @@ MonoBehaviour:
   DescriptionEffect: 
   effectName: 
   PowreDescription: 
-  imageMove: {fileID: 21300000, guid: 4ed9f895660d9094184bd07db8c2938e, type: 3}
-  imageAttack: {fileID: 21300000, guid: 038ce5d83452da5468946dbbe49d95b6, type: 3}
+  imageMove: {fileID: 0}
+  imageAttack: {fileID: 0}
   effectAnimation: {fileID: 0}
   toAppearEffect: 
   toEnemyAppearEffect: all
-  move_limit: 0
-  hp: 15
+  move_limit: 8
+  hp: 10
   dmg: 5
   fly: 0
   MainGod: 1
@@ -726,25 +745,7 @@ MonoBehaviour:
   F_range: 
   G_range: 
   H_range: 
---- !u!95 &3603475356398060066
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4546090012612983888}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  firstdeath: 1
 --- !u!1 &5067410759572411934
 GameObject:
   m_ObjectHideFlags: 0

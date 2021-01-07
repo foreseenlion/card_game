@@ -163,7 +163,18 @@ public class HandlingEffects : MonoBehaviour
                     getEffectTure("halflife", SelectedChessman.ImposesValueEffect, target);
                     break;
                 }
+            case "healture":
+                {
+                    getEffectTure("healtureApper", SelectedChessman.ImposesValueEffect, target);
+                    break;
+                }
+            case "adddmgandlosehp":
+                {
+                    getEffectTure("adddmgandlosehp", SelectedChessman.ImposesValueEffect, target);
+                    break;
+                }
 
+                
         }
     }
 
@@ -225,7 +236,29 @@ public class HandlingEffects : MonoBehaviour
             case "healtureApper":
                 healtureApper(valueEffect, chessMan);
                 break;
+            case "addhpally":
+                addhpally(chessMan);
+                break;
+            case "adddmgandlosehp":
+                adddmgandlosehp(valueEffect, chessMan);
+                break;
 
+        }
+    }
+    public void adddmgandlosehp(int valueEffect, ChessMan chessMan)
+    {
+        chessMan.Hp -= valueEffect;
+        chessMan.Dmg += valueEffect;
+    }
+    public void addhpally(ChessMan chessMan)
+    {
+        float tmp = chessMan.Hp / 3;
+        try
+        {
+            chessMan.Hp = chessMan.Hp+ (int)System.Math.Ceiling(tmp);
+        }
+        catch
+        {
 
         }
     }
@@ -237,9 +270,7 @@ public class HandlingEffects : MonoBehaviour
     }
     public void healtureApper(int valueEffect, ChessMan chessMan)
     {
-        Debug.Log("hellp");
-        chessMan.Effects.Add(new Effects("Heal", 2, -1, "Heal", "he will heal allies every ture", true, 1));
-        champEffectTure("healture", valueEffect, "ally");
+        DoTheEffectsAppear("healture", valueEffect, "ally");
     }
 
     public void champEffectTure(string type, int value, string toEnemyAppearEffect)
