@@ -23,7 +23,12 @@ public class LoadScene : MonoBehaviour
 
     public void loadMainMenuScene()
     {
-        SceneManager.LoadScene("Main_Manu");
+        SceneManager.LoadScene("Main_Menu");
+    }
+
+    public void loadGame()
+    {
+        SceneManager.LoadScene("game");
     }
 
 }
