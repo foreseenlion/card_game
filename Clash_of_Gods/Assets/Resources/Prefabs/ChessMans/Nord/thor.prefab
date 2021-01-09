@@ -721,6 +721,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6822262466758440041}
   - component: {fileID: 5276514423349210101}
+  - component: {fileID: -1651264448228705208}
   m_Layer: 0
   m_Name: thor
   m_TagString: Untagged
@@ -751,8 +752,8 @@ Transform:
   - {fileID: 5963199065829158825}
   - {fileID: 8918861108300440998}
   - {fileID: 3974910120891707898}
-  - {fileID: 4989269660872620054}
-  - {fileID: 1178379670936352877}
+  - {fileID: 4825780478017297189}
+  - {fileID: 8491083691773810185}
   - {fileID: 462704943495569400}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -777,21 +778,21 @@ MonoBehaviour:
   DescriptionEffect: 
   effectName: 
   PowreDescription: 
-  imageMove: {fileID: 0}
-  imageAttack: {fileID: 0}
+  imageMove: {fileID: 21300000, guid: 6dcf4f3c18dd5a84689bcab4f33bf858, type: 3}
+  imageAttack: {fileID: 21300000, guid: 89ba77c809e58af46abf0a684e16d91e, type: 3}
   effectAnimation: {fileID: 0}
   toAppearEffect: 
   toEnemyAppearEffect: all
   move_limit: 8
-  hp: 3
-  dmg: 1
+  hp: 10
+  dmg: 5
   fly: 0
   MainGod: 0
   isYou: 0
   healthBarHandler: {fileID: 0}
   A: 
-  B: 
-  C: 
+  B: 000000000100000001000000
+  C: 0000000001000000
   D: 
   E: 
   F: 
@@ -805,6 +806,25 @@ MonoBehaviour:
   F_range: 
   G_range: 
   H_range: 
+--- !u!95 &-1651264448228705208
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7563463837874849402}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8140044676999900532
 GameObject:
   m_ObjectHideFlags: 0
@@ -1111,7 +1131,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a639eea543de1ca4792ef44bde28b24b, type: 3}
---- !u!4 &1178379670936352877 stripped
+--- !u!4 &8491083691773810185 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7317242942299155023, guid: a639eea543de1ca4792ef44bde28b24b,
     type: 3}
@@ -1186,7 +1206,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6978315fb7884d499f517059ab335e3, type: 3}
---- !u!4 &4989269660872620054 stripped
+--- !u!4 &4825780478017297189 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 560117149034504299, guid: d6978315fb7884d499f517059ab335e3,
     type: 3}

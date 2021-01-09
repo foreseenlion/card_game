@@ -29,7 +29,7 @@ public class BoardHighlitghs : MonoBehaviour //podświetlanie możliwych ruchów
     public void HighlightAllowedMoves(bool [,] moves,bool[,] atack) //metoda podświetlająca możliwe ruchy
     {
         HideAll();
-        
+        if (BoardManager.Instance.whoseTurn())
         for(int i = 0; i < 8;i++)       //sprawdza całą planszę
         {
             for (int j = 0; j < 8; j++)
@@ -53,8 +53,8 @@ public class BoardHighlitghs : MonoBehaviour //podświetlanie możliwych ruchów
     public void HighlightAllowedMoves(bool[,] moves) //metoda podświetlająca możliwe ruchy
     {
         HideAll();
-
-        for (int i = 0; i < 8; i++)       //sprawdza całą planszę
+        if (BoardManager.Instance.whoseTurn())
+            for (int i = 0; i < 8; i++)       //sprawdza całą planszę
         {
             for (int j = 0; j < 8; j++)
             {

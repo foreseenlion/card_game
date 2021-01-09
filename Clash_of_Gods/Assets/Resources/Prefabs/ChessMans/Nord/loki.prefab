@@ -247,6 +247,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1455779430556414472}
   - component: {fileID: 8627500482523379097}
+  - component: {fileID: -3492238832448690813}
   m_Layer: 0
   m_Name: loki
   m_TagString: Untagged
@@ -275,8 +276,8 @@ Transform:
   - {fileID: 3555685158599533511}
   - {fileID: 9058932983874303899}
   - {fileID: 6477995339069411701}
-  - {fileID: 5878587694973441912}
-  - {fileID: 8683015149726064526}
+  - {fileID: 5878587694973440612}
+  - {fileID: 8683015149726063681}
   - {fileID: 2198919978944259811}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -295,25 +296,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 0
   Effects: []
-  ImposesValueEffect: 0
+  ImposesValueEffect: 2
   ImposesLength: 0
   TypeOfEffect: 
   DescriptionEffect: 
   effectName: 
-  PowreDescription: 
-  imageMove: {fileID: 0}
-  imageAttack: {fileID: 0}
+  PowreDescription: When summoned it reduces enemy damage
+  imageMove: {fileID: 21300000, guid: 7f3301a2aa57e204d93fb7da274e35ee, type: 3}
+  imageAttack: {fileID: 21300000, guid: 28a182ba546f19241a50812ad413329d, type: 3}
   effectAnimation: {fileID: 0}
-  toAppearEffect: 
-  toEnemyAppearEffect: all
+  toAppearEffect: lessdmg
+  toEnemyAppearEffect: enemy
   move_limit: 8
-  hp: 3
-  dmg: 1
+  hp: 8
+  dmg: 6
   fly: 0
   MainGod: 0
   isYou: 0
   healthBarHandler: {fileID: 0}
-  A: 
+  A: 0000000001000000010000000100000001000000
   B: 
   C: 
   D: 
@@ -329,6 +330,25 @@ MonoBehaviour:
   F_range: 
   G_range: 
   H_range: 
+--- !u!95 &-3492238832448690813
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2479423413378367515}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2910399990569443543
 GameObject:
   m_ObjectHideFlags: 0
@@ -951,7 +971,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6978315fb7884d499f517059ab335e3, type: 3}
---- !u!4 &5878587694973441912 stripped
+--- !u!4 &5878587694973440612 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 560117149034504299, guid: d6978315fb7884d499f517059ab335e3,
     type: 3}
@@ -1151,7 +1171,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a639eea543de1ca4792ef44bde28b24b, type: 3}
---- !u!4 &8683015149726064526 stripped
+--- !u!4 &8683015149726063681 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7317242942299155023, guid: a639eea543de1ca4792ef44bde28b24b,
     type: 3}

@@ -12,8 +12,6 @@ public class ChamInfo : MonoBehaviour
 
     public void setImage(Sprite move, Sprite attack)
     {
-        Debug.Log(move);
-        Debug.Log(attack);
         try {
             SpriteRenderer m_SpriteRenderer = BoardManager.Instance.moveImage.GetComponent<SpriteRenderer>();
             SpriteRenderer a_SpriteRenderer = BoardManager.Instance.imageAttack.GetComponent<SpriteRenderer>();
