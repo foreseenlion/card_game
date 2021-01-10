@@ -454,7 +454,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonAnimator: {fileID: 440095549}
   religionId: S
-  description: Rod
+  description: Rod in the pre-Christian religion of Eastern and Southern Slavs, is
+    the god of the family, ancestors and fate, perhaps as the supreme god. Among
+    Southern Slavs, he is also known as Sud the Judge.
   descriptionField: {fileID: 1674132321}
 --- !u!95 &440095549
 Animator:
@@ -827,7 +829,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonAnimator: {fileID: 1059104693}
   religionId: E
-  description: Re
+  description: 'Re is the ancient Egyptian deity of the sun. Ra was believed to rule
+    in all parts of the created world: the sky, the Earth, and the underworld. He
+    was the god of the sun, order, kings, and the sky.'
   descriptionField: {fileID: 1674132321}
 --- !u!114 &1059104695
 MonoBehaviour:
@@ -1145,7 +1149,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonAnimator: {fileID: 1143103821}
   religionId: G
-  description: Zeus
+  description: "Zeus is the sky and thunder god in ancient Greek religion, who rules
+    as king of the gods of Mount Olympus. His mythologies and powers are similar,
+    though not identical, to those of Indo-European deities such as Jupiter, Perk\u016Bnas,
+    Perun, Indra, Dyaus and Thor."
   descriptionField: {fileID: 1674132321}
 --- !u!114 &1143103823
 MonoBehaviour:
@@ -1513,7 +1520,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonAnimator: {fileID: 1204686858}
   religionId: N
-  description: Odin
+  description: Odin is a widely revered god in Germanic mythology. Norse mythology,
+    the source of most surviving information about him, associates Odin with wisdom,
+    healing, death, royalty, the gallows, knowledge, war, battle, victory, sorcery,
+    poetry, frenzy, and the runic alphabet.
   descriptionField: {fileID: 1674132321}
 --- !u!1 &1256364937
 GameObject:
@@ -1904,7 +1914,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 250, y: 45}
-  m_SizeDelta: {x: 120, y: 120}
+  m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1622077501
 MonoBehaviour:
@@ -2056,10 +2066,9 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "Zeus is the sky and thunder god in ancient Greek religion, who rules as
-    king of the gods of Mount Olympus. His name is cognate with the first element
-    of his Roman equivalent Jupiter. His mythologies and powers are similar, though
+    king of the gods of Mount Olympus. His mythologies and powers are similar, though
     not identical, to those of Indo-European deities such as Jupiter, Perk\u016Bnas,
-    Perun, Indra, Dyaus and Thor"
+    Perun, Indra, Dyaus and Thor."
 --- !u!222 &1674132324
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2105,7 +2114,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 250, y: -93}
-  m_SizeDelta: {x: 252, y: 206}
+  m_SizeDelta: {x: 260, y: 210}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1788496246
 MonoBehaviour:
