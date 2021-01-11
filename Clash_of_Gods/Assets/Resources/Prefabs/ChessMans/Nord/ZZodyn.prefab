@@ -249,7 +249,7 @@ GameObject:
   - component: {fileID: 7952496653108854057}
   - component: {fileID: 2935554339626816039}
   m_Layer: 0
-  m_Name: ZZodyn
+  m_Name: ZZOdyn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -278,8 +278,8 @@ Transform:
   - {fileID: 9140842685097745300}
   - {fileID: 6331334186456175003}
   - {fileID: 8415726328286620612}
-  - {fileID: 7518081731083618064}
-  - {fileID: 5969264948239817298}
+  - {fileID: 8039057362844754419}
+  - {fileID: 3988790038442801204}
   - {fileID: 7350960346789439427}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -313,7 +313,7 @@ MonoBehaviour:
   hp: 18
   dmg: 5
   fly: 0
-  MainGod: 0
+  MainGod: 1
   isYou: 0
   healthBarHandler: {fileID: 0}
   A: 
@@ -1261,7 +1261,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a639eea543de1ca4792ef44bde28b24b, type: 3}
---- !u!4 &5969264948239817298 stripped
+--- !u!4 &3988790038442801204 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7317242942299155023, guid: a639eea543de1ca4792ef44bde28b24b,
     type: 3}
@@ -1341,7 +1341,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6978315fb7884d499f517059ab335e3, type: 3}
---- !u!4 &7518081731083618064 stripped
+--- !u!4 &8039057362844754419 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 560117149034504299, guid: d6978315fb7884d499f517059ab335e3,
     type: 3}

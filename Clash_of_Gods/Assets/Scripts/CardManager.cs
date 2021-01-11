@@ -251,13 +251,13 @@ void checkAppearEffect(ChessMan chessMan, bool enemy)
     {
        deck= CreateDeck(cards);
         
-        float startX = -1f;
+        float startX = -7f;
 
         for (int i = 0; i < deck.Count; i++)
         {
            var temp = Instantiate(deck[i], transform);
-           temp.transform.localPosition = new Vector3(startX + i, 0.2f, -1f);
-
+           temp.transform.localPosition = new Vector3(startX + i*4F, 0.2f, -1f);
+            temp.transform.localScale= new Vector3(1.2F, 1.5F, 1.3f);
             temp.GetComponent<Card>().id = i;
 
             temp.GetComponent<Card>().onHover += () =>
