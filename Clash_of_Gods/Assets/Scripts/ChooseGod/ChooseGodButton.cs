@@ -13,10 +13,14 @@ public class ChooseGodButton : MonoBehaviour
 	[SerializeField] Sprite swapImage;
 	[SerializeField] SpriteRenderer backgroundImage;
 	[SerializeField] Sprite swapBackground;
+	[SerializeField] AudioSource audioSource;
+	//[SerializeField] AudioClip click;
+	[SerializeField] AudioClip enter;
 
 	public void select()
 	{
 		buttonAnimator.SetBool("selected", true);
+		audioSource.PlayOneShot(enter);
 		descriptionField.GetComponent<Text>().text = description;
 		avatarImage.sprite = swapImage;
 		backgroundImage.sprite = swapBackground;
@@ -31,6 +35,7 @@ public class ChooseGodButton : MonoBehaviour
 	public void press()
 	{
 		buttonAnimator.SetBool("pressed", true);
+		//audioSource.PlayOneShot(click);
 	}
 
 	public void setReligion()
