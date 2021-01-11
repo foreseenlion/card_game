@@ -458,6 +458,10 @@ MonoBehaviour:
     the god of the family, ancestors and fate, perhaps as the supreme god. Among
     Southern Slavs, he is also known as Sud the Judge.
   descriptionField: {fileID: 1674132321}
+  avatarImage: {fileID: 682925474}
+  swapImage: {fileID: 21300000, guid: 32e1edeaa23f6a740b7a9a8344b2261f, type: 3}
+  backgroundImage: {fileID: 1937727321}
+  swapBackground: {fileID: 21300000, guid: b9a10ee0ba6becf4a9c95f07356b4147, type: 3}
 --- !u!95 &440095549
 Animator:
   serializedVersion: 3
@@ -569,6 +573,80 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b2fc67b95aaf054fa3012a8b98aa925, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &682925472
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 682925473}
+  - component: {fileID: 682925475}
+  - component: {fileID: 682925474}
+  m_Layer: 5
+  m_Name: Avatar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &682925473
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 682925472}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1788496245}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 150}
+  m_SizeDelta: {x: 140, y: 140}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &682925474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 682925472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 3f543a3363890034aa7c4a22a98a0230, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &682925475
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 682925472}
+  m_CullTransparentMesh: 0
 --- !u!1 &960729454
 GameObject:
   m_ObjectHideFlags: 0
@@ -833,6 +911,10 @@ MonoBehaviour:
     in all parts of the created world: the sky, the Earth, and the underworld. He
     was the god of the sun, order, kings, and the sky.'
   descriptionField: {fileID: 1674132321}
+  avatarImage: {fileID: 682925474}
+  swapImage: {fileID: 21300000, guid: 16a7782d9fbbba849a3bd61ddd1e685e, type: 3}
+  backgroundImage: {fileID: 1937727321}
+  swapBackground: {fileID: 21300000, guid: 82db6315c284aa9489ee0648f658132b, type: 3}
 --- !u!114 &1059104695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1154,6 +1236,10 @@ MonoBehaviour:
     though not identical, to those of Indo-European deities such as Jupiter, Perk\u016Bnas,
     Perun, Indra, Dyaus and Thor."
   descriptionField: {fileID: 1674132321}
+  avatarImage: {fileID: 682925474}
+  swapImage: {fileID: 21300000, guid: 3f543a3363890034aa7c4a22a98a0230, type: 3}
+  backgroundImage: {fileID: 1937727321}
+  swapBackground: {fileID: 21300000, guid: dcb96e4d9b71b08418741fb1f444e77c, type: 3}
 --- !u!114 &1143103823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1262,7 +1348,6 @@ RectTransform:
   - {fileID: 440095544}
   - {fileID: 76786417}
   - {fileID: 1268537017}
-  - {fileID: 1622077500}
   - {fileID: 1788496245}
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -1525,6 +1610,10 @@ MonoBehaviour:
     healing, death, royalty, the gallows, knowledge, war, battle, victory, sorcery,
     poetry, frenzy, and the runic alphabet.
   descriptionField: {fileID: 1674132321}
+  avatarImage: {fileID: 682925474}
+  swapImage: {fileID: 21300000, guid: 6b3395a5f9000944c8647d3ba996325c, type: 3}
+  backgroundImage: {fileID: 1937727321}
+  swapBackground: {fileID: 21300000, guid: 0cbc08d606a40ba40af37371fbf6f65e, type: 3}
 --- !u!1 &1256364937
 GameObject:
   m_ObjectHideFlags: 0
@@ -1878,124 +1967,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1528480564}
   m_CullTransparentMesh: 0
---- !u!1 &1622077499
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1622077500}
-  - component: {fileID: 1622077503}
-  - component: {fileID: 1622077502}
-  - component: {fileID: 1622077501}
-  m_Layer: 5
-  m_Name: Avatar_circle
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1622077500
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1622077499}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1204584737}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 250, y: 45}
-  m_SizeDelta: {x: 160, y: 160}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1622077501
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1622077499}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 1622077502}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &1622077502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1622077499}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d9678050bddec08498f51c91d30a274f, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &1622077503
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1622077499}
-  m_CullTransparentMesh: 0
 --- !u!1 &1674132321
 GameObject:
   m_ObjectHideFlags: 0
@@ -2008,7 +1979,7 @@ GameObject:
   - component: {fileID: 1674132324}
   - component: {fileID: 1674132323}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Description
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2026,7 +1997,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1788496245}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2107,13 +2078,14 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 682925473}
   - {fileID: 1674132322}
   m_Father: {fileID: 1204584737}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 250, y: -93}
+  m_AnchoredPosition: {x: 250, y: -90}
   m_SizeDelta: {x: 260, y: 210}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1788496246
@@ -2365,7 +2337,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1923256575}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1923256577
 Camera:
   m_ObjectHideFlags: 0
