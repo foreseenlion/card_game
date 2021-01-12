@@ -24,7 +24,12 @@ public class stat : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mystat = JsonUtility.FromJson<Mystat>(ReadStat());
+        createJsonFile();
+            mystat = JsonUtility.FromJson<Mystat>(ReadStat());
+      
+        
+
+
         //text.GetComponent<Text>().text = createText();
 
         //Put data from "mystat" to text in Statistics_Menu Scene
@@ -66,10 +71,38 @@ public class stat : MonoBehaviour
         return what + " " + count + "\n";
     }
 
+    public static void createJsonFile()
+    {
+        string path = Application.dataPath + "/stat.json";
+        if (!File.Exists(path))
+        {
+           // File.Create(path);
+            string text = "{\"gameCount\":0,\"lossCount\":0,\"winCount\":0,\"grecjaCount\":0," +
+                "\"slavCount\":0,\"nordCount\":0,\"egipCount\":0,\"grecjaEnemyCount\":0," +
+                "\"slavEnemyCount\":0,\"nordEnemyCount\":0,\"egipEnemyCount\":0}";
+            using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate,FileAccess.ReadWrite))
+            {
+                using (StreamWriter writer = new StreamWriter(fs))
+                {
+                    writer.Write(text);
+                }
+            }
+
+        }
+
+    }
+
+
+
     public static string ReadStat()
     {
         string result = "";
-        string path = "Assets/Resources/stat.json";
+        string path = Application.dataPath + "/stat.json";
+        if (!File.Exists(path))
+        {
+            File.Create(path);
+        }
+        
 
         // Open the stream and read it back.
         using (FileStream fs = File.OpenRead(path))
@@ -89,20 +122,20 @@ public class stat : MonoBehaviour
     {
         Mystat result = JsonUtility.FromJson<Mystat>(ReadStat());
 
-        string path = "Assets/Resources/stat.json";
+        string path = Application.dataPath + "/stat.json";
 
         string json = JsonUtility.ToJson(sumStat(mystat,result));
 
-        using (FileStream fs = new FileStream(path, FileMode.Create))
+        using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate, FileAccess.ReadWrite))
         {
             using (StreamWriter writer = new StreamWriter(fs))
             {
                 writer.Write(json);
             }
         }
-#if UNITY_EDITOR
-        AssetDatabase.Refresh();
-#endif
+//#if UNITY_EDITOR
+//        AssetDatabase.Refresh();
+//#endif
 
     }
 
