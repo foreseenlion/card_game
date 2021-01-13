@@ -455,12 +455,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonAnimator: {fileID: 440095549}
   religionId: S
-  description: Rod in the pre-Christian religion of Eastern and Southern Slavs, is
-    the god of the family, ancestors and fate, perhaps as the supreme god. Among
-    Southern Slavs, he is also known as Sud the Judge.
+  description: Morana is a pagan Slavic goddess associated with seasonal rites based
+    on the idea of death and rebirth of nature. She is an ancient goddess associated
+    with winter's death and rebirth and dreams.
   descriptionField: {fileID: 1674132321}
   avatarImage: {fileID: 682925474}
-  swapImage: {fileID: 21300000, guid: 32e1edeaa23f6a740b7a9a8344b2261f, type: 3}
+  swapImage: {fileID: 21300000, guid: 9fe1330a213a4634cb55e7f8fcd50962, type: 3}
   backgroundImage: {fileID: 1937727321}
   swapBackground: {fileID: 21300000, guid: b9a10ee0ba6becf4a9c95f07356b4147, type: 3}
   audioSource: {fileID: 440095552}
@@ -2599,8 +2599,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -22, y: 22}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -13.5, y: 22}
+  m_SizeDelta: {x: -17, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1819311851
 MonoBehaviour:
@@ -2634,7 +2634,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: ROD
+  m_Text: MORANA
 --- !u!222 &1819311852
 CanvasRenderer:
   m_ObjectHideFlags: 0
