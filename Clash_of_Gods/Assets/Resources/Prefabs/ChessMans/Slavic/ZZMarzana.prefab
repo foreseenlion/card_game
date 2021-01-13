@@ -716,7 +716,7 @@ MonoBehaviour:
   TypeOfEffect: 
   DescriptionEffect: 
   effectName: 
-  PowreDescription: 
+  PowreDescription: She is reborn after death
   imageMove: {fileID: 0}
   imageAttack: {fileID: 0}
   effectAnimation: {fileID: 0}
@@ -745,7 +745,6 @@ MonoBehaviour:
   F_range: 
   G_range: 
   H_range: 
-  firstdeath: 1
 --- !u!1 &5067410759572411934
 GameObject:
   m_ObjectHideFlags: 0

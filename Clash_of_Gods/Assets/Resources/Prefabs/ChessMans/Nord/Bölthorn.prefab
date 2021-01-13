@@ -456,7 +456,7 @@ MonoBehaviour:
   TypeOfEffect: 
   DescriptionEffect: 
   effectName: 
-  PowreDescription: 
+  PowreDescription: One push man
   imageMove: {fileID: 21300000, guid: 27587b1dc19f7c54888f2141bf654887, type: 3}
   imageAttack: {fileID: 21300000, guid: 8be13b689dafff047be28e328a7d2ed7, type: 3}
   effectAnimation: {fileID: 0}
